@@ -9,3 +9,5 @@ SceneToLoad = ExtResource("2_6fys3")
 SceneNode = NodePath("SceneNode")
 
 [node name="SceneNode" type="Node" parent="."]
+
+[node name="EffectsNode" type="Node" parent="."]

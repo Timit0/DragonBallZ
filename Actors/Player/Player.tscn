@@ -381,6 +381,7 @@ script = ExtResource("1_vqtxr")
 AnimationTree = NodePath("AnimationTree")
 Sprite = NodePath("Sprite")
 TextureOfSprite = ExtResource("5_bb610")
+Speed = null
 Tolerance = 2.0
 FootPoint = NodePath("FootPoint")
 

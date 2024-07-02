@@ -32,10 +32,8 @@ public partial class Player : Actor
 		{
 			Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 			this.Velocity = direction * this.Speed;
-		}else
-		{
-			// this.Velocity = //HERE
 		}
+		
 		this.MoveAndSlide();
 
 		base._PhysicsProcess(delta);
