@@ -366,6 +366,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("AnimationTree:parameters/Walk/blend_position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:TextureOfSpriteString")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbatf"]
 radius = 2.0
@@ -381,7 +384,6 @@ script = ExtResource("1_vqtxr")
 AnimationTree = NodePath("AnimationTree")
 Sprite = NodePath("Sprite")
 TextureOfSprite = ExtResource("5_bb610")
-Speed = null
 Tolerance = 2.0
 FootPoint = NodePath("FootPoint")
 
@@ -427,7 +429,7 @@ position = Vector2(0, 16)
 
 [node name="DetectableZone" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("6_v7nay")
 
 [node name="Shape" type="CollisionShape2D" parent="DetectableZone"]

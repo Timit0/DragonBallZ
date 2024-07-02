@@ -26,4 +26,10 @@ public partial class Actor : CharacterBody2D
 			}
 		}
 	}
+
+    public override void _Ready()
+    {
+		this.ZIndex = (int)global::ZIndex.ZIndexEnum.ACTOR;
+        base._Ready();
+    }
 }

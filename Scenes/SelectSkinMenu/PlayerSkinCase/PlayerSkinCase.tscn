@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckmb38ebg6jn3"]
+
+[ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="1_5x25j"]
+[ext_resource type="Script" path="res://Scenes/SelectSkinMenu/PlayerSkinCase/PlayerSkinCase.cs" id="1_v2gop"]
+[ext_resource type="Texture2D" uid="uid://bff4ybsxfrq1g" path="res://Common/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-009.png" id="2_gs5p3"]
+[ext_resource type="Texture2D" uid="uid://d0sj11bhnlggp" path="res://Common/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-008.png" id="3_f70yi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si1gj"]
+atlas = ExtResource("1_5x25j")
+region = Rect2(9, 4, 16, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy06d"]
+resource_local_to_scene = true
+texture = ExtResource("2_gs5p3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5joag"]
+atlas = ExtResource("1_5x25j")
+region = Rect2(9, 4, 16, 25)
+
+[node name="PlayerSkinCase" type="Control" node_paths=PackedStringArray("textureRect", "panel")]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_v2gop")
+DefaultPanelTexture = ExtResource("2_gs5p3")
+SelectedPanelTexture = ExtResource("3_f70yi")
+SkinTexture = SubResource("AtlasTexture_si1gj")
+textureRect = NodePath("Panel/TextureRect")
+panel = NodePath("Panel")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+layout_mode = 1
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy06d")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 46.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.825, 0.825)
+texture = SubResource("AtlasTexture_5joag")

@@ -22,7 +22,6 @@ public partial class DetectableZone : Area2D
 			Actor actor = area.Owner as Actor;
 			if(actor.FootPoint.GlobalPosition.Y < ((Actor)this.Owner).FootPoint.GlobalPosition.Y)
 			{
-				GD.Print($"ME - {this.Owner.Name} - {area.Owner.Name}");
 				ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.BehindActor), this.Owner.Name, area.Owner.Name);
 			}
 		}

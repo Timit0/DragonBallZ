@@ -13,6 +13,8 @@ public partial class Player : Actor
 	[Export]
 	public Texture2D TextureOfSprite {get;set;}
 
+	public string TextureOfSpriteString {get;set;}
+
     public override void _EnterTree()
     {
 		int.TryParse(this.Name, out int id);
@@ -22,7 +24,9 @@ public partial class Player : Actor
 
     public override void _Ready()
 	{
-		this.Sprite.Texture = TextureOfSprite;	
+		this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
+		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
+		
 		base._Ready();
 	}
 
@@ -32,8 +36,11 @@ public partial class Player : Actor
 		{
 			Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 			this.Velocity = direction * this.Speed;
+		}else
+		{
+			this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
 		}
-		
+
 		this.MoveAndSlide();
 
 		base._PhysicsProcess(delta);
