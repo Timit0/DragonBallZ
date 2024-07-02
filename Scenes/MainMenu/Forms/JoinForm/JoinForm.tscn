@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xjttvd6g2d8"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.cs" id="1_du3ef"]
+[ext_resource type="PackedScene" uid="uid://cet6r0ve6gkdv" path="res://Scenes/TestScene/TestScene.tscn" id="2_d03cg"]
+
+[node name="JoinForm" type="Control" node_paths=PackedStringArray("textEdit", "JoinButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_du3ef")
+textEdit = NodePath("VBoxContainer/TextEdit")
+JoinButton = NodePath("VBoxContainer/Button")
+JoinButtonTarget = ExtResource("2_d03cg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 832.0
+offset_bottom = 648.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join"
