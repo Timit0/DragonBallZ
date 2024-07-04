@@ -23,6 +23,7 @@ Sprite = NodePath("Sprite")
 replication_config = SubResource("SceneReplicationConfig_4exq8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_it8eb")
 hframes = 7
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6xjttvd6g2d8"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.cs" id="1_du3ef"]
+[ext_resource type="Script" path="res://Scenes/SelectServerMenu/Forms/JoinForm/JoinForm.cs" id="1_du3ef"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/SelectSkinMenu/SelectSkinMenu.tscn" id="2_uequh"]
 
 [node name="JoinForm" type="Control" node_paths=PackedStringArray("lineEdit", "JoinButton")]

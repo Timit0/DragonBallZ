@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://eu6bk8di7hgf"]
+[gd_scene load_steps=21 format=3 uid="uid://eu6bk8di7hgf"]
 
 [ext_resource type="PackedScene" uid="uid://ckmb38ebg6jn3" path="res://Scenes/SelectSkinMenu/PlayerSkinCase/PlayerSkinCase.tscn" id="1_fmpwb"]
 [ext_resource type="Script" path="res://Scenes/SelectSkinMenu/SelectSkinMenu.cs" id="1_jofop"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="3_yeqcm"]
 [ext_resource type="Texture2D" uid="uid://cnnyvlced06hy" path="res://Common/Assets/DragonBalls/DragonBalls.png" id="4_1q535"]
 [ext_resource type="Texture2D" uid="uid://cqauga12o8jw6" path="res://Common/Assets/Background/Background.jpg" id="7_0gmxc"]
+[ext_resource type="Texture2D" uid="uid://dj8w1tpgr6n2x" path="res://Actors/Assets/krilinSkin.png" id="7_je1j6"]
 [ext_resource type="Texture2D" uid="uid://dup80avv4kgew" path="res://Actors/Assets/VegetaSkin.png" id="7_qlfaq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fdi3v"]
@@ -63,6 +64,10 @@ region = Rect2(9, 4, 16, 25)
 atlas = ExtResource("7_qlfaq")
 region = Rect2(9, 4, 16, 25)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4xg0"]
+atlas = ExtResource("7_je1j6")
+region = Rect2(9, 4, 16, 25)
+
 [sub_resource type="Animation" id="Animation_iv8dm"]
 resource_name = "Zoom"
 length = 15.0
@@ -109,7 +114,7 @@ childToAdd = ExtResource("1_fmpwb")
 z_index = 1
 material = SubResource("CanvasItemMaterial_fdi3v")
 position = Vector2(600, -80)
-amount = 15
+amount = 2
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_6tmlp")
 texture = ExtResource("4_1q535")
@@ -120,7 +125,7 @@ randomness = 0.5
 z_index = -1
 material = SubResource("CanvasItemMaterial_0r4x8")
 position = Vector2(544, -80)
-amount = 15
+amount = 20
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_v5imw")
 texture = ExtResource("4_1q535")
@@ -177,6 +182,10 @@ SkinTexture = SubResource("AtlasTexture_ap550")
 [node name="PlayerSkinCase3" parent="CanvasLayer/CenterContainer/GridContainer" instance=ExtResource("1_fmpwb")]
 layout_mode = 2
 SkinTexture = SubResource("AtlasTexture_6dr0v")
+
+[node name="PlayerSkinCase4" parent="CanvasLayer/CenterContainer/GridContainer" instance=ExtResource("1_fmpwb")]
+layout_mode = 2
+SkinTexture = SubResource("AtlasTexture_k4xg0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

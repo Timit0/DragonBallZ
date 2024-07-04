@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brbmjsqa4yvxt"]
 
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_aq0ec"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/Forms/HostForm/HostForm.cs" id="1_mpuic"]
+[ext_resource type="Script" path="res://Scenes/SelectServerMenu/Forms/HostForm/HostForm.cs" id="1_mpuic"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/SelectSkinMenu/SelectSkinMenu.tscn" id="2_f2suh"]
 
 [node name="HostForm" type="Control" node_paths=PackedStringArray("HostButton")]

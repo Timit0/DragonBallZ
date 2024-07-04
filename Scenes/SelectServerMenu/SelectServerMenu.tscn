@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://c07ojo3qj30tr"]
 
-[ext_resource type="Script" path="res://Scenes/MainMenu/SelectServerMenu.cs" id="1_3u6h0"]
+[ext_resource type="Script" path="res://Scenes/SelectServerMenu/SelectServerMenu.cs" id="1_3u6h0"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gwdkc"]
-[ext_resource type="PackedScene" uid="uid://brbmjsqa4yvxt" path="res://Scenes/MainMenu/Forms/HostForm/HostForm.tscn" id="2_4bxm5"]
-[ext_resource type="PackedScene" uid="uid://b6xjttvd6g2d8" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.tscn" id="3_ksm2x"]
+[ext_resource type="PackedScene" uid="uid://brbmjsqa4yvxt" path="res://Scenes/SelectServerMenu/Forms/HostForm/HostForm.tscn" id="2_4bxm5"]
+[ext_resource type="PackedScene" uid="uid://b6xjttvd6g2d8" path="res://Scenes/SelectServerMenu/Forms/JoinForm/JoinForm.tscn" id="3_ksm2x"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="5_kya6b"]
 [ext_resource type="Texture2D" uid="uid://dab6r4roybnro" path="res://Common/Assets/Background/HXH_landscape.webp" id="6_ls4fp"]
 [ext_resource type="Shader" path="res://Common/Shaders/GodRay.gdshader" id="7_oufdh"]
@@ -137,6 +137,7 @@ libraries = {
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_wyee7")
+layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 656.0
 mouse_filter = 2
@@ -149,6 +150,7 @@ zoom = Vector2(1.2, 1.2)
 
 [node name="GodRay" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_e74bm")
+layout_mode = 0
 offset_top = 2.0
 offset_right = 1152.0
 offset_bottom = 658.0
