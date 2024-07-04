@@ -1,27 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://c07ojo3qj30tr"]
+[gd_scene load_steps=10 format=3 uid="uid://c07ojo3qj30tr"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/SelectServerMenu.cs" id="1_3u6h0"]
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gwdkc"]
 [ext_resource type="PackedScene" uid="uid://brbmjsqa4yvxt" path="res://Scenes/MainMenu/Forms/HostForm/HostForm.tscn" id="2_4bxm5"]
 [ext_resource type="PackedScene" uid="uid://b6xjttvd6g2d8" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.tscn" id="3_ksm2x"]
+[ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="5_kya6b"]
+[ext_resource type="Texture2D" uid="uid://dab6r4roybnro" path="res://Common/Assets/Background/HXH_landscape.webp" id="6_ls4fp"]
 
-[node name="SelectServerMenu" type="Control" node_paths=PackedStringArray("formsContainer", "OptionButton")]
+[sub_resource type="Animation" id="Animation_r0t7p"]
+resource_name = "RESET"
+length = 15.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4sif"]
+_data = {
+"RESET": SubResource("Animation_r0t7p")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyee7"]
+shader = ExtResource("5_kya6b")
+shader_parameter/strength = 6
+
+[node name="SelectServerMenu" type="Control" node_paths=PackedStringArray("formsContainer", "OptionButton", "animationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_gwdkc")
 script = ExtResource("1_3u6h0")
-formsContainer = NodePath("Forms")
-OptionButton = NodePath("OptionButton")
+formsContainer = NodePath("CanvasLayer/Forms")
+OptionButton = NodePath("CanvasLayer/CenterOptionButton/OptionButton")
 forms = Array[Resource]([ExtResource("2_4bxm5"), ExtResource("3_ksm2x")])
+animationPlayer = NodePath("AnimationPlayer")
 
-[node name="OptionButton" type="OptionButton" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 105.0
-offset_bottom = 47.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterTitle" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 248.0
+mouse_filter = 2
+theme = ExtResource("1_gwdkc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterTitle"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterTitle/HBoxContainer"]
+layout_mode = 2
+text = "CHOOSE"
+
+[node name="Label2" type="Label" parent="CanvasLayer/CenterTitle/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "YOUR"
+
+[node name="Label3" type="Label" parent="CanvasLayer/CenterTitle/HBoxContainer"]
+layout_mode = 2
+text = "MODE"
+
+[node name="Forms" type="Container" parent="CanvasLayer"]
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+theme = ExtResource("1_gwdkc")
+
+[node name="CenterOptionButton" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 192.0
+offset_right = 1152.0
+offset_bottom = 320.0
+mouse_filter = 2
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/CenterOptionButton"]
+layout_mode = 2
+theme = ExtResource("1_gwdkc")
 item_count = 2
 selected = 0
 popup/item_0/text = "Host"
@@ -29,8 +97,20 @@ popup/item_0/id = 0
 popup/item_1/text = "Join"
 popup/item_1/id = 1
 
-[node name="Forms" type="Container" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l4sif")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_wyee7")
 layout_mode = 0
-offset_top = 64.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 656.0
+mouse_filter = 2
+texture = ExtResource("6_ls4fp")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 328)
+zoom = Vector2(1.2, 1.2)

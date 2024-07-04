@@ -13,9 +13,13 @@ public partial class SelectServerMenu : Control
 	[Export]
 	protected Array<Resource> forms {get;set;}
 
+	[Export]
+	protected AnimationPlayer animationPlayer {get;set;}
+
 
 	public override void _Ready()
 	{
+		animationPlayer.Play("RESET");
 		OptionButton.ItemSelected += on_item_selected;
 		formsContainer.AddChild(FactorySingleton.Instance.GetThisNodeInstantiate<Control>(forms[0]));
 	}

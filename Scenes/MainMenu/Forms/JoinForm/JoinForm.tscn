@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.cs" id="1_du3ef"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/SelectSkinMenu/SelectSkinMenu.tscn" id="2_uequh"]
 
-[node name="JoinForm" type="Control" node_paths=PackedStringArray("textEdit", "JoinButton")]
+[node name="JoinForm" type="Control" node_paths=PackedStringArray("lineEdit", "JoinButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_du3ef")
-textEdit = NodePath("VBoxContainer/TextEdit")
+lineEdit = NodePath("VBoxContainer/LineEdit")
 JoinButton = NodePath("VBoxContainer/Button")
 JoinButtonTarget = ExtResource("2_uequh")
 
@@ -23,8 +23,7 @@ offset_bottom = 648.0
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer"]

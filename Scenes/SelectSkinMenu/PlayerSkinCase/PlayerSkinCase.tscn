@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="1_5x25j"]
 [ext_resource type="Script" path="res://Scenes/SelectSkinMenu/PlayerSkinCase/PlayerSkinCase.cs" id="1_v2gop"]
-[ext_resource type="Texture2D" uid="uid://bff4ybsxfrq1g" path="res://Common/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-009.png" id="2_gs5p3"]
-[ext_resource type="Texture2D" uid="uid://d0sj11bhnlggp" path="res://Common/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-008.png" id="3_f70yi"]
+[ext_resource type="Texture2D" uid="uid://bff4ybsxfrq1g" path="res://Common/Assets/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-009.png" id="2_gs5p3"]
+[ext_resource type="Texture2D" uid="uid://d0sj11bhnlggp" path="res://Common/Assets/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Transparent center/panel-transparent-center-008.png" id="3_f70yi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_si1gj"]
 atlas = ExtResource("1_5x25j")

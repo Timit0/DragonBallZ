@@ -4,7 +4,7 @@ using System;
 public partial class JoinForm : Control
 {
 	[Export]
-	protected TextEdit textEdit {get;set;}
+	protected LineEdit lineEdit {get;set;}
 
 	[Export]
 	protected Button JoinButton {get;set;}
@@ -20,7 +20,7 @@ public partial class JoinForm : Control
     private void on_join_button_pressed()
     {
 		ServerConfigSingleton.Instance.ServerMode = ServerConfigSingleton.ConfigServerEnum.JOIN;
-		ServerConfigSingleton.Instance.IpAdresse = textEdit.Text;
+		ServerConfigSingleton.Instance.IpAdresse = lineEdit.Text;
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), JoinButtonTarget.ResourcePath);
     }
 
