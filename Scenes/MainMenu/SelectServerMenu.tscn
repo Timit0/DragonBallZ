@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c07ojo3qj30tr"]
+[gd_scene load_steps=13 format=3 uid="uid://c07ojo3qj30tr"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/SelectServerMenu.cs" id="1_3u6h0"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gwdkc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6xjttvd6g2d8" path="res://Scenes/MainMenu/Forms/JoinForm/JoinForm.tscn" id="3_ksm2x"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="5_kya6b"]
 [ext_resource type="Texture2D" uid="uid://dab6r4roybnro" path="res://Common/Assets/Background/HXH_landscape.webp" id="6_ls4fp"]
+[ext_resource type="Shader" path="res://Common/Shaders/GodRay.gdshader" id="7_oufdh"]
 
 [sub_resource type="Animation" id="Animation_r0t7p"]
 resource_name = "RESET"
@@ -32,6 +33,38 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wyee7"]
 shader = ExtResource("5_kya6b")
 shader_parameter/strength = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e74bm"]
+shader = ExtResource("7_oufdh")
+shader_parameter/angle = -0.3
+shader_parameter/position = 0.0
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 4.75e-08
+shader_parameter/falloff = 0.0
+shader_parameter/edge_fade = 0.454
+shader_parameter/speed = 2.5
+shader_parameter/ray1_density = 10.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.46
+shader_parameter/color = Color(1, 0.901961, 0.65098, 0.313726)
+shader_parameter/hdr = true
+shader_parameter/seed = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_arpp4"]
+shader = ExtResource("7_oufdh")
+shader_parameter/angle = 0.05
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 0.0
+shader_parameter/edge_fade = 0.3
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(0.529412, 0.854902, 1, 0.298039)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [node name="SelectServerMenu" type="Control" node_paths=PackedStringArray("formsContainer", "OptionButton", "animationPlayer")]
 layout_mode = 3
@@ -104,7 +137,6 @@ libraries = {
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_wyee7")
-layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 656.0
 mouse_filter = 2
@@ -114,3 +146,15 @@ expand_mode = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 328)
 zoom = Vector2(1.2, 1.2)
+
+[node name="GodRay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e74bm")
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 658.0
+
+[node name="GodRay2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_arpp4")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 656.0

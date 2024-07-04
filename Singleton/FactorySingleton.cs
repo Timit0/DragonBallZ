@@ -47,4 +47,15 @@ public partial class FactorySingleton : Node
         
         return player;
     }
+
+    public PlayerSkinCase GetPlayerSkinCase(Texture2D texture)
+    {
+        PackedScene packedScene;
+        packedScene = ResourceLoader.Load<PackedScene>("res://Scenes/SelectSkinMenu/PlayerSkinCase/PlayerSkinCase.tscn");
+        PlayerSkinCase playerSkinCase = packedScene.Instantiate<PlayerSkinCase>();
+        playerSkinCase.SkinTexture.Atlas = (playerSkinCase.PlayerModel.Clone() as PlayerModel).SkinTexture;
+        playerSkinCase.PlayerModel.SkinTexture = texture;
+
+        return playerSkinCase;
+    }
 }

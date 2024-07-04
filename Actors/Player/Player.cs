@@ -13,6 +13,8 @@ public partial class Player : Actor
 	[Export]
 	public Texture2D TextureOfSprite {get;set;}
 
+	// public PlayerModel PlayerModel {get;set;} = new PlayerModel();
+
 	public string TextureOfSpriteString {get;set;}
 
     public override void _EnterTree()

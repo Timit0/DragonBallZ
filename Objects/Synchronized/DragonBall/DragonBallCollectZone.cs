@@ -16,7 +16,6 @@ public partial class DragonBallCollectZone : Area2D
 			{
 				if(detectableZone.Owner is Player player)
 				{
-					GD.Print("CO");
 					this.player = player;
 					ContainPlayer = true;
 				}

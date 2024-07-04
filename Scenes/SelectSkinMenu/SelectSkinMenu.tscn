@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://eu6bk8di7hgf"]
+[gd_scene load_steps=19 format=3 uid="uid://eu6bk8di7hgf"]
 
 [ext_resource type="PackedScene" uid="uid://ckmb38ebg6jn3" path="res://Scenes/SelectSkinMenu/PlayerSkinCase/PlayerSkinCase.tscn" id="1_fmpwb"]
 [ext_resource type="Script" path="res://Scenes/SelectSkinMenu/SelectSkinMenu.cs" id="1_jofop"]
 [ext_resource type="Texture2D" uid="uid://b5djyika8hxa8" path="res://Actors/Assets/bulmaSkin.png" id="2_21tsb"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="2_cfv2n"]
+[ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="2_cuw80"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="3_yeqcm"]
 [ext_resource type="Texture2D" uid="uid://cnnyvlced06hy" path="res://Common/Assets/DragonBalls/DragonBalls.png" id="4_1q535"]
 [ext_resource type="Texture2D" uid="uid://cqauga12o8jw6" path="res://Common/Assets/Background/Background.jpg" id="7_0gmxc"]
+[ext_resource type="Texture2D" uid="uid://dup80avv4kgew" path="res://Actors/Assets/VegetaSkin.png" id="7_qlfaq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fdi3v"]
 particles_animation = true
@@ -53,8 +55,12 @@ turbulence_noise_scale = 1.443
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.482
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bx0jj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap550"]
 atlas = ExtResource("2_21tsb")
+region = Rect2(9, 4, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dr0v"]
+atlas = ExtResource("7_qlfaq")
 region = Rect2(9, 4, 16, 25)
 
 [sub_resource type="Animation" id="Animation_iv8dm"]
@@ -83,7 +89,7 @@ _data = {
 shader = ExtResource("2_cfv2n")
 shader_parameter/strength = 4
 
-[node name="SelectSkinMenu" type="Control" node_paths=PackedStringArray("animationPlayer")]
+[node name="SelectSkinMenu" type="Control" node_paths=PackedStringArray("animationPlayer", "gridContainer")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -93,6 +99,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jofop")
 animationPlayer = NodePath("AnimationPlayer")
+characters = Array[Texture2D]([ExtResource("2_cuw80"), ExtResource("2_21tsb")])
+gridContainer = NodePath("CanvasLayer/CenterContainer/GridContainer")
+childToAdd = ExtResource("1_fmpwb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -163,13 +172,11 @@ layout_mode = 2
 
 [node name="PlayerSkinCase2" parent="CanvasLayer/CenterContainer/GridContainer" instance=ExtResource("1_fmpwb")]
 layout_mode = 2
-SkinTexture = SubResource("AtlasTexture_bx0jj")
+SkinTexture = SubResource("AtlasTexture_ap550")
 
 [node name="PlayerSkinCase3" parent="CanvasLayer/CenterContainer/GridContainer" instance=ExtResource("1_fmpwb")]
 layout_mode = 2
-
-[node name="PlayerSkinCase4" parent="CanvasLayer/CenterContainer/GridContainer" instance=ExtResource("1_fmpwb")]
-layout_mode = 2
+SkinTexture = SubResource("AtlasTexture_6dr0v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

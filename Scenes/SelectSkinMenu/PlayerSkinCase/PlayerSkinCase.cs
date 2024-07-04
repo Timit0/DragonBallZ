@@ -9,16 +9,18 @@ public partial class PlayerSkinCase : Control
 	[Export]
 	protected Texture2D SelectedPanelTexture {get;set;}
 	[Export]
-	protected AtlasTexture SkinTexture {get;set;}
+	public AtlasTexture SkinTexture {get;set;}
 
 
 	[ExportGroup("Nodes")]
 	[Export]
 	protected TextureRect textureRect {get;set;}
+
 	[Export]
 	protected Panel panel {get;set;}
 	[ExportGroup("")]
 
+	public PlayerModel PlayerModel {get;set;} = new PlayerModel();
 
 	protected StyleBoxTexture styleBoxTexture {get;set;} = new StyleBoxTexture();
 
@@ -26,8 +28,6 @@ public partial class PlayerSkinCase : Control
 
     public override void _Ready()
     {
-		// SkinTexture.Atlas = GD.Load<Texture2D>("res://Actors/Assets/bulmaSkin.png");
-
 		textureRect.Texture = SkinTexture;
 
 		panel.MouseEntered += on_mouse_entered;
@@ -61,5 +61,4 @@ public partial class PlayerSkinCase : Control
 
         base._Input(@event);
     }
-
 }
