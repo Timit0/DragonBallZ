@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxd46llrg4yqa"]
+
+[ext_resource type="Script" path="res://Singleton/Autoload/MusicManagerAutoload/MusicManagerAutoload.cs" id="1_ts38h"]
+[ext_resource type="AudioStream" uid="uid://c2u3q3hk0n2d8" path="res://Common/Assets/Music/DragonBallOpening.wav" id="2_tabj2"]
+
+[node name="MusicManager" type="Node" node_paths=PackedStringArray("AudioStreamPlayer")]
+script = ExtResource("1_ts38h")
+AudioStreamPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tabj2")
+volume_db = -25.635
+autoplay = true
+stream_paused = true

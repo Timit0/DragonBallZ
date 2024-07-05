@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://brbmjsqa4yvxt"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_aq0ec"]
+[ext_resource type="Script" path="res://Scenes/Menus/SelectServerMenu/Forms/HostForm/HostForm.cs" id="1_mpuic"]
+[ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn" id="2_f2suh"]
+
+[node name="HostForm" type="Control" node_paths=PackedStringArray("HostButton")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_aq0ec")
+script = ExtResource("1_mpuic")
+HostButton = NodePath("VBoxContainer/Button")
+HostButtonTarget = ExtResource("2_f2suh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 832.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host"
