@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqhnb6wuqmleg"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_a2255"]
+[ext_resource type="Script" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.cs" id="2_eyqra"]
+
+[node name="ReturnButton" type="Button"]
+offset_right = 98.0
+offset_bottom = 58.0
+theme = ExtResource("1_a2255")
+text = "RETURN"
+script = ExtResource("2_eyqra")

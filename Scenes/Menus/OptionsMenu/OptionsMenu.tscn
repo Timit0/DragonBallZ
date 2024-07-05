@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcrhxlq5tihka"]
+[gd_scene load_steps=5 format=3 uid="uid://bcrhxlq5tihka"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.cs" id="1_1qi7y"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gluei"]
 [ext_resource type="PackedScene" uid="uid://bkmqqtmi334fr" path="res://Scenes/Menus/OptionsMenu/Tables/Sound/SoundTable.tscn" id="2_3s1nq"]
+[ext_resource type="PackedScene" uid="uid://dqhnb6wuqmleg" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.tscn" id="4_106ow"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("returnButton")]
+[node name="OptionsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_gluei")
 script = ExtResource("1_1qi7y")
-returnButton = NodePath("Button")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
@@ -34,10 +34,10 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="ReturnButton" parent="." instance=ExtResource("4_106ow")]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 560.0
-offset_right = 125.0
-offset_bottom = 591.0
-text = "Return"
+offset_top = 544.0
+offset_right = 162.0
+offset_bottom = 602.0
+targetPath = "res://Scenes/Menus/MainMenu/MainMenu.tscn"

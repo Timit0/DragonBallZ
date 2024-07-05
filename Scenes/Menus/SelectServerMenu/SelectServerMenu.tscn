@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c07ojo3qj30tr"]
+[gd_scene load_steps=14 format=3 uid="uid://c07ojo3qj30tr"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/SelectServerMenu/SelectServerMenu.cs" id="1_3u6h0"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gwdkc"]
 [ext_resource type="PackedScene" uid="uid://brbmjsqa4yvxt" path="res://Scenes/Menus/SelectServerMenu/Forms/HostForm/HostForm.tscn" id="2_4bxm5"]
 [ext_resource type="PackedScene" uid="uid://b6xjttvd6g2d8" path="res://Scenes/Menus/SelectServerMenu/Forms/JoinForm/JoinForm.tscn" id="3_ksm2x"]
+[ext_resource type="PackedScene" uid="uid://dqhnb6wuqmleg" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.tscn" id="5_et6bm"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="5_kya6b"]
 [ext_resource type="Texture2D" uid="uid://dab6r4roybnro" path="res://Common/Assets/Background/HXH_landscape.webp" id="6_ls4fp"]
 [ext_resource type="Shader" path="res://Common/Shaders/GodRay.gdshader" id="7_oufdh"]
@@ -129,6 +130,13 @@ popup/item_0/text = "Host"
 popup/item_0/id = 0
 popup/item_1/text = "Join"
 popup/item_1/id = 1
+
+[node name="ReturnButton" parent="CanvasLayer" instance=ExtResource("5_et6bm")]
+offset_left = 64.0
+offset_top = 552.0
+offset_right = 162.0
+offset_bottom = 610.0
+targetPath = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
