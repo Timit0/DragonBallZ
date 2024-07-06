@@ -9,6 +9,3 @@ AudioStreamPlayer = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tabj2")
-volume_db = -25.635
-autoplay = true
-stream_paused = true
