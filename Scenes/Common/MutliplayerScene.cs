@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using Godot;
 
 public partial class MultiplayerScene : Scene
@@ -8,9 +9,7 @@ public partial class MultiplayerScene : Scene
 
     public override void _Ready()
     {
-
-        string dragonBallPath = "res://Objects/Synchronized/DragonBall/DragonBall.tscn";
-		DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
+        
 		
         if(ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
         {
@@ -19,10 +18,7 @@ public partial class MultiplayerScene : Scene
             this.Multiplayer.PeerConnected += on_peer_connected;
             this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(1));
 
-            Random random = new Random();
-            dragonBall.Position = new Vector2(random.Next(0, 1000), random.Next(0, 500));
-            dragonBall.Sprite.Frame = random.Next(0, 7);
-            this.AddChild(dragonBall);
+            CreateDragonBalls();
         }
 
         if(ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
@@ -38,5 +34,21 @@ public partial class MultiplayerScene : Scene
     {
         int.TryParse(id.ToString(), out int idOut);
         this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(idOut));
+    }
+
+    protected virtual void CreateDragonBalls(int dBNumb = 7)
+    {
+        string dragonBallPath = "res://Objects/Synchronized/DragonBall/DragonBall.tscn";
+
+        Random random = new Random();
+
+        for (int i = 0; i < 7; i++)
+        {
+		    DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
+            dragonBall.Position = new Vector2(random.Next(0, 1000), random.Next(0, 500));
+            dragonBall.Sprite.Frame = random.Next(0, 7);
+            dragonBall.Name = $"DragonBall{i}";
+            this.AddChild(dragonBall);
+        }
     }
 }

@@ -19,6 +19,7 @@ public partial class SceneManager : Node
 
     private void on_change_to_this_scene(string scenePath)
     {
+		GetTree().Paused = false;
         RemoveScene();
 		SceneNode.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<Node>(scenePath));
     }

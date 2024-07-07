@@ -9,6 +9,23 @@ public partial class Scene : Node2D
         base._Ready();
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if(Input.IsActionJustPressed("inventory_open_or_close"))
+        {
+            foreach (Node node in GetChildren())
+            {
+                if(node is UI)
+                {
+                    return;
+                }
+            }
+            this.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<UI>("res://Scenes/UI/UI.tscn"));
+        }
+
+        base._Input(@event);
+    }
+
         /// <summary>
     /// If an actor is behind another this function will put it visually behind.
     /// It's gest also the ZIndex if an actor is behind another.

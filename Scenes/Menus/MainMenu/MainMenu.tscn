@@ -65,13 +65,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ushp8")
 script = ExtResource("2_syupt")
+startTarget = ExtResource("3_7h8j8")
+optionsTarget = ExtResource("4_g7x0j")
 shenronAnimationPlayer = NodePath("ShenronAnims")
 cameraAnimationPlayer = NodePath("CameraAnims")
 startButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/StartButton")
 optionsButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/OptionsButton")
 quitButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/QuitButton")
-startTarget = ExtResource("3_7h8j8")
-optionsTarget = ExtResource("4_g7x0j")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_2mraw")

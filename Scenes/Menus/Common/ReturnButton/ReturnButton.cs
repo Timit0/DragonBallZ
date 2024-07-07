@@ -3,8 +3,6 @@ using System;
 
 public partial class ReturnButton : Button
 {
-	[Export]
-	protected string TextContent {get;set;}
 
 	[ExportGroup("Target")]
 	[Export]

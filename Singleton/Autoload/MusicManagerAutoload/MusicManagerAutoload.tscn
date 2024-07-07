@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://c2u3q3hk0n2d8" path="res://Common/Assets/Music/DragonBallOpening.wav" id="2_tabj2"]
 
 [node name="MusicManager" type="Node" node_paths=PackedStringArray("AudioStreamPlayer")]
+process_mode = 3
 script = ExtResource("1_ts38h")
 AudioStreamPlayer = NodePath("AudioStreamPlayer")
 

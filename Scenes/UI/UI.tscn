@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://ie45v0c4vv8c"]
+
+[ext_resource type="Script" path="res://Scenes/UI/UI.cs" id="1_e6jdh"]
+[ext_resource type="PackedScene" uid="uid://dqhnb6wuqmleg" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.tscn" id="2_kqc3r"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("returnButton", "resumeButton")]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6jdh")
+returnButton = NodePath("CenterContainer/VBoxContainer/ReturnButton")
+resumeButton = NodePath("CenterContainer/VBoxContainer/ResumeButton")
+returnTarget = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.243137, 0.243137, 0.243137, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="ReturnButton" parent="CenterContainer/VBoxContainer" instance=ExtResource("2_kqc3r")]
+layout_mode = 2
+text = "RETURN TO MENU"
+targetPath = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
