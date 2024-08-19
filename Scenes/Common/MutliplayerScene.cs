@@ -9,7 +9,7 @@ public partial class MultiplayerScene : Scene
 
     public override void _Ready()
     {
-        
+        SceneSignals.Instance.ChangeToThisScene += on_quit_this_scene;
 		
         if(ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
         {
@@ -29,6 +29,12 @@ public partial class MultiplayerScene : Scene
 
         base._Ready();
     }
+
+    private void on_quit_this_scene(string scenePath)
+    {
+        this.Peer = new ENetMultiplayerPeer();
+    }
+
 
     private void on_peer_connected(long id)
     {

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ie45v0c4vv8c"]
+[gd_scene load_steps=4 format=3 uid="uid://ie45v0c4vv8c"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.cs" id="1_e6jdh"]
+[ext_resource type="Script" path="res://Scenes/UI/ResumeButton.cs" id="2_byfwk"]
 [ext_resource type="PackedScene" uid="uid://dqhnb6wuqmleg" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.tscn" id="2_kqc3r"]
 
 [node name="UI" type="Control" node_paths=PackedStringArray("returnButton", "resumeButton")]
@@ -34,6 +35,7 @@ theme_override_constants/separation = 50
 [node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "RESUME"
+script = ExtResource("2_byfwk")
 
 [node name="ReturnButton" parent="CenterContainer/VBoxContainer" instance=ExtResource("2_kqc3r")]
 layout_mode = 2

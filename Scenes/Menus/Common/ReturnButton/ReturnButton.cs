@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ReturnButton : Button
+public partial class ReturnButton : MyButtonOverride
 {
 
 	[ExportGroup("Target")]
@@ -13,6 +13,7 @@ public partial class ReturnButton : Button
 	public override void _Ready()
 	{
 		this.Pressed += on_button_pressed;
+		base._Ready();
 	}
 
     private void on_button_pressed()

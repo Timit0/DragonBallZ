@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n6s78")
-SliderVolume = NodePath("ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer/HSlider")
+SliderVolume = NodePath("ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer/HSlider")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -20,30 +20,63 @@ offset_bottom = 648.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 
-[node name="Spacing" type="Container" parent="ScrollContainer/HBoxContainer"]
+[node name="HMusicVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing" type="Container" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_ylkiv")
 theme_override_font_sizes/font_size = 65
-text = "Sound volume"
+text = "MUSIC VOLUME"
 
-[node name="HSlider" type="HSlider" parent="ScrollContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+min_value = -80.0
+max_value = 10.0
+step = 0.1
+
+[node name="HUIEffectVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing" type="Container" parent="ScrollContainer/VBoxContainer/HUIEffectVolume"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HUIEffectVolume"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HUIEffectVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HUIEffectVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_ylkiv")
+theme_override_font_sizes/font_size = 65
+text = "UI EFFECT VOLUME"
+
+[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HUIEffectVolume/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 min_value = -80.0

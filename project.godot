@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MusicManagerAutoload="*res://Singleton/Autoload/MusicManagerAutoload/MusicManagerAutoload.tscn"
+MusicManagerAutoload="*res://Singleton/Autoload/MusicManagerAutoload/SoundManagerAutoload.tscn"
 
 [display]
 
