@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class FactorySingleton : Node
@@ -44,7 +45,7 @@ public partial class FactorySingleton : Node
         packedScene = ResourceLoader.Load<PackedScene>("res://Actors/Player/Player.tscn");
         player = packedScene.Instantiate<Player>();
         player.Name = id.ToString();
-        
+
         return player;
     }
 
@@ -57,5 +58,15 @@ public partial class FactorySingleton : Node
         playerSkinCase.PlayerModel.SkinTexture = texture;
 
         return playerSkinCase;
+    }
+
+    public DragonRadar GetDragonRadar()
+    {
+        PackedScene packedScene;
+        packedScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DragonRadar/DragonRadar.tscn");
+        DragonRadar dragonRadar = packedScene.Instantiate<DragonRadar>();
+        dragonRadar.SetUp(DragonBallSingleton.Instance.DragonBallListOfPositions, PlayerSingleton.Instance.PlayerPostition);
+
+        return dragonRadar;
     }
 }

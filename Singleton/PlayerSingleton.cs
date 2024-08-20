@@ -21,5 +21,7 @@ public partial class PlayerSingleton : Node
         }
     }
 
-    public PlayerModel PlayerModel {get;set;} = new PlayerModel();
+    public PlayerModel PlayerModel { get; set; } = new PlayerModel();
+
+    public Vector2 PlayerPostition { get; set; } = new Vector2();
 }

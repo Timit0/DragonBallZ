@@ -377,12 +377,13 @@ height = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4pmf"]
 size = Vector2(16, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "FootPoint")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "Camera", "FootPoint")]
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_vqtxr")
 AnimationTree = NodePath("AnimationTree")
 Sprite = NodePath("Sprite")
+Camera = NodePath("Camera2D")
 TextureOfSprite = ExtResource("5_bb610")
 Tolerance = 2.0
 FootPoint = NodePath("FootPoint")
@@ -434,3 +435,5 @@ script = ExtResource("6_v7nay")
 
 [node name="Shape" type="CollisionShape2D" parent="DetectableZone"]
 shape = SubResource("RectangleShape2D_y4pmf")
+
+[node name="Camera2D" type="Camera2D" parent="."]

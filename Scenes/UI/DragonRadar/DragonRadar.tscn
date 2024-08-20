@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjoujwveekrvx"]
+
+[ext_resource type="Script" path="res://Scenes/UI/DragonRadar/DragonRadar.cs" id="1_lascv"]
+[ext_resource type="Texture2D" uid="uid://c48iyvx1mei8u" path="res://Common/Assets/DragonRadar/DragonRadar.png" id="2_ihcd4"]
+[ext_resource type="Texture2D" uid="uid://ytfq78unfsmy" path="res://Common/Assets/Mask/CircelMask.png" id="3_0sleu"]
+
+[node name="DragonRadar" type="CanvasLayer" node_paths=PackedStringArray("DragonBallSpawn")]
+script = ExtResource("1_lascv")
+distanceDivider = 5.0
+DragonBallSpawn = NodePath("DragonBallSpawn")
+metadata/_edit_vertical_guides_ = [576.0]
+metadata/_edit_horizontal_guides_ = [338.0]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+z_index = -1
+texture_filter = 1
+custom_minimum_size = Vector2(500, 640)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_ihcd4")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/TextureRect"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 265.0
+offset_right = 375.0
+offset_bottom = 515.0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/TextureRect/CenterContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+
+[node name="DragonBallSpawn" type="Sprite2D" parent="."]
+clip_children = 1
+texture_filter = 1
+position = Vector2(574.5, 338.5)
+scale = Vector2(1.91556, 1.92444)
+texture = ExtResource("3_0sleu")

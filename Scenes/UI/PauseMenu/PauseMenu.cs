@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public partial class UI : Control
+public partial class PauseMenu : Control
 {
     [ExportGroup("Nodes")]
     [Export]
-    protected Button returnButton {get;set;}
+    protected Button returnButton { get; set; }
     [Export]
-    protected Button resumeButton {get;set;}
+    protected Button resumeButton { get; set; }
 
     [ExportGroup("Targets")]
     [Export]
-    protected string returnTarget {get;set;}
+    protected string returnTarget { get; set; }
 
     public override void _Ready()
     {
@@ -25,7 +25,7 @@ public partial class UI : Control
 
     public override void _Input(InputEvent @event)
     {
-        if(Input.IsActionJustPressed("inventory_open_or_close"))
+        if (Input.IsActionJustPressed("inventory_open_or_close"))
         {
             GetTree().Paused = false;
             this.QueueFree();

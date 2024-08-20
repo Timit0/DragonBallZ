@@ -47,12 +47,10 @@ public partial class SoundManagerAutoload : Node
 	public void SetANewMusicMenu()
 	{
 		int lenght = MenuMusics.Count;
-		GD.Print(lenght);
 
 		if (lenght <= 1)
 		{
 			MenuMusicPlayer.Stream = MenuMusics[0];
-			GD.Print("FDP");
 			return;
 		}
 

@@ -28,7 +28,6 @@ public partial class DragonBallCollectZone : Area2D
 	{
 		if (Input.IsActionJustPressed("collect_dragon_ball") && ContainPlayer && player.IsMultiplayerAuthority())
 		{
-			// Owner.QueueFree();
 			Rpc(nameof(this.RemoveDragonBall));
 		}
 
@@ -38,7 +37,7 @@ public partial class DragonBallCollectZone : Area2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void RemoveDragonBall()
 	{
+		// DragonBallSingleton.Instance.DragonBallListOfPositions.Remove(DragonBallSingleton.Instance.DragonBallListOfPositions.Find(x => x == (Owner as Node2D).Position));
 		Owner.QueueFree();
 	}
-
 }

@@ -1,17 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using Godot;
 
 public partial class MultiplayerScene : Scene
 {
     public ENetMultiplayerPeer Peer = new ENetMultiplayerPeer();
-    protected int port {get;set;} = 1555;
+    protected int port { get; set; } = 1555;
 
     public override void _Ready()
     {
         SceneSignals.Instance.ChangeToThisScene += on_quit_this_scene;
-		
-        if(ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
+
+        if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
         {
             Peer.CreateServer(port);
             this.Multiplayer.MultiplayerPeer = Peer;
@@ -21,7 +22,7 @@ public partial class MultiplayerScene : Scene
             CreateDragonBalls();
         }
 
-        if(ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
+        if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
         {
             Peer.CreateClient(ServerConfigSingleton.Instance.IpAdresse, port);
             this.Multiplayer.MultiplayerPeer = Peer;
@@ -42,6 +43,23 @@ public partial class MultiplayerScene : Scene
         this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(idOut));
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed("dragon_radar"))
+        {
+            foreach (Node node in GetChildren())
+            {
+                if (node is DragonRadar)
+                {
+                    return;
+                }
+            }
+            this.AddChild(FactorySingleton.Instance.GetDragonRadar());
+        }
+
+        base._Input(@event);
+    }
+
     protected virtual void CreateDragonBalls(int dBNumb = 7)
     {
         string dragonBallPath = "res://Objects/Synchronized/DragonBall/DragonBall.tscn";
@@ -50,7 +68,7 @@ public partial class MultiplayerScene : Scene
 
         for (int i = 0; i < 7; i++)
         {
-		    DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
+            DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
             dragonBall.Position = new Vector2(random.Next(0, 1000), random.Next(0, 500));
             dragonBall.Sprite.Frame = random.Next(0, 7);
             dragonBall.Name = $"DragonBall{i}";

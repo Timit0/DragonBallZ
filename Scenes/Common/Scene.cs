@@ -11,22 +11,22 @@ public partial class Scene : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        if(Input.IsActionJustPressed("inventory_open_or_close"))
+        if (Input.IsActionJustPressed("inventory_open_or_close"))
         {
             foreach (Node node in GetChildren())
             {
-                if(node is UI)
+                if (node is PauseMenu)
                 {
                     return;
                 }
             }
-            this.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<UI>("res://Scenes/UI/UI.tscn"));
+            this.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<PauseMenu>("res://Scenes/UI/PauseMenu/PauseMenu.tscn"));
         }
 
         base._Input(@event);
     }
 
-        /// <summary>
+    /// <summary>
     /// If an actor is behind another this function will put it visually behind.
     /// It's gest also the ZIndex if an actor is behind another.
     /// </summary>
@@ -43,41 +43,43 @@ public partial class Scene : Node2D
         //Is Behind
         Actor target = null;
 
-		if(FindChild(emitterName) is Actor)
-		{
-			emitter = FindChild(emitterName) as Actor;
-		}
+        if (FindChild(emitterName) is Actor)
+        {
+            emitter = FindChild(emitterName) as Actor;
+        }
 
-		if(FindChild(targetName) is Actor)
-		{
-			target = FindChild(targetName) as Actor;
-		}
+        if (FindChild(targetName) is Actor)
+        {
+            target = FindChild(targetName) as Actor;
+        }
 
-        if(emitter is null)
+        if (emitter is null)
         {
             try
             {
                 emitter = GetNode(emitterName) as Actor;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 GD.Print(e);
             }
-            if(emitter is null)
+            if (emitter is null)
             {
                 return;
             }
         }
 
-        if(target is null)
+        if (target is null)
         {
             try
             {
                 target = GetNode(targetName) as Actor;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 GD.Print(e);
             }
-            if(target is null)
+            if (target is null)
             {
                 return;
             }
@@ -90,7 +92,7 @@ public partial class Scene : Node2D
             return;
         }
 
-		if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
+        if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
         {
             target.ZIndex = emitter.ZIndex;
         }
