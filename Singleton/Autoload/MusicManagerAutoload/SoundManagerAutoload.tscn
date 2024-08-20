@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxd46llrg4yqa"]
+[gd_scene load_steps=5 format=3 uid="uid://bxd46llrg4yqa"]
 
 [ext_resource type="Script" path="res://Singleton/Autoload/MusicManagerAutoload/SoundManagerAutoload.cs" id="1_ysxpn"]
 [ext_resource type="AudioStream" uid="uid://c2u3q3hk0n2d8" path="res://Common/Assets/Music/DragonBallOpening.wav" id="2_t4xnj"]
+[ext_resource type="AudioStream" uid="uid://bf66dq177w33o" path="res://Common/Assets/Music/DragonBallOpening_Ariane_version_cleaned.wav" id="3_4a05c"]
 [ext_resource type="AudioStream" uid="uid://bew7c6u1y4ahy" path="res://Common/Assets/Sound/UI/kenney_interface-sounds/Audio/click_002.ogg" id="3_7h8ut"]
 
 [node name="SoundManagerAutoload" type="Node" node_paths=PackedStringArray("MenuMusicPlayer", "PressedButtonPlayer")]
 process_mode = 3
 script = ExtResource("1_ysxpn")
+MenuMusics = [ExtResource("3_4a05c"), ExtResource("2_t4xnj")]
 MenuMusicPlayer = NodePath("MenuMusicStreamPlayer")
 PressedButtonPlayer = NodePath("PressedButtonStreamPlayer")
 
