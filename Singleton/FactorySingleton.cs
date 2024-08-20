@@ -65,7 +65,6 @@ public partial class FactorySingleton : Node
         PackedScene packedScene;
         packedScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DragonRadar/DragonRadar.tscn");
         DragonRadar dragonRadar = packedScene.Instantiate<DragonRadar>();
-        dragonRadar.SetUp(DragonBallSingleton.Instance.DragonBallListOfPositions, PlayerSingleton.Instance.PlayerPostition);
 
         return dragonRadar;
     }

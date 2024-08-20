@@ -12,8 +12,7 @@ public partial class DragonBall : Node2D
     {
         AnimationPlayer.Play("RESET");
         this.ZIndex = (int)global::ZIndex.ZIndexEnum.DRAGON_BALL;
-
-        DragonBallSingleton.Instance.DragonBallListOfPositions.Add(this.Position);
+        DragonBallSingleton.Instance.DragonBallPosition[this.Name].Position = this.Position;
         base._Ready();
     }
 }

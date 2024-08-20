@@ -9,17 +9,46 @@ public partial class DragonRadar : CanvasLayer
 	[Export]
 	protected Sprite2D DragonBallSpawn { get; set; }
 
-	public List<Vector2> DragonBallPosition { get; set; }
-	public Vector2 PlayerPosition { get; set; }
-
 	public override void _Ready()
 	{
+		DragonBallSignals.Instance.DragonBallIsRemoved += on_dragon_ball_removed;
+
 		string dbPath = "res://Scenes/UI/DragonRadar/DragonBall/DragonBallOnRadar.tscn";
-		foreach (Vector2 item in DragonBallPosition)
+
+		foreach (KeyValuePair<string, DragonBallOnRadarModel> item in DragonBallSingleton.Instance.DragonBallPosition)
 		{
+			if (!item.Value.Exist)
+			{
+				continue;
+			}
 			Control DbOnRadar = FactorySingleton.Instance.GetThisNodeInstantiateFromString<Control>(dbPath);
-			DbOnRadar.Position = DbPosition(item);
+			DbOnRadar.Position = DbPosition(item.Value.Position);
+			DbOnRadar.Name = item.Key;
 			DragonBallSpawn.AddChild(DbOnRadar);
+		}
+	}
+
+	public override void _Process(double delta)
+	{
+		foreach (Node item in DragonBallSpawn.GetChildren())
+		{
+			if (item is DragonBallOnRadar dragonBallOnRadar)
+			{
+				dragonBallOnRadar.Position = DbPosition(DragonBallSingleton.Instance.DragonBallPosition[dragonBallOnRadar.Name].Position);
+			}
+		}
+		base._Process(delta);
+	}
+
+	private void on_dragon_ball_removed(string dBallName)
+	{
+		// DragonBallSpawn.RemoveChild(DragonBallSpawn.GetChild(dBallName));
+		foreach (Node item in DragonBallSpawn.GetChildren())
+		{
+			if (item.Name == dBallName)
+			{
+				DragonBallSpawn.RemoveChild(item);
+			}
 		}
 	}
 
@@ -27,6 +56,7 @@ public partial class DragonRadar : CanvasLayer
 	{
 		if (Input.IsActionJustPressed("dragon_radar"))
 		{
+			DragonBallSignals.Instance.DragonBallIsRemoved -= on_dragon_ball_removed;
 			this.QueueFree();
 		}
 
@@ -40,16 +70,10 @@ public partial class DragonRadar : CanvasLayer
 		// int middleY = 338;
 
 		//Relative coordinate
-		float xd = v.X - PlayerPosition.X;
-		float yd = v.Y - PlayerPosition.Y;
+		float xd = v.X - PlayerSingleton.Instance.PlayerPostition.X;
+		float yd = v.Y - PlayerSingleton.Instance.PlayerPostition.Y;
 
 		// return new Vector2(middleX - xd / distanceDivider, middleY - yd / distanceDivider);
 		return new Vector2(xd / distanceDivider, yd / distanceDivider);
-	}
-
-	public void SetUp(List<Vector2> DragonBallPosition, Vector2 PlayerPosition)
-	{
-		this.DragonBallPosition = DragonBallPosition;
-		this.PlayerPosition = PlayerPosition;
 	}
 }
