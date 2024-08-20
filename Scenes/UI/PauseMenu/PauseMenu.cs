@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PauseMenu : Control
+public partial class PauseMenu : CanvasLayer
 {
     [ExportGroup("Nodes")]
     [Export]

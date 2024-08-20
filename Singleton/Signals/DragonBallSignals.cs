@@ -23,4 +23,7 @@ public partial class DragonBallSignals : Node
 
     [Signal]
     public delegate void DragonBallIsRemovedEventHandler(string dBallName);
+
+    [Signal]
+    public delegate void AddPointEventHandler();
 }
