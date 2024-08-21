@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bapmcxr5ofbtd"
-path="res://.godot/imported/Shenron.png-030876b9dd0df1cb748262496acbc1ca.ctex"
+uid="uid://cpuvrxdqob2xv"
+path="res://.godot/imported/Culotte_Shenron-removebg-preview.png-7ceb3dd8f006573bbf0c89072c4b08a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Menus/MainMenu/Assets/Shenron.png"
-dest_files=["res://.godot/imported/Shenron.png-030876b9dd0df1cb748262496acbc1ca.ctex"]
+source_file="res://Common/Assets/Image/Culotte_Shenron-removebg-preview.png"
+dest_files=["res://.godot/imported/Culotte_Shenron-removebg-preview.png-7ceb3dd8f006573bbf0c89072c4b08a3.ctex"]
 
 [params]
 

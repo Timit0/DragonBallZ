@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ulob2ik8wx21"]
+
+[ext_resource type="Script" path="res://Common/Scripts/ButtonToggleAction.cs" id="1_din55"]
+
+[node name="RemapActionButton" type="Button"]
+custom_minimum_size = Vector2(250, 0)
+text = "Go Up"
+script = ExtResource("1_din55")

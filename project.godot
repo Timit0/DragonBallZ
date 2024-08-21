@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MusicManagerAutoload="*res://Singleton/Autoload/MusicManagerAutoload/SoundManagerAutoload.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+GameAutoload="*res://Singleton/Autoload/GameAutoload.cs"
 
 [display]
 

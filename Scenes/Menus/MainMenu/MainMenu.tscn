@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddtmsuti4nxbd"]
+[gd_scene load_steps=14 format=3 uid="uid://ddtmsuti4nxbd"]
 
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_ushp8"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="2_g28s6"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Scenes/Menus/MainMenu/MainMenu.cs" id="2_syupt"]
 [ext_resource type="PackedScene" uid="uid://c07ojo3qj30tr" path="res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn" id="3_7h8j8"]
 [ext_resource type="PackedScene" uid="uid://bcrhxlq5tihka" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="4_g7x0j"]
-[ext_resource type="Texture2D" uid="uid://bapmcxr5ofbtd" path="res://Scenes/Menus/MainMenu/Assets/Shenron.png" id="4_xbe4v"]
+[ext_resource type="Texture2D" uid="uid://bapmcxr5ofbtd" path="res://Common/Assets/Image/Shenron.png" id="4_xbe4v"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="8_wnb52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mraw"]
 shader = ExtResource("2_g28s6")
@@ -113,11 +114,14 @@ theme_override_constants/separation = 20
 [node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "START"
+script = ExtResource("8_wnb52")
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "OPTIONS"
+script = ExtResource("8_wnb52")
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+script = ExtResource("8_wnb52")

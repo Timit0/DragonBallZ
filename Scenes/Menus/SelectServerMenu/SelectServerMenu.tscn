@@ -124,10 +124,9 @@ mouse_filter = 2
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/CenterOptionButton"]
 layout_mode = 2
 theme = ExtResource("1_gwdkc")
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "Host"
-popup/item_0/id = 0
 popup/item_1/text = "Join"
 popup/item_1/id = 1
 

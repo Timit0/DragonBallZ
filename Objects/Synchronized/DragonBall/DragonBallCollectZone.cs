@@ -52,7 +52,7 @@ public partial class DragonBallCollectZone : Area2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void AddPoint()
 	{
-		GameSingleton.Instance.Points++;
+		GameSingleton.Instance.AddPoint();
 		DragonBallSignals.Instance.EmitSignal(nameof(DragonBallSignals.Instance.AddPoint));
 	}
 }

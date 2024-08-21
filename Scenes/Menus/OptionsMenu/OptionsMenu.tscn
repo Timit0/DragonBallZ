@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcrhxlq5tihka"]
+[gd_scene load_steps=6 format=3 uid="uid://bcrhxlq5tihka"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.cs" id="1_1qi7y"]
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gluei"]
 [ext_resource type="PackedScene" uid="uid://bkmqqtmi334fr" path="res://Scenes/Menus/OptionsMenu/Tables/Sound/SoundTable.tscn" id="2_3s1nq"]
+[ext_resource type="PackedScene" uid="uid://bm647cnv4frh4" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/ControlsTab.tscn" id="4_h5oex"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="4_hf1ko"]
 
 [node name="OptionsMenu" type="Control" node_paths=PackedStringArray("soundTable", "returnButton")]
 layout_mode = 3
@@ -21,20 +23,27 @@ returnButton = NodePath("ReturnButton")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+current_tab = 1
 
 [node name="SoundTabBar" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="SoundTab" parent="TabContainer/SoundTabBar" instance=ExtResource("2_3s1nq")]
 layout_mode = 1
 
-[node name="TabBar2" type="TabBar" parent="TabContainer"]
-visible = false
+[node name="Controls" type="TabBar" parent="TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ControlsTab" parent="TabContainer/Controls" instance=ExtResource("4_h5oex")]
+layout_mode = 1
 
 [node name="TabBar3" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="ReturnButton" type="Button" parent="."]
 layout_mode = 0
@@ -43,3 +52,4 @@ offset_top = 544.0
 offset_right = 162.0
 offset_bottom = 602.0
 text = "Return"
+script = ExtResource("4_hf1ko")

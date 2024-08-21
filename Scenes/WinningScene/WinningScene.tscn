@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqdfd4d8ylgyj"]
+
+[ext_resource type="Script" path="res://Scenes/WinningScene/WinningScene.cs" id="1_b52or"]
+[ext_resource type="Texture2D" uid="uid://cur848ofgq4ev" path="res://Common/Assets/Image/43c9653e3a717d4a80a0551ebec6c978.jpg" id="2_a2gnt"]
+[ext_resource type="Texture2D" uid="uid://bapmcxr5ofbtd" path="res://Common/Assets/Image/Shenron.png" id="2_xk5ai"]
+[ext_resource type="Texture2D" uid="uid://cpuvrxdqob2xv" path="res://Common/Assets/Image/Culotte_Shenron-removebg-preview.png" id="3_8upse"]
+[ext_resource type="Texture2D" uid="uid://dbbjy3r46qde1" path="res://Common/Assets/Image/vegeta-moustache-removebg-preview.png" id="4_4rgib"]
+[ext_resource type="Texture2D" uid="uid://b6135upeiqahf" path="res://Common/Assets/Image/pilaf.png" id="5_hwo3r"]
+
+[sub_resource type="Animation" id="Animation_s7smi"]
+resource_name = "RESET"
+length = 2.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shenron:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 300), Vector2(576, 340)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dr27f"]
+_data = {
+"RESET": SubResource("Animation_s7smi")
+}
+
+[node name="WinningScene" type="Node2D" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_b52or")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="43c9653e3a717d4a80a0551Ebec6c978" type="Sprite2D" parent="."]
+position = Vector2(576, 324.5)
+scale = Vector2(1.56522, 1.5628)
+texture = ExtResource("2_a2gnt")
+
+[node name="Shenron" type="Sprite2D" parent="."]
+position = Vector2(576, 300)
+texture = ExtResource("2_xk5ai")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dr27f")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 134.0
+text = "Ton Souhait est Exauce ..."
+horizontal_alignment = 1
+
+[node name="CulotteShenron-removebg-preview" type="Sprite2D" parent="."]
+position = Vector2(920, 480)
+texture = ExtResource("3_8upse")
+
+[node name="Vegeta-moustache-removebg-preview" type="Sprite2D" parent="."]
+position = Vector2(240, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_4rgib")
+
+[node name="Pilaf" type="Sprite2D" parent="."]
+position = Vector2(-408, 88)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("5_hwo3r")

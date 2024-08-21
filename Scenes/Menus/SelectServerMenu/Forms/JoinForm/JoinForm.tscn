@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6xjttvd6g2d8"]
+[gd_scene load_steps=4 format=3 uid="uid://b6xjttvd6g2d8"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/SelectServerMenu/Forms/JoinForm/JoinForm.cs" id="1_du3ef"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn" id="2_uequh"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="3_ta0fx"]
 
 [node name="JoinForm" type="Control" node_paths=PackedStringArray("lineEdit", "JoinButton")]
 layout_mode = 3
@@ -29,3 +30,4 @@ layout_mode = 2
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Join"
+script = ExtResource("3_ta0fx")

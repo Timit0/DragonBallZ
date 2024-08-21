@@ -24,13 +24,13 @@ class SettingsDbContext : DbContext
     }
 
 
-    public virtual DbSet<SettingsDbModel> Settings { get ; set; }
+    public virtual DbSet<SettingsDbModel> Settings { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
             // optionsBuilder.UseSqlite(@"DataSource="+ProjectSettings.GlobalizePath("res://")+"DB/RpgSqlite;");
-            optionsBuilder.UseSqlite(@"DataSource="+ProjectSettings.GlobalizePath("res://")+"Db/Db.sqlite;");
+            optionsBuilder.UseSqlite(@"DataSource=" + ProjectSettings.GlobalizePath("res://") + "Db/Db.sqlite;");
         }
     }
 
@@ -47,19 +47,25 @@ class SettingsDbContext : DbContext
         return this;
     }
 
-    public async Task<SettingsDbContext> Delete(SettingsDbModel settings){
+    public async Task<SettingsDbContext> Delete(SettingsDbModel settings)
+    {
         Remove(settings);
         await this.SaveChangesAsync();
         return this;
     }
 
-    public async Task<SettingsDbContext> Update(int rowNumb = 1, float soundV = 888)
+    public async Task<SettingsDbContext> Update(int rowNumb = 1, float? musicV = null, float? uIV = null)
     {
         SettingsDbModel settings = this.Settings.Find(rowNumb);
 
-        if(soundV != 888)
+        if (musicV is float musicVFloat)
         {
-            settings.SoundVolume = soundV;
+            settings.MusicVolume = musicVFloat;
+        }
+
+        if (uIV is float uIVFloat)
+        {
+            settings.UIVolume = uIVFloat;
         }
 
         await this.SaveChangesAsync();

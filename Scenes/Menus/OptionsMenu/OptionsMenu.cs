@@ -4,36 +4,50 @@ using System;
 public partial class OptionsMenu : Control
 {
 	[Export]
-	protected string returnTarget {get;set;}
+	protected string returnTarget { get; set; }
 
 	[ExportGroup("Nodes")]
 	[Export]
-	protected SoundTable soundTable {get;set;}
+	protected SoundTable soundTable { get; set; }
 	[Export]
-	protected Button returnButton {get;set;}
+	protected Button returnButton { get; set; }
 
-	protected Slider soundVolumeSlider
+	protected Slider musicVolumeSlider
 	{
-		get => soundTable.SliderVolume;
-		set => soundTable.SliderVolume = value;
+		get => soundTable.SliderMusicVolume;
+		set => soundTable.SliderMusicVolume = value;
+	}
+
+	protected Slider uIVolumeSLider
+	{
+		get => soundTable.SliderUIVolume;
+		set => soundTable.SliderUIVolume = value;
 	}
 
 	public override void _Ready()
 	{
-		soundVolumeSlider.Value = SettingsDbContext.Instance.Get().SoundVolume;
-		soundVolumeSlider.ValueChanged += on_sound_volume_slider_change;
+		musicVolumeSlider.Value = SettingsDbContext.Instance.Get().MusicVolume;
+		musicVolumeSlider.ValueChanged += on_music_volume_slider_change;
 
-		returnButton.Pressed += on_retutn_button_pressed;
+		uIVolumeSLider.Value = SettingsDbContext.Instance.Get().UIVolume;
+		uIVolumeSLider.ValueChanged += on_ui_volume_slider_change;
+
+		returnButton.Pressed += on_return_button_pressed;
 	}
 
-    private void on_sound_volume_slider_change(double value)
-    {
-		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.SoundVolumeChanged), (float)value);
-    }
+	private void on_music_volume_slider_change(double value)
+	{
+		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.MusicVolumeChanged), (float)value);
+	}
 
-	private async void on_retutn_button_pressed()
-    {
-        await SettingsDbContext.Instance.Update(soundV: (float)soundVolumeSlider.Value);
+	private void on_ui_volume_slider_change(double value)
+	{
+		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.UIVolumeChanged), (float)value);
+	}
+
+	private async void on_return_button_pressed()
+	{
+		await SettingsDbContext.Instance.Update(musicV: (float)musicVolumeSlider.Value, uIV: (float)uIVolumeSLider.Value);
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), returnTarget);
-    }
+	}
 }

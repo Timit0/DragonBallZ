@@ -22,5 +22,8 @@ public partial class SettingsSingal : Node
     }
 
     [Signal]
-    public delegate void SoundVolumeChangedEventHandler(float newValue);
+    public delegate void MusicVolumeChangedEventHandler(float newValue);
+
+    [Signal]
+    public delegate void UIVolumeChangedEventHandler(float newValue);
 }

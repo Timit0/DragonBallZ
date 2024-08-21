@@ -19,13 +19,16 @@ public partial class SoundManagerAutoload : Node
 	public override void _Ready()
 	{
 		this.MenuMusicPlayer.Finished += on_audio_stream_player_finished;
-		this.MenuMusicPlayer.VolumeDb = SettingsDbContext.Instance.Get().SoundVolume;
+		this.MenuMusicPlayer.VolumeDb = SettingsDbContext.Instance.Get().MusicVolume;
 		SetANewMusicMenu();
 		this.MenuMusicPlayer.Play();
 
-		SettingsSingal.Instance.SoundVolumeChanged += on_sound_volume_changed;
+		this.PressedButtonPlayer.VolumeDb = SettingsDbContext.Instance.Get().UIVolume;
 
-		SoundManagerAutoloadSignals.Instance.PlayPressedButtonSound += on_play_pressed_button_sound;
+		SettingsSingal.Instance.MusicVolumeChanged += on_sound_volume_changed;
+
+		SoundManagerAutoloadSignals.Instance.ButtonPressedSoundPlay += on_button_pressed_sound_play;
+		SettingsSingal.Instance.UIVolumeChanged += on_button_pressed_sound_volume_changed;
 	}
 
 	private void on_audio_stream_player_finished()
@@ -39,9 +42,14 @@ public partial class SoundManagerAutoload : Node
 		this.MenuMusicPlayer.VolumeDb = newValue;
 	}
 
-	private void on_play_pressed_button_sound()
+	private void on_button_pressed_sound_play(int btn)
 	{
 		this.PressedButtonPlayer.Play();
+	}
+
+	private void on_button_pressed_sound_volume_changed(float newValue)
+	{
+		this.PressedButtonPlayer.VolumeDb = newValue;
 	}
 
 	public void SetANewMusicMenu()
@@ -66,5 +74,14 @@ public partial class SoundManagerAutoload : Node
 				return;
 			}
 		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (Input.IsActionJustReleased("mouse_left_click"))
+		{
+			// SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.PlayPressedButtonSound));
+		}
+		base._Input(@event);
 	}
 }

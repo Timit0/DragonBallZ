@@ -22,10 +22,33 @@ public partial class GameSingleton : Node
         }
     }
 
-    public int Points { get; set; } = 0;
+    private int _points { get; set; } = 0;
+
+    public void AddPoint()
+    {
+        _points++;
+        if (_points == 7)
+        {
+            string scenePath = "res://Scenes/WinningScene/WinningScene.tscn";
+            SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePath);
+        }
+    }
+
+    public int GetPoints()
+    {
+        return _points;
+    }
 
     public string GetPointsString()
     {
-        return $"{Points}/7";
+        // var x = Rpc(nameof(this.GetPointFromAuth));
+        // GD.Print(x);
+        return $"{_points}/7";
+    }
+
+    public void UpdatePoints(int points)
+    {
+        GD.Print("Update with " + points);
+        _points = points;
     }
 }

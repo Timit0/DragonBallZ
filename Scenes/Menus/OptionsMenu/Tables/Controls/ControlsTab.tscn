@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm647cnv4frh4"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_unkt0"]
+[ext_resource type="FontFile" uid="uid://i6rxk7aq2amk" path="res://Common/Assets/Fonts/DragonballZFont/Saiyan-Sans.ttf" id="2_2c3u5"]
+[ext_resource type="PackedScene" uid="uid://ulob2ik8wx21" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/Button/RemapActionButton.tscn" id="3_ge6gw"]
+
+[node name="ControlsTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("1_unkt0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HMusicVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing" type="Container" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoUp" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Up"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoDown" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Down"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer2" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoLeft" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Left"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer3" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoRight" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Right"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer4" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
