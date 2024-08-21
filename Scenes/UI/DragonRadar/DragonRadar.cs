@@ -80,6 +80,9 @@ public partial class DragonRadar : CanvasLayer
 		// int middleY = 338;
 
 		//Relative coordinate
+		// float xd = v.X - PlayerSingleton.Instance.PlayerPostition.X;
+		// float yd = v.Y - PlayerSingleton.Instance.PlayerPostition.Y;
+
 		float xd = v.X - PlayerSingleton.Instance.PlayerPostition.X;
 		float yd = v.Y - PlayerSingleton.Instance.PlayerPostition.Y;
 

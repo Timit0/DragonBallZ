@@ -33,7 +33,8 @@ public partial class MultiplayerScene : Scene
 
     private void on_quit_this_scene(string scenePath)
     {
-        this.Peer = new ENetMultiplayerPeer();
+        Peer.Close();
+        // this.Peer = new ENetMultiplayerPeer();
     }
 
 

@@ -11,7 +11,7 @@ public partial class Scene : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("inventory_open_or_close"))
+        if (Input.IsActionJustPressed("pause_menu"))
         {
             foreach (Node node in GetChildren())
             {
@@ -21,6 +21,16 @@ public partial class Scene : Node2D
                 }
             }
             this.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<PauseMenu>("res://Scenes/UI/PauseMenu/PauseMenu.tscn"));
+        }
+
+        if (Input.IsActionJustPressed("zoomed_camera"))
+        {
+            CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)global::CameraManager.CamList.ZOOMED_CAM);
+        }
+
+        if (Input.IsActionJustReleased("zoomed_camera"))
+        {
+            CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)global::CameraManager.CamList.MAIN_CAM);
         }
 
         base._Input(@event);

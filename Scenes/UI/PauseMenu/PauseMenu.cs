@@ -25,7 +25,7 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("inventory_open_or_close"))
+        if (Input.IsActionJustPressed("pause_menu"))
         {
             GetTree().Paused = false;
             this.QueueFree();

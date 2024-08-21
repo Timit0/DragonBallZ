@@ -8,12 +8,14 @@ public partial class Player : Actor
 	public AnimationTree AnimationTree { get; set; }
 	[Export]
 	public Sprite2D Sprite { get; set; }
-	[Export]
-	public Camera2D Camera { get; set; }
+	// [Export]
+	// public Camera2D Camera { get; set; }
 
 	[ExportGroup("")]
 	[Export]
 	public Texture2D TextureOfSprite { get; set; }
+	[Export]
+	public Resource CameraManagerNodeResource { get; set; }
 
 	// public PlayerModel PlayerModel {get;set;} = new PlayerModel();
 
@@ -31,9 +33,14 @@ public partial class Player : Actor
 		this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
 		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
 
-		if (!this.IsMultiplayerAuthority())
+		// if (!this.IsMultiplayerAuthority())
+		// {
+		// Camera.Enabled = false;
+		// }
+		if (this.IsMultiplayerAuthority())
 		{
-			Camera.Enabled = false;
+			CameraManager cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
+			this.AddChild(cameraManager);
 		}
 
 		base._Ready();

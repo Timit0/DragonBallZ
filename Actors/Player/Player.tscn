@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://dlp3syrvyrr4y"]
+[gd_scene load_steps=35 format=3 uid="uid://dlp3syrvyrr4y"]
 
 [ext_resource type="Script" path="res://Actors/Player/Player.cs" id="1_vqtxr"]
+[ext_resource type="PackedScene" uid="uid://d2fi768tmhby" path="res://Common/Cameras/CameraNode.tscn" id="3_8d68l"]
 [ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="3_70co1"]
 [ext_resource type="Script" path="res://Actors/Player/States/IdlePlayerState.cs" id="4_r34st"]
 [ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="5_bb610"]
@@ -377,14 +378,14 @@ height = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4pmf"]
 size = Vector2(16, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "Camera", "FootPoint")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "FootPoint")]
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_vqtxr")
 AnimationTree = NodePath("AnimationTree")
 Sprite = NodePath("Sprite")
-Camera = NodePath("Camera2D")
 TextureOfSprite = ExtResource("5_bb610")
+CameraManagerNodeResource = ExtResource("3_8d68l")
 Tolerance = 2.0
 FootPoint = NodePath("FootPoint")
 
@@ -435,5 +436,3 @@ script = ExtResource("6_v7nay")
 
 [node name="Shape" type="CollisionShape2D" parent="DetectableZone"]
 shape = SubResource("RectangleShape2D_y4pmf")
-
-[node name="Camera2D" type="Camera2D" parent="."]
