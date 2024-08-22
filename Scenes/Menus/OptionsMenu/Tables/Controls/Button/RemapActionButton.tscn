@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ulob2ik8wx21"]
+[gd_scene load_steps=5 format=3 uid="uid://ulob2ik8wx21"]
 
 [ext_resource type="Script" path="res://Common/Scripts/ButtonToggleAction.cs" id="1_din55"]
+[ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="2_uenkq"]
+[ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/Button/States/RemapButtonNormalState.cs" id="3_ex08w"]
+[ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/Button/States/RemapButtonListeningState.cs" id="4_anxaw"]
 
 [node name="RemapActionButton" type="Button"]
 custom_minimum_size = Vector2(250, 0)
 text = "Go Up"
 script = ExtResource("1_din55")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_uenkq")
+initialState = NodePath("RemapButtonNormalState")
+
+[node name="RemapButtonNormalState" type="Node" parent="StateMachine"]
+script = ExtResource("3_ex08w")
+
+[node name="RemapButtonListeningState" type="Node" parent="StateMachine"]
+script = ExtResource("4_anxaw")

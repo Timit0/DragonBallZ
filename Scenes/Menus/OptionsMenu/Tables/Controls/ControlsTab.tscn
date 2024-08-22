@@ -51,6 +51,7 @@ text = "Go Up"
 
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
+ActionName = "move_up"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 layout_mode = 2
@@ -67,6 +68,7 @@ text = "Go Down"
 
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer2" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
+ActionName = "move_down"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 layout_mode = 2
@@ -83,6 +85,7 @@ text = "Go Left"
 
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer3" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
+ActionName = "move_left"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 layout_mode = 2
@@ -99,3 +102,4 @@ text = "Go Right"
 
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer4" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
+ActionName = "move_right"
