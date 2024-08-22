@@ -17,7 +17,7 @@ public partial class RemapButtonListeningState : BasicRemapStateBase
         base.Exit();
     }
 
-    public override void _Input(InputEvent @event)
+    public override async void _Input(InputEvent @event)
     {
         if (!_stateIsActive)
         {
@@ -28,6 +28,9 @@ public partial class RemapButtonListeningState : BasicRemapStateBase
         {
             InputMap.ActionEraseEvents(this.buttonToggleAction.ActionName);
             InputMap.Singleton.ActionAddEvent(this.buttonToggleAction.ActionName, @event);
+
+            await SettingsDbContext.Instance.UpdateActionEvent(this.buttonToggleAction.ActionName, @event.ToString());
+
             this.stateMachine.TransitionTo("RemapButtonNormalState");
         }
         base._Input(@event);

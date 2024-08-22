@@ -29,7 +29,6 @@ class SettingsDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            // optionsBuilder.UseSqlite(@"DataSource="+ProjectSettings.GlobalizePath("res://")+"DB/RpgSqlite;");
             optionsBuilder.UseSqlite(@"DataSource=" + ProjectSettings.GlobalizePath("res://") + "Db/Db.sqlite;");
         }
     }
@@ -71,4 +70,17 @@ class SettingsDbContext : DbContext
         await this.SaveChangesAsync();
         return this;
     }
+
+    public async Task<SettingsDbContext> UpdateActionEvent(string action, string @event, int rowNumb = 1)
+    {
+        SettingsDbModel settings = this.Settings.Find(rowNumb);
+
+        var propertyInfo = typeof(SettingsDbModel).GetProperty(action);
+
+        propertyInfo.SetValue(settings, @event);
+
+        await this.SaveChangesAsync();
+        return this;
+    }
+
 }
