@@ -50,6 +50,7 @@ public partial class OptionsMenu : Control
 
 	private async void on_returnAndSave_button_pressed()
 	{
+		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.SaveChange));
 		await SettingsDbContext.Instance.Update(musicV: (float)musicVolumeSlider.Value, uIV: (float)uIVolumeSLider.Value);
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), returnTarget);
 	}

@@ -56,6 +56,7 @@ text = "Go Up"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "move_up"
+PropertyNameInSQLite = "MoveUp"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
 layout_mode = 2
@@ -73,6 +74,7 @@ text = "Go Down"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer2" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "move_down"
+PropertyNameInSQLite = "MoveDown"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
 layout_mode = 2
@@ -90,6 +92,7 @@ text = "Go Left"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer3" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "move_left"
+PropertyNameInSQLite = "MoveLeft"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
 layout_mode = 2
@@ -107,8 +110,9 @@ text = "Go Right"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer4" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "move_right"
+PropertyNameInSQLite = "MoveRight"
 
-[node name="ColorRect" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+[node name="LineDivider" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 custom_minimum_size = Vector2(1000, 5)
 layout_mode = 2
 color = Color(0, 0, 0, 0.392157)
@@ -133,6 +137,7 @@ text = "Collect Dragon Ball"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "collect_dragon_ball"
+PropertyNameInSQLite = "CollectDragonBall"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions"]
 layout_mode = 2
@@ -150,8 +155,9 @@ text = "Zoomed Camera"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer2" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "zoomed_camera"
+PropertyNameInSQLite = "ZoomedCamera"
 
-[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+[node name="LineDivider2" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
 custom_minimum_size = Vector2(1000, 5)
 layout_mode = 2
 color = Color(0, 0, 0, 0.392157)
@@ -176,6 +182,7 @@ text = "Pause Menu"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "pause_menu"
+PropertyNameInSQLite = "PauseMenu"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI"]
 layout_mode = 2
@@ -193,6 +200,7 @@ text = "Dragon Radar"
 [node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer2" instance=ExtResource("3_ge6gw")]
 layout_mode = 2
 ActionName = "dragon_radar"
+PropertyNameInSQLite = "DragonRadar"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

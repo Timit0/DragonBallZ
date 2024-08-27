@@ -41,8 +41,6 @@ public partial class GameSingleton : Node
 
     public string GetPointsString()
     {
-        // var x = Rpc(nameof(this.GetPointFromAuth));
-        // GD.Print(x);
         return $"{_points}/7";
     }
 

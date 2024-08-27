@@ -26,10 +26,11 @@ public partial class RemapButtonListeningState : BasicRemapStateBase
 
         if (@event is not InputEventMouseMotion && @event is not InputEventMouse)
         {
-            InputMap.ActionEraseEvents(this.buttonToggleAction.ActionName);
+            InputMap.Singleton.ActionEraseEvents(this.buttonToggleAction.ActionName);
             InputMap.Singleton.ActionAddEvent(this.buttonToggleAction.ActionName, @event);
+            GD.Print(@event.AsText());
 
-            await SettingsDbContext.Instance.UpdateActionEvent(this.buttonToggleAction.ActionName, @event.ToString());
+            // await SettingsDbContext.Instance.UpdateActionEvent(this.buttonToggleAction.PropertyNameInSQLite, @event.ToString());
 
             this.stateMachine.TransitionTo("RemapButtonNormalState");
         }

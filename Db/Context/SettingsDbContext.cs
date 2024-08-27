@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,22 @@ class SettingsDbContext : DbContext
         {
             optionsBuilder.UseSqlite(@"DataSource=" + ProjectSettings.GlobalizePath("res://") + "Db/Db.sqlite;");
         }
+    }
+
+    public object Get(string s, int rowNumb = 0)
+    {
+        try
+        {
+            List<SettingsDbModel> list = this.Settings.ToListAsync<SettingsDbModel>().Result;
+            PropertyInfo property = list[rowNumb].GetType().GetProperty(s);
+            return property.GetValue(list[rowNumb]);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+
     }
 
     public SettingsDbModel Get(int rowNumb = 0)

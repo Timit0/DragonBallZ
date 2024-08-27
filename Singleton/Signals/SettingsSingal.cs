@@ -26,4 +26,7 @@ public partial class SettingsSingal : Node
 
     [Signal]
     public delegate void UIVolumeChangedEventHandler(float newValue);
+
+    [Signal]
+    public delegate void SaveChangeEventHandler();
 }

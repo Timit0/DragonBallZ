@@ -11,4 +11,7 @@ public class SettingsDbModel
 
     public string CollectDragonBall { get; set; }
     public string ZoomedCamera { get; set; }
+
+    public string PauseMenu { get; set; }
+    public string DragonRadar { get; set; }
 }
