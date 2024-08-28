@@ -38,6 +38,7 @@ public partial class SceneManager : Node
 		foreach (Node node in SceneNode.GetChildren())
 		{
 			SceneNode.RemoveChild(node);
+			// node.QueueFree();
 		}
 	}
 

@@ -24,14 +24,14 @@ public partial class MultiplayerScene : Scene
             CreateDragonBalls();
         }
 
-        if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
-        {
-            // Peer.CreateClient(ServerConfigSingleton.Instance.IpAdresse, port);
-            // this.Multiplayer.MultiplayerPeer = Peer;
-            // GD.Print((int)this.GetClientId(0));
-            // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId((int)this.GetClientId(0)));
-            // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(1));
-        }
+        // if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
+        // {
+        // Peer.CreateClient(ServerConfigSingleton.Instance.IpAdresse, port);
+        // this.Multiplayer.MultiplayerPeer = Peer;
+        // GD.Print((int)this.GetClientId(0));
+        // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId((int)this.GetClientId(0)));
+        // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(1));
+        // }
 
         base._Ready();
     }

@@ -9,6 +9,15 @@ public partial class Scene : Node2D
         base._Ready();
     }
 
+    public override void _Process(double delta)
+    {
+        foreach (Node node in this.GetChildren())
+        {
+            GD.Print(node.Name);
+        }
+        base._Process(delta);
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("pause_menu"))
@@ -73,14 +82,7 @@ public partial class Scene : Node2D
 
         if (emitter is null)
         {
-            try
-            {
-                emitter = GetNode(emitterName) as Actor;
-            }
-            catch (Exception e)
-            {
-                GD.Print(e);
-            }
+            emitter = GetActor(emitterName);
             if (emitter is null)
             {
                 return;
@@ -89,14 +91,7 @@ public partial class Scene : Node2D
 
         if (target is null)
         {
-            try
-            {
-                target = GetNode(targetName) as Actor;
-            }
-            catch (Exception e)
-            {
-                GD.Print(e);
-            }
+            target = GetActor(targetName);
             if (target is null)
             {
                 return;
@@ -104,23 +99,27 @@ public partial class Scene : Node2D
         }
 
         //If emitter is behind target --> target go to behind
-        try
+        if (emitter.GetIndex() < target.GetIndex())
         {
-            if (emitter.GetIndex() < target.GetIndex())
-            {
-                this.MoveChild(target, emitter.GetIndex());
-                return;
-            }
+            this.MoveChild(target, emitter.GetIndex());
+            return;
         }
-        catch (Exception e) { }
 
-        try
+        if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
         {
-            if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
+            target.ZIndex = emitter.ZIndex;
+        }
+    }
+
+    public Actor GetActor(string name)
+    {
+        foreach (Node node in this.GetChildren())
+        {
+            if (node is Actor actor && actor.Name == name)
             {
-                target.ZIndex = emitter.ZIndex;
+                return actor;
             }
         }
-        catch (Exception e) { }
+        return null;
     }
 }

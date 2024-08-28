@@ -39,6 +39,7 @@ public partial class Player : Actor
 		// }
 		if (this.IsMultiplayerAuthority())
 		{
+			GD.Print("CAMERA " + CameraManagerNodeResource.ResourcePath);
 			CameraManager cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
 			this.AddChild(cameraManager);
 		}
