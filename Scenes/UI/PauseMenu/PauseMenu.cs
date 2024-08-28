@@ -36,6 +36,7 @@ public partial class PauseMenu : CanvasLayer
 
     private void on_return_button_pressed()
     {
+        ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), returnTarget);
     }
 

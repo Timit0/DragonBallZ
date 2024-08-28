@@ -53,15 +53,23 @@ public partial class Scene : Node2D
         //Is Behind
         Actor target = null;
 
-        if (FindChild(emitterName) is Actor)
+        try
         {
-            emitter = FindChild(emitterName) as Actor;
+            if (FindChild(emitterName) is Actor)
+            {
+                emitter = FindChild(emitterName) as Actor;
+            }
         }
+        catch (Exception e) { }
 
-        if (FindChild(targetName) is Actor)
+        try
         {
-            target = FindChild(targetName) as Actor;
+            if (FindChild(targetName) is Actor)
+            {
+                target = FindChild(targetName) as Actor;
+            }
         }
+        catch (Exception e) { }
 
         if (emitter is null)
         {
@@ -96,15 +104,23 @@ public partial class Scene : Node2D
         }
 
         //If emitter is behind target --> target go to behind
-        if (emitter.GetIndex() < target.GetIndex())
+        try
         {
-            this.MoveChild(target, emitter.GetIndex());
-            return;
+            if (emitter.GetIndex() < target.GetIndex())
+            {
+                this.MoveChild(target, emitter.GetIndex());
+                return;
+            }
         }
+        catch (Exception e) { }
 
-        if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
+        try
         {
-            target.ZIndex = emitter.ZIndex;
+            if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
+            {
+                target.ZIndex = emitter.ZIndex;
+            }
         }
+        catch (Exception e) { }
     }
 }

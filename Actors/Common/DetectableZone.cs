@@ -5,25 +5,33 @@ public partial class DetectableZone : Area2D
 {
 	public override void _Process(double delta)
 	{
-		foreach (Node node in GetOverlappingAreas())
+		try
 		{
-			if(node is DetectableZone)
+			foreach (Node node in GetOverlappingAreas())
 			{
-				DetectableZone area = node as DetectableZone;
-				EmitSignalWhenActorIsBehind(area);
+				if (node is DetectableZone)
+				{
+					DetectableZone area = node as DetectableZone;
+					EmitSignalWhenActorIsBehind(area);
+				}
 			}
 		}
+		catch (Exception e) { }
 	}
 
 	private void EmitSignalWhenActorIsBehind(Area2D area)
 	{
-		if(area.Owner is Actor)
+		try
 		{
-			Actor actor = area.Owner as Actor;
-			if(actor.FootPoint.GlobalPosition.Y < ((Actor)this.Owner).FootPoint.GlobalPosition.Y)
+			if (area.Owner is Actor)
 			{
-				ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.BehindActor), this.Owner.Name, area.Owner.Name);
+				Actor actor = area.Owner as Actor;
+				if (actor.FootPoint.GlobalPosition.Y < ((Actor)this.Owner).FootPoint.GlobalPosition.Y)
+				{
+					ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.BehindActor), this.Owner.Name, area.Owner.Name);
+				}
 			}
 		}
+		catch (Exception e) { }
 	}
 }
