@@ -39,6 +39,11 @@ public partial class GameSingleton : Node
         return _points;
     }
 
+    public void SetPoints(int points)
+    {
+        this._points = points;
+    }
+
     public string GetPointsString()
     {
         return $"{_points}/7";

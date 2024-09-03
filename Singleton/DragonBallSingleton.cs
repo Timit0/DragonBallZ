@@ -48,4 +48,12 @@ public partial class DragonBallSingleton : Node
             "DragonBall6", new DragonBallOnRadarModel()
         }
     };
+
+    public void ResetDragonBAll()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            DragonBallPosition[$"DragonBall{i}"].Exist = true;
+        }
+    }
 }

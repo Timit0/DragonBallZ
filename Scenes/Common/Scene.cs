@@ -6,6 +6,7 @@ public partial class Scene : Node2D
     public override void _Ready()
     {
         ActorSignals.Instance.BehindActor += on_actor_behind;
+        GameSingleton.Instance.SetPoints(0);
         base._Ready();
     }
 

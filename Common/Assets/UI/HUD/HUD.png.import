@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvj5f41u3gcmw"
-path="res://.godot/imported/DragonRadar.png-215048120b5da04cf2b1a0f097feff89.ctex"
+uid="uid://bw67bfxiiyn5x"
+path="res://.godot/imported/HUD.png-19b3ba043444b6c342c144995b67e0b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Common/Assets/DragonRadar/DragonRadar.png"
-dest_files=["res://.godot/imported/DragonRadar.png-215048120b5da04cf2b1a0f097feff89.ctex"]
+source_file="res://Common/Assets/UI/HUD/HUD.png"
+dest_files=["res://.godot/imported/HUD.png-19b3ba043444b6c342c144995b67e0b2.ctex"]
 
 [params]
 

@@ -10,7 +10,7 @@ public partial class MultiplayerScene : Scene
 
     public override void _Ready()
     {
-        SceneSignals.Instance.ChangeToThisScene += on_quit_this_scene;
+        // SceneSignals.Instance.ChangeToThisScene += on_quit_this_scene;
 
         // if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
         if (this.IsMultiplayerAuthority())
@@ -18,37 +18,23 @@ public partial class MultiplayerScene : Scene
             // Peer.CreateServer(port);
             // this.Multiplayer.MultiplayerPeer = Peer;
             // this.Multiplayer.PeerConnected += on_peer_connected;
+
             this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId((int)this.GetClientId(0)));
             this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(1));
 
             CreateDragonBalls();
         }
 
-        // if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.JOIN)
-        // {
-        // Peer.CreateClient(ServerConfigSingleton.Instance.IpAdresse, port);
-        // this.Multiplayer.MultiplayerPeer = Peer;
-        // GD.Print((int)this.GetClientId(0));
-        // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId((int)this.GetClientId(0)));
-        // this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(1));
-        // }
-
         base._Ready();
     }
 
-    private void on_quit_this_scene(string scenePath)
-    {
-        // ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
-        // Peer.Close();
-        // this.Peer = new ENetMultiplayerPeer();
-    }
-
-
-    // private void on_peer_connected(long id)
+    // private void on_quit_this_scene(string scenePath)
     // {
-    //     int.TryParse(id.ToString(), out int idOut);
-    //     this.AddChild(FactorySingleton.Instance.AddPlayerWithThisId(idOut));
+    //     // ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
+    //     // Peer.Close();
+    //     // this.Peer = new ENetMultiplayerPeer();
     // }
+
 
     public override void _Input(InputEvent @event)
     {

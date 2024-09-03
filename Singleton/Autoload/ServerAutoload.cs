@@ -37,7 +37,7 @@ public partial class ServerAutoload : Node
             this.PeerInGame.Add(id.ToString());
 
             this.InGame = true;
-            string scenePathToLoad = "res://Scenes/TestScene/TestScene.tscn";
+            string scenePathToLoad = "res://Scenes/level/levelScene.tscn";
             SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
 
             this.PeerQueue.Remove(id.ToString());

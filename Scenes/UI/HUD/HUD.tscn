@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://hhepig0thiho"]
+
+[ext_resource type="Script" path="res://Scenes/UI/HUD/Hud.cs" id="1_va7i0"]
+[ext_resource type="Texture2D" uid="uid://bw67bfxiiyn5x" path="res://Common/Assets/UI/HUD/HUD.png" id="2_ggwph"]
+[ext_resource type="FontFile" uid="uid://uc3osnfas4d0" path="res://Common/Assets/Fonts/early_gameboy/Early GameBoy.ttf" id="3_ujnox"]
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("nameLabel", "dragonballCounterLabel", "avatar")]
+script = ExtResource("1_va7i0")
+nameLabel = NodePath("NameLabel")
+dragonballCounterLabel = NodePath("DragonballCounterLabel")
+avatar = NodePath("Hud")
+
+[node name="Hud" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(76, 80)
+scale = Vector2(1.875, 2)
+texture = ExtResource("2_ggwph")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = 160.0
+offset_top = 8.0
+offset_right = 577.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 46
+text = "Hello World!"
+
+[node name="DragonballCounterLabel" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 48.0
+offset_right = 259.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("3_ujnox")
+theme_override_font_sizes/font_size = 73
+text = "0/7"
