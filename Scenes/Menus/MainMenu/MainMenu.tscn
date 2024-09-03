@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddtmsuti4nxbd"]
+[gd_scene load_steps=15 format=3 uid="uid://ddtmsuti4nxbd"]
 
 [ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_ushp8"]
 [ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="2_g28s6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c07ojo3qj30tr" path="res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn" id="3_7h8j8"]
 [ext_resource type="PackedScene" uid="uid://bcrhxlq5tihka" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="4_g7x0j"]
 [ext_resource type="Texture2D" uid="uid://bapmcxr5ofbtd" path="res://Common/Assets/Image/Shenron.png" id="4_xbe4v"]
+[ext_resource type="Texture2D" uid="uid://xfox33lqnxkb" path="res://Common/Assets/Image/GameLogo.png" id="8_sxgxi"]
 [ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="8_wnb52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mraw"]
@@ -103,9 +104,14 @@ texture = ExtResource("4_xbe4v")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 67.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 715.0
 theme = ExtResource("1_ushp8")
+
+[node name="GameLogo" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(595, 77)
+texture = ExtResource("8_sxgxi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2

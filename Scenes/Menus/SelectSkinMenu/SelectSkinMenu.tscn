@@ -189,10 +189,12 @@ layout_mode = 2
 SkinTexture = SubResource("AtlasTexture_k4xg0")
 
 [node name="ReturnButton" parent="CanvasLayer" instance=ExtResource("9_6ntfb")]
+custom_minimum_size = Vector2(150, 50)
 offset_left = 64.0
 offset_top = 520.0
-offset_right = 162.0
+offset_right = 214.0
 offset_bottom = 578.0
+text = "BACK"
 targetPath = "res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

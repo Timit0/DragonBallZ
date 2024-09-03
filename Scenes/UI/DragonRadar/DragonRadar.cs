@@ -8,13 +8,10 @@ public partial class DragonRadar : CanvasLayer
 	protected float distanceDivider { get; set; } = 1;
 	[Export]
 	protected Sprite2D DragonBallSpawn { get; set; }
-	[Export]
-	protected Label ScoreLabel { get; set; }
 
 	public override void _Ready()
 	{
 		DragonBallSignals.Instance.DragonBallIsRemoved += on_dragon_ball_removed;
-		DragonBallSignals.Instance.AddPoint += on_adding_point;
 
 		string dbPath = "res://Scenes/UI/DragonRadar/DragonBall/DragonBallOnRadar.tscn";
 
@@ -29,8 +26,6 @@ public partial class DragonRadar : CanvasLayer
 			DbOnRadar.Name = item.Key;
 			DragonBallSpawn.AddChild(DbOnRadar);
 		}
-
-		ScoreLabel.Text = GameSingleton.Instance.GetPointsString();
 	}
 
 	public override void _Process(double delta)
@@ -56,16 +51,10 @@ public partial class DragonRadar : CanvasLayer
 		}
 	}
 
-	private void on_adding_point()
-	{
-		ScoreLabel.Text = GameSingleton.Instance.GetPointsString();
-	}
-
 	public override void _Input(InputEvent @event)
 	{
 		if (Input.IsActionJustPressed("dragon_radar"))
 		{
-			DragonBallSignals.Instance.AddPoint -= on_adding_point;
 			DragonBallSignals.Instance.DragonBallIsRemoved -= on_dragon_ball_removed;
 			this.QueueFree();
 		}

@@ -5,58 +5,61 @@ using System.Collections.Generic;
 public partial class Hud : CanvasLayer
 {
 	[Export]
-	Label nameLabel;
+	protected Label nameLabel { get; set; }
 
 	[Export]
-	Label dragonballCounterLabel;
+	protected Label dragonballCounterLabel { get; set; }
 
 	[Export]
-	Sprite2D avatar;
+	protected Sprite2D avatar { get; set; }
 
-	bool isReady = false;
+	const string GOKU = "gokuSkin";
+	const string BULMA = "bulmaSkin";
+	const string VEGETA = "VegetaSkin";
+	const string KRILIN = "krilinSkin";
 
-	string tempStr = "";
-
-	const string GOKU_SKIN_FILENAME = "gokuSkin.png";
-	const string BULMA_SKIN_FILENAME = "bulmaSkin.png";
-	const string VEGETA_SKIN_FILENAME = "VegetaSkin.png";
-	const string KRILIN_SKIN_FILENAME = "krilinSkin.png";
-
-	Dictionary<string, string> guiName = new Dictionary<string, string>() {
-		{ GOKU_SKIN_FILENAME, "Goku" },
-		{ BULMA_SKIN_FILENAME, "Bulma" },
-		{ VEGETA_SKIN_FILENAME, "Vegeta" },
-		{ KRILIN_SKIN_FILENAME, "Krilin" },
+	Dictionary<string, string> nameDic = new Dictionary<string, string>() {
+		{ GOKU, "Goku" },
+		{ BULMA, "Bulma" },
+		{ VEGETA, "Vegeta" },
+		{ KRILIN, "Krilin" },
 		{ "", "Hello World!" }
 	};
 
-	Dictionary<string, float> guiPhotoYcoords = new Dictionary<string, float>()
+	Dictionary<string, float> PhotoYcoordsDic = new Dictionary<string, float>()
 	{
-		{ GOKU_SKIN_FILENAME, 0 },
-		{ BULMA_SKIN_FILENAME, 128 },
-		{ VEGETA_SKIN_FILENAME, 64 },
-		{ KRILIN_SKIN_FILENAME, 192 },
+		{ GOKU, 0 },
+		{ BULMA, 128 },
+		{ VEGETA, 64 },
+		{ KRILIN, 192 },
 		{ "", 0 }
 	};
+
+	public override void _Ready()
+	{
+		TrySetAvatarAndName(GOKU);
+		TrySetAvatarAndName(BULMA);
+		TrySetAvatarAndName(VEGETA);
+		TrySetAvatarAndName(KRILIN);
+
+		base._Ready();
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// if (tempStr == "" || tempStr == null)
-		// {
-		// 	// avatar.regionEnable = true;
-		// 	tempStr = PlayerSingleton.Instance.name;
-		// 	avatar.SetRegionRect(new Rect2(
-		// 		new Vector2(0, guiPhotoYcoords[tempStr]),
-		// 		new Vector2(64, 64)
-		// 	));
-
-		// 	// debug
-		// }
-		//GD.Print(tempStr ?? "null");
-
-		// nameLabel.Text = guiName[tempStr];
-
 		dragonballCounterLabel.Text = GameSingleton.Instance.GetPointsString();
+	}
+
+	protected void TrySetAvatarAndName(string avatarName)
+	{
+		if (PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath.ToUpper().Contains(avatarName.ToUpper()))
+		{
+			avatar.SetRegionRect(new Rect2(
+				new Vector2(0, PhotoYcoordsDic[avatarName]),
+				new Vector2(64, 64)
+			));
+			this.nameLabel.Text = nameDic[avatarName];
+		}
 	}
 }

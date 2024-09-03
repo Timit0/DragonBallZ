@@ -131,10 +131,12 @@ popup/item_1/text = "Join"
 popup/item_1/id = 1
 
 [node name="ReturnButton" parent="CanvasLayer" instance=ExtResource("5_et6bm")]
+custom_minimum_size = Vector2(150, 50)
 offset_left = 64.0
-offset_top = 552.0
-offset_right = 162.0
-offset_bottom = 610.0
+offset_top = 520.0
+offset_right = 214.0
+offset_bottom = 578.0
+text = "BACK"
 targetPath = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

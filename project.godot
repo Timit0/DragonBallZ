@@ -25,7 +25,7 @@ ServerAutoload="*res://Singleton/Autoload/ServerAutoload.cs"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="ignore"
 
 [dotnet]
 
