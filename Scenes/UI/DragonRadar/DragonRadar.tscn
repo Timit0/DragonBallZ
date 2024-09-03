@@ -5,11 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://ytfq78unfsmy" path="res://Common/Assets/Mask/CircelMask.png" id="3_0sleu"]
 [ext_resource type="Texture2D" uid="uid://c52j0hexntqqw" path="res://Common/Assets/DragonRadar/Triangle.png" id="3_j1e6r"]
 
-[node name="DragonRadar" type="CanvasLayer" node_paths=PackedStringArray("DragonBallSpawn", "ScoreLabel")]
+[node name="DragonRadar" type="CanvasLayer" node_paths=PackedStringArray("DragonBallSpawn")]
 script = ExtResource("1_lascv")
 distanceDivider = 75.0
 DragonBallSpawn = NodePath("DragonBallSpawn")
-ScoreLabel = NodePath("")
 metadata/_edit_vertical_guides_ = [576.0]
 metadata/_edit_horizontal_guides_ = [338.0]
 

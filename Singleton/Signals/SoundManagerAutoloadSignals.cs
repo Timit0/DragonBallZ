@@ -23,4 +23,7 @@ public partial class SoundManagerAutoloadSignals : Node
 
     [Signal]
     public delegate void ButtonPressedSoundPlayEventHandler(int btn);
+
+    [Signal]
+    public delegate void DragonBallSoundPlayEventHandler();
 }

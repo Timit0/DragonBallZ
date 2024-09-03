@@ -14,6 +14,9 @@ public partial class SoundManagerAutoload : Node
 	[Export]
 	public AudioStreamPlayer PressedButtonPlayer { get; set; }
 
+	[Export]
+	public AudioStreamPlayer DragonBallCollectAudioStreamPlayer { get; set; }
+
 	protected int lastMenuMusicsIndex { get; set; } = -1;
 
 	public override void _Ready()
@@ -29,6 +32,8 @@ public partial class SoundManagerAutoload : Node
 
 		SoundManagerAutoloadSignals.Instance.ButtonPressedSoundPlay += on_button_pressed_sound_play;
 		SettingsSingal.Instance.UIVolumeChanged += on_button_pressed_sound_volume_changed;
+
+		SoundManagerAutoloadSignals.Instance.DragonBallSoundPlay += on_button_dragon_ball_sound_play;
 	}
 
 	private void on_audio_stream_player_finished()
@@ -40,6 +45,7 @@ public partial class SoundManagerAutoload : Node
 	private void on_sound_volume_changed(float newValue)
 	{
 		this.MenuMusicPlayer.VolumeDb = newValue;
+		this.DragonBallCollectAudioStreamPlayer.VolumeDb = newValue;
 	}
 
 	private void on_button_pressed_sound_play(int btn)
@@ -50,6 +56,11 @@ public partial class SoundManagerAutoload : Node
 	private void on_button_pressed_sound_volume_changed(float newValue)
 	{
 		this.PressedButtonPlayer.VolumeDb = newValue;
+	}
+
+	private void on_button_dragon_ball_sound_play()
+	{
+		this.DragonBallCollectAudioStreamPlayer.Play();
 	}
 
 	public void SetANewMusicMenu()

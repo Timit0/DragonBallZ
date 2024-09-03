@@ -12,7 +12,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("VBoxContainer/ColorRect2:modulate")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(1.6, 2.6),
@@ -24,7 +24,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("VBoxContainer/ColorRect:modulate")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(3, 4),
@@ -36,7 +36,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("VBoxContainer/ColorRect3:modulate")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.2, 1.2),
@@ -75,17 +75,17 @@ offset_bottom = 419.0
 theme_override_constants/separation = 20
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, -1.28571)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
 [node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, -0.609524)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
 [node name="ColorRect3" type="ColorRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, -0.0285714)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 

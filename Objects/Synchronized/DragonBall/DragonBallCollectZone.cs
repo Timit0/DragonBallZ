@@ -28,6 +28,7 @@ public partial class DragonBallCollectZone : Area2D
 	{
 		if (Input.IsActionJustPressed("collect_dragon_ball") && ContainPlayer && player.IsMultiplayerAuthority())
 		{
+			Rpc(nameof(this.EmitSound));
 			Rpc(nameof(this.SetDragonBallToExistInTheDic));
 			Rpc(nameof(this.AddPoint));
 			Rpc(nameof(this.RemoveDragonBall));
@@ -54,5 +55,11 @@ public partial class DragonBallCollectZone : Area2D
 	{
 		GameSingleton.Instance.AddPoint();
 		DragonBallSignals.Instance.EmitSignal(nameof(DragonBallSignals.Instance.AddPoint));
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void EmitSound()
+	{
+		SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.DragonBallSoundPlay));
 	}
 }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/GameIntroScene/GameIntroScene.cs" id="1_l726p"]
 [ext_resource type="FontFile" uid="uid://cthkp74y2u37d" path="res://Common/Assets/Fonts/roboto/Roboto-Light.ttf" id="2_8osyk"]
-[ext_resource type="AudioStream" uid="uid://ccnlc5c7i288x" path="res://Common/Assets/Sound/SFII_56 - Chun-Li Spinning Bird Kick.wav" id="2_271rb"]
+[ext_resource type="AudioStream" uid="uid://ccnlc5c7i288x" path="res://Common/Assets/Sound/Intro/SFII_56 - Chun-Li Spinning Bird Kick.wav" id="2_271rb"]
 [ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="2_jdw3q"]
 
 [sub_resource type="Animation" id="Animation_x42c5"]
