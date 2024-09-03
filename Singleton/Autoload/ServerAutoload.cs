@@ -48,6 +48,13 @@ public partial class ServerAutoload : Node
     {
         GD.Print("PEER DISCONNEC " + id);
         this.PeerQueue.Remove(id.ToString());
+
+        if (id == 1)
+        {
+            string scenePathToLoad = "res://Scenes/Menus/MainMenu/MainMenu.tscn";
+            SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
+            this.CloseServer();
+        }
     }
 
     private void on_server_create()
@@ -66,22 +73,16 @@ public partial class ServerAutoload : Node
 
     private void on_server_close()
     {
+        CloseServer();
+    }
+
+    public void CloseServer()
+    {
         GD.Print("SERVER CLOSE");
         this.PeerQueue.Clear();
         this.PeerInGame.Clear();
 
         this.Multiplayer.MultiplayerPeer = null;
         this.Peer.Close();
-
-        //---------------------------------------
-        // this.Multiplayer.MultiplayerPeer.Close();
-        // this.Peer = new ENetMultiplayerPeer();
-
-        // this.Peer.PeerConnected += on_peer_connected;
-        // this.Peer.PeerDisconnected += on_peer_disconnected;
-
-        // ServerSingals.Instance.CreateServer += on_server_create;
-        // ServerSingals.Instance.CreateClient += on_client_create;
-        // ServerSingals.Instance.CloseServer += on_server_close;
     }
 }

@@ -9,15 +9,6 @@ public partial class Scene : Node2D
         base._Ready();
     }
 
-    public override void _Process(double delta)
-    {
-        foreach (Node node in this.GetChildren())
-        {
-            GD.Print(node.Name);
-        }
-        base._Process(delta);
-    }
-
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionJustPressed("pause_menu"))
