@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://svqckgbd4i0j"]
+[gd_scene load_steps=6 format=3 uid="uid://svqckgbd4i0j"]
 
 [ext_resource type="Script" path="res://Scenes/QueueScene/QueueScene.cs" id="1_vksl4"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn" id="2_leqie"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="3_jerdf"]
 
 [sub_resource type="Animation" id="Animation_sba03"]
 resource_name = "RESET"
@@ -98,3 +99,4 @@ offset_bottom = 648.0
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 text = "BACK"
+script = ExtResource("3_jerdf")

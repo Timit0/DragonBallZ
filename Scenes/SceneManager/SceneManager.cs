@@ -9,6 +9,10 @@ public partial class SceneManager : Node
 	[Export]
 	public Node SceneNode { get; set; }
 
+	[Export]
+	public AnimationPlayer TransitionAnimationPlayer { get; set; }
+
+	protected string scenePathToLoad { get; set; }
 
 	public override void _Ready()
 	{
@@ -29,8 +33,14 @@ public partial class SceneManager : Node
 	private void on_change_to_this_scene(string scenePath)
 	{
 		GetTree().Paused = false;
+		scenePathToLoad = scenePath;
+		TransitionAnimationPlayer.Play("RESET");
+	}
+
+	public void ChangeScene()
+	{
 		RemoveScene();
-		SceneNode.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<Node>(scenePath));
+		SceneNode.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<Node>(scenePathToLoad));
 	}
 
 	protected void RemoveScene()

@@ -66,6 +66,8 @@ public partial class PlayerSkinCase : Control
 				ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateClient));
 			}
 
+			SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.ButtonPressedSoundPlay), 0);
+
 
 			string scenePathToLoad = "res://Scenes/QueueScene/QueueScene.tscn";
 			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
