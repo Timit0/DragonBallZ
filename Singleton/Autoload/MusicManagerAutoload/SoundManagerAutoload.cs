@@ -3,6 +3,8 @@ using System;
 
 public partial class SoundManagerAutoload : Node
 {
+	public static SoundManagerAutoload Instance { get; private set; }
+
 	[ExportGroup("Musics")]
 	[Export]
 	public Godot.Collections.Array<AudioStreamWav> MenuMusics { get; set; }
@@ -21,10 +23,12 @@ public partial class SoundManagerAutoload : Node
 
 	public override void _Ready()
 	{
+		Instance = this;
+
 		this.MenuMusicPlayer.Finished += on_audio_stream_player_finished;
 		this.MenuMusicPlayer.VolumeDb = SettingsDbContext.Instance.Get().MusicVolume;
 		SetANewMusicMenu();
-		this.MenuMusicPlayer.Play();
+		// this.MenuMusicPlayer.Play();
 
 		this.PressedButtonPlayer.VolumeDb = SettingsDbContext.Instance.Get().UIVolume;
 
@@ -94,5 +98,15 @@ public partial class SoundManagerAutoload : Node
 			// SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.PlayPressedButtonSound));
 		}
 		base._Input(@event);
+	}
+
+	public void MusicPlay(bool state)
+	{
+		if (state)
+		{
+			MenuMusicPlayer.Play();
+			return;
+		}
+		MenuMusicPlayer.Stop();
 	}
 }

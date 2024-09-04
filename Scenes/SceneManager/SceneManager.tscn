@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx6aj2ob0a2ji"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
-[ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="2_xd8nv"]
+[ext_resource type="PackedScene" uid="uid://cftrf3e1f6k4f" path="res://Scenes/GameIntroScene/gameIntroScene.tscn" id="2_wsy0n"]
 
 [node name="SceneManager" type="Node" node_paths=PackedStringArray("SceneNode")]
 script = ExtResource("1_7iyru")
-SceneToLoad = ExtResource("2_xd8nv")
+SceneToLoad = ExtResource("2_wsy0n")
 SceneNode = NodePath("SceneNode")
 
 [node name="SceneNode" type="Node" parent="."]
