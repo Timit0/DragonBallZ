@@ -1,17 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxd46llrg4yqa"]
+[gd_scene load_steps=28 format=3 uid="uid://bxd46llrg4yqa"]
 
 [ext_resource type="Script" path="res://Singleton/Autoload/MusicManagerAutoload/SoundManagerAutoload.cs" id="1_ysxpn"]
 [ext_resource type="AudioStream" uid="uid://c2u3q3hk0n2d8" path="res://Common/Assets/Music/DragonBallOpening.wav" id="2_t4xnj"]
 [ext_resource type="AudioStream" uid="uid://bf66dq177w33o" path="res://Common/Assets/Music/DragonBallOpening_Ariane_version_cleaned.wav" id="3_4a05c"]
 [ext_resource type="AudioStream" uid="uid://bew7c6u1y4ahy" path="res://Common/Assets/Sound/UI/kenney_interface-sounds/Audio/click_002.ogg" id="3_7h8ut"]
 [ext_resource type="AudioStream" uid="uid://o8f3a5c6iwhc" path="res://Common/Assets/Music/GTO - ending 1 full ( _Last Piece_ ) by Kirari.wav" id="4_4labm"]
+[ext_resource type="AudioStream" uid="uid://bdckclhboue43" path="res://Common/Assets/Music/Captain Tsubasa Opening 1 versión 1 japonés.wav" id="5_18c5u"]
 [ext_resource type="AudioStream" uid="uid://csuawa2sw7l7k" path="res://Common/Assets/Sound/DragonBall/DragonBallCollect.wav" id="5_q64yu"]
+[ext_resource type="AudioStream" uid="uid://x0f28idn83in" path="res://Common/Assets/Music/Captain Tsubasa Road to 2002 Opening Full HD Creditless [Dragon Screamer].wav" id="6_fsms5"]
 [ext_resource type="AudioStream" uid="uid://be6xl4qfpnep2" path="res://Common/Assets/Sound/Transition/swoosh_transition.wav" id="6_paw40"]
+[ext_resource type="AudioStream" uid="uid://btc1wl2nbnauw" path="res://Common/Assets/Music/City Hunter - Opening 1 ｜ ＂Love, Don't Leave Me!＂ by Kahoru Kohiruimaki.wav" id="7_llfps"]
+[ext_resource type="AudioStream" uid="uid://btn2nded57qm" path="res://Common/Assets/Music/Générique Pokémon saison 1 ： ＂Pokémon ! Attrapez-les tous !＂.wav" id="8_bl316"]
+[ext_resource type="AudioStream" uid="uid://b24wy65862hy0" path="res://Common/Assets/Music/Jean-Paul Césari - Nicky Larson ｜ Générique TV ｜ French opening.wav" id="9_7xjuo"]
+[ext_resource type="AudioStream" uid="uid://pqmxiby5q7tn" path="res://Common/Assets/Music/Les Mystérieuses Cités d'Or ＊ French Opening.wav" id="10_8fejt"]
+[ext_resource type="AudioStream" uid="uid://difldifpmk628" path="res://Common/Assets/Music/Olive et Tom - Générique Officiel.wav" id="11_0p5ul"]
+[ext_resource type="AudioStream" uid="uid://d0jcy4ud046xx" path="res://Common/Assets/Music/Oshi no Ko Opening 1 (4k 60FPS)┃Creditless.wav" id="12_u4ppj"]
+[ext_resource type="AudioStream" uid="uid://b1lit2h7hl3qt" path="res://Common/Assets/Music/SHINGEKI NO KYOJIN (ATTACK ON TITAN) ENDING 7 The Final Season Part 2 (ENG SUB) VOSTFR.wav" id="13_vmvc5"]
+[ext_resource type="AudioStream" uid="uid://l7s7qvhgis7p" path="res://Common/Assets/Music/albator.wav" id="14_38ylv"]
+[ext_resource type="AudioStream" uid="uid://bq8dkuyg8v4fl" path="res://Common/Assets/Music/antchaBettyBoop.wav" id="15_1p6vc"]
+[ext_resource type="AudioStream" uid="uid://bxasrpdv2lqow" path="res://Common/Assets/Music/astroboy1960.wav" id="16_gi1i6"]
+[ext_resource type="AudioStream" uid="uid://beogxjub3hxm8" path="res://Common/Assets/Music/bioman.wav" id="17_4tqjc"]
+[ext_resource type="AudioStream" uid="uid://ddatljswtoxqy" path="res://Common/Assets/Music/castleInTheSky.wav" id="18_2kdx5"]
+[ext_resource type="AudioStream" uid="uid://b6j467i2av3bd" path="res://Common/Assets/Music/doraemon.wav" id="19_m171d"]
+[ext_resource type="AudioStream" uid="uid://c1rmpm1tkgw4n" path="res://Common/Assets/Music/evangelionOpening.wav" id="20_1r581"]
+[ext_resource type="AudioStream" uid="uid://jrh8ahxei6ts" path="res://Common/Assets/Music/Iznogoud.wav" id="21_f0ni1"]
+[ext_resource type="AudioStream" uid="uid://n36y30e1fe68" path="res://Common/Assets/Music/leNezDeDorothee.wav" id="22_pjw63"]
+[ext_resource type="AudioStream" uid="uid://c18dxe13gs0mx" path="res://Common/Assets/Music/saturnin.wav" id="23_7uy7d"]
+[ext_resource type="AudioStream" uid="uid://ds6dxyhutlmd3" path="res://Common/Assets/Music/tmnt.wav" id="24_ftthn"]
 
 [node name="SoundManagerAutoload" type="Node" node_paths=PackedStringArray("MenuMusicPlayer", "PressedButtonPlayer", "DragonBallCollectAudioStreamPlayer", "TransitionAudioStreamPlayer")]
 process_mode = 3
 script = ExtResource("1_ysxpn")
-MenuMusics = [ExtResource("3_4a05c"), ExtResource("2_t4xnj"), ExtResource("4_4labm")]
+MenuMusics = [ExtResource("3_4a05c"), ExtResource("2_t4xnj"), ExtResource("4_4labm"), ExtResource("5_18c5u"), ExtResource("6_fsms5"), ExtResource("7_llfps"), ExtResource("8_bl316"), ExtResource("9_7xjuo"), ExtResource("10_8fejt"), ExtResource("11_0p5ul"), ExtResource("12_u4ppj"), ExtResource("13_vmvc5"), ExtResource("14_38ylv"), ExtResource("15_1p6vc"), ExtResource("16_gi1i6"), ExtResource("17_4tqjc"), ExtResource("18_2kdx5"), ExtResource("19_m171d"), ExtResource("20_1r581"), ExtResource("21_f0ni1"), ExtResource("22_pjw63"), ExtResource("23_7uy7d"), ExtResource("24_ftthn")]
 MenuMusicPlayer = NodePath("MenuMusicStreamPlayer")
 PressedButtonPlayer = NodePath("PressedButtonStreamPlayer")
 DragonBallCollectAudioStreamPlayer = NodePath("DragonBallCollectAudioStreamPlayer")

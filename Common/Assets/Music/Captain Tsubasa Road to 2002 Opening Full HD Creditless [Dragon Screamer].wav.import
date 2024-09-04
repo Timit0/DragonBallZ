@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://x0f28idn83in"
+path="res://.godot/imported/Captain Tsubasa Road to 2002 Opening Full HD Creditless [Dragon Screamer].wav-9101f49c4b0686bcf0b618e7905ead4d.sample"
+
+[deps]
+
+source_file="res://Common/Assets/Music/Captain Tsubasa Road to 2002 Opening Full HD Creditless [Dragon Screamer].wav"
+dest_files=["res://.godot/imported/Captain Tsubasa Road to 2002 Opening Full HD Creditless [Dragon Screamer].wav-9101f49c4b0686bcf0b618e7905ead4d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

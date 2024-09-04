@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b1lit2h7hl3qt"
+path="res://.godot/imported/SHINGEKI NO KYOJIN (ATTACK ON TITAN) ENDING 7 The Final Season Part 2 (ENG SUB) VOSTFR.wav-621f0eaf092c81d240f1506c21afe201.sample"
+
+[deps]
+
+source_file="res://Common/Assets/Music/SHINGEKI NO KYOJIN (ATTACK ON TITAN) ENDING 7 The Final Season Part 2 (ENG SUB) VOSTFR.wav"
+dest_files=["res://.godot/imported/SHINGEKI NO KYOJIN (ATTACK ON TITAN) ENDING 7 The Final Season Part 2 (ENG SUB) VOSTFR.wav-621f0eaf092c81d240f1506c21afe201.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
