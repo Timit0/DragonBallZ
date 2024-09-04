@@ -26,6 +26,12 @@ public partial class OptionsMenu : Control
 		set => soundTable.SliderUIVolume = value;
 	}
 
+	protected Slider transitionVolumeSLider
+	{
+		get => soundTable.SliderTransitionVolume;
+		set => soundTable.SliderTransitionVolume = value;
+	}
+
 	public override void _Ready()
 	{
 		musicVolumeSlider.Value = SettingsDbContext.Instance.Get().MusicVolume;
@@ -34,24 +40,33 @@ public partial class OptionsMenu : Control
 		uIVolumeSLider.Value = SettingsDbContext.Instance.Get().UIVolume;
 		uIVolumeSLider.ValueChanged += on_ui_volume_slider_change;
 
+		transitionVolumeSLider.Value = SettingsDbContext.Instance.Get().TransitionVolume;
+		transitionVolumeSLider.ValueChanged += on_transition_volume_slider_change;
+
 		returnAndSaveButton.Pressed += on_returnAndSave_button_pressed;
 		resetButton.Pressed += on_reset_button_pressed;
 	}
 
 	private void on_music_volume_slider_change(double value)
 	{
-		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.MusicVolumeChanged), (float)value);
+		SettingsSingals.Instance.EmitSignal(nameof(SettingsSingals.Instance.MusicVolumeChanged), (float)value);
 	}
 
 	private void on_ui_volume_slider_change(double value)
 	{
-		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.UIVolumeChanged), (float)value);
+		SettingsSingals.Instance.EmitSignal(nameof(SettingsSingals.Instance.UIVolumeChanged), (float)value);
+	}
+
+	private void on_transition_volume_slider_change(double value)
+	{
+		SettingsSingals.Instance.EmitSignal(nameof(SettingsSingals.Instance.TransitionVolumeChanged), (float)value);
 	}
 
 	private async void on_returnAndSave_button_pressed()
 	{
-		SettingsSingal.Instance.EmitSignal(nameof(SettingsSingal.Instance.SaveChange));
-		await SettingsDbContext.Instance.Update(musicV: (float)musicVolumeSlider.Value, uIV: (float)uIVolumeSLider.Value);
+		SettingsSingals.Instance.EmitSignal(nameof(SettingsSingals.Instance.SaveChange));
+		await SettingsDbContext.Instance.UpdateSound(musicV: (float)musicVolumeSlider.Value,
+		uIV: (float)uIVolumeSLider.Value, tranV: (float)transitionVolumeSLider.Value);
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), returnTarget);
 	}
 

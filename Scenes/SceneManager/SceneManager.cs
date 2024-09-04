@@ -62,4 +62,9 @@ public partial class SceneManager : Node
 
 		InputMap.Singleton.ActionAddEvent(actionName, inputEventKey);
 	}
+
+	public void EmitTransitionSound()
+	{
+		SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.TransitionSoundPlay));
+	}
 }

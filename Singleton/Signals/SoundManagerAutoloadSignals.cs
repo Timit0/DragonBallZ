@@ -26,4 +26,7 @@ public partial class SoundManagerAutoloadSignals : Node
 
     [Signal]
     public delegate void DragonBallSoundPlayEventHandler();
+
+    [Signal]
+    public delegate void TransitionSoundPlayEventHandler();
 }

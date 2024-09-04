@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/Tables/Sound/SoundTable.cs" id="1_n6s78"]
 [ext_resource type="FontFile" uid="uid://i6rxk7aq2amk" path="res://Common/Assets/Fonts/DragonballZFont/Saiyan-Sans.ttf" id="1_ylkiv"]
 
-[node name="SoundTab" type="Control" node_paths=PackedStringArray("SliderMusicVolume", "SliderUIVolume")]
+[node name="SoundTab" type="Control" node_paths=PackedStringArray("SliderMusicVolume", "SliderUIVolume", "SliderTransitionVolume")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_n6s78")
 SliderMusicVolume = NodePath("ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/HBoxContainer/HSlider")
 SliderUIVolume = NodePath("ScrollContainer/VBoxContainer/HUIEffectVolume/VBoxContainer/HBoxContainer/HSlider")
+SliderTransitionVolume = NodePath("ScrollContainer/VBoxContainer/TransitionVolume/VBoxContainer/HBoxContainer/HSlider")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -78,6 +79,36 @@ theme_override_font_sizes/font_size = 65
 text = "UI EFFECT VOLUME"
 
 [node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HUIEffectVolume/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+min_value = -45.0
+max_value = 24.0
+step = 0.1
+
+[node name="TransitionVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing" type="Container" parent="ScrollContainer/VBoxContainer/TransitionVolume"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/TransitionVolume"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/TransitionVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/TransitionVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_ylkiv")
+theme_override_font_sizes/font_size = 65
+text = "TRANSITION VOLUME"
+
+[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/TransitionVolume/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 min_value = -45.0

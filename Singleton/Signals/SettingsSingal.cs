@@ -1,12 +1,12 @@
 using System;
 using Godot;
 
-public partial class SettingsSingal : Node
+public partial class SettingsSingals : Node
 {
-    public static SettingsSingal instance = null;
+    public static SettingsSingals instance = null;
     protected static readonly object threadSafeLocker = new object();
-    private SettingsSingal() { }
-    public static SettingsSingal Instance
+    private SettingsSingals() { }
+    public static SettingsSingals Instance
     {
         get
         {
@@ -14,7 +14,7 @@ public partial class SettingsSingal : Node
             {
                 if (instance == null)
                 {
-                    instance = new SettingsSingal();
+                    instance = new SettingsSingals();
                 }
             }
             return instance;
@@ -26,6 +26,9 @@ public partial class SettingsSingal : Node
 
     [Signal]
     public delegate void UIVolumeChangedEventHandler(float newValue);
+
+    [Signal]
+    public delegate void TransitionVolumeChangedEventHandler(float newValue);
 
     [Signal]
     public delegate void SaveChangeEventHandler();

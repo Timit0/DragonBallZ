@@ -71,7 +71,7 @@ class SettingsDbContext : DbContext
         return this;
     }
 
-    public async Task<SettingsDbContext> Update(int rowNumb = 1, float? musicV = null, float? uIV = null)
+    public async Task<SettingsDbContext> UpdateSound(int rowNumb = 1, float? musicV = null, float? uIV = null, float? tranV = null)
     {
         SettingsDbModel settings = this.Settings.Find(rowNumb);
 
@@ -83,6 +83,11 @@ class SettingsDbContext : DbContext
         if (uIV is float uIVFloat)
         {
             settings.UIVolume = uIVFloat;
+        }
+
+        if (tranV is float tranVFloat)
+        {
+            settings.TransitionVolume = tranVFloat;
         }
 
         await this.SaveChangesAsync();

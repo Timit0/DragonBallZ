@@ -19,6 +19,9 @@ public partial class SoundManagerAutoload : Node
 	[Export]
 	public AudioStreamPlayer DragonBallCollectAudioStreamPlayer { get; set; }
 
+	[Export]
+	public AudioStreamPlayer TransitionAudioStreamPlayer { get; set; }
+
 	protected int lastMenuMusicsIndex { get; set; } = -1;
 
 	public override void _Ready()
@@ -26,18 +29,18 @@ public partial class SoundManagerAutoload : Node
 		Instance = this;
 
 		this.MenuMusicPlayer.Finished += on_audio_stream_player_finished;
-		this.MenuMusicPlayer.VolumeDb = SettingsDbContext.Instance.Get().MusicVolume;
-		SetANewMusicMenu();
-		// this.MenuMusicPlayer.Play();
 
-		this.PressedButtonPlayer.VolumeDb = SettingsDbContext.Instance.Get().UIVolume;
-
-		SettingsSingal.Instance.MusicVolumeChanged += on_sound_volume_changed;
+		SettingsSingals.Instance.MusicVolumeChanged += on_sound_volume_changed;
 
 		SoundManagerAutoloadSignals.Instance.ButtonPressedSoundPlay += on_button_pressed_sound_play;
-		SettingsSingal.Instance.UIVolumeChanged += on_button_pressed_sound_volume_changed;
+		SettingsSingals.Instance.UIVolumeChanged += on_uI_sound_volume_changed;
 
 		SoundManagerAutoloadSignals.Instance.DragonBallSoundPlay += on_button_dragon_ball_sound_play;
+
+		SoundManagerAutoloadSignals.Instance.TransitionSoundPlay += on_transition_sound_play;
+		SettingsSingals.Instance.TransitionVolumeChanged += on_transition_volume_changed;
+
+		this.SetUp();
 	}
 
 	private void on_audio_stream_player_finished()
@@ -57,7 +60,7 @@ public partial class SoundManagerAutoload : Node
 		this.PressedButtonPlayer.Play();
 	}
 
-	private void on_button_pressed_sound_volume_changed(float newValue)
+	private void on_uI_sound_volume_changed(float newValue)
 	{
 		this.PressedButtonPlayer.VolumeDb = newValue;
 	}
@@ -65,6 +68,16 @@ public partial class SoundManagerAutoload : Node
 	private void on_button_dragon_ball_sound_play()
 	{
 		this.DragonBallCollectAudioStreamPlayer.Play();
+	}
+
+	private void on_transition_sound_play()
+	{
+		this.TransitionAudioStreamPlayer.Play();
+	}
+
+	private void on_transition_volume_changed(float newValue)
+	{
+		this.TransitionAudioStreamPlayer.VolumeDb = newValue;
 	}
 
 	public void SetANewMusicMenu()
@@ -108,5 +121,15 @@ public partial class SoundManagerAutoload : Node
 			return;
 		}
 		MenuMusicPlayer.Stop();
+	}
+
+	protected void SetUp()
+	{
+		this.MenuMusicPlayer.VolumeDb = SettingsDbContext.Instance.Get().MusicVolume;
+		SetANewMusicMenu();
+
+		this.PressedButtonPlayer.VolumeDb = SettingsDbContext.Instance.Get().UIVolume;
+
+		this.TransitionAudioStreamPlayer.VolumeDb = SettingsDbContext.Instance.Get().TransitionVolume;
 	}
 }

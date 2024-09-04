@@ -68,6 +68,20 @@ tracks/4/keys = {
 "method": &"ChangeScene"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"EmitTransitionSound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh2ql"]
 _data = {
@@ -89,8 +103,6 @@ layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="TransitionNode"]
 z_index = 2
-offset_left = 1152.0
-offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 

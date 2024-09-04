@@ -12,7 +12,7 @@ public partial class ButtonToggleAction : ButtonOverride
 
     public override void _Ready()
     {
-        SettingsSingal.Instance.SaveChange += on_save_changed;
+        SettingsSingals.Instance.SaveChange += on_save_changed;
         string inputString = SettingsDbContext.Instance.Get(PropertyNameInSQLite).ToString().Split(" ")[0];
         if (inputString != null && inputString != "")
         {
