@@ -3,7 +3,6 @@ class_name CameraManager extends Node
 static var cam: PhantomCamera2D
 
 ##You must call prepare before call any other func
-
 static func prepare(obj: Object) -> void:
 	cam = obj
 	

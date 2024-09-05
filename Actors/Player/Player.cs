@@ -37,7 +37,6 @@ public partial class Player : Actor
 
 		if (this.IsMultiplayerAuthority())
 		{
-			// GD.Print("CAMERA " + CameraManagerNodeResource.ResourcePath);
 			CameraManager cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
 			this.AddChild(cameraManager);
 		}
@@ -66,15 +65,11 @@ public partial class Player : Actor
 
 	private void on_remove_actor()
 	{
-		// foreach (Node node in GetChildren())
-		// {
-		// 	if (node is CameraManager)
-		// 	{
-		// 		this.RemoveChild(node);
-		// 	}
-		// }
-		// this.QueueFree();
-		GetParent().RemoveChild(this);
+		try
+		{
+			GetParent().RemoveChild(this);
+		}
+		catch (Exception e) { }
 	}
 
 	public void PlayWalk(bool value)

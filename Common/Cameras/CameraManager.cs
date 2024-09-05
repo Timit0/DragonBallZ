@@ -36,7 +36,6 @@ public partial class CameraManager : Node
     }
     public override void _Ready()
     {
-        LoadCams();
         CameraSignals.Instance.ActiveThisCamera += on_active_this_camera;
 
         CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)CamList.MAIN_CAM);
@@ -66,25 +65,5 @@ public partial class CameraManager : Node
     {
         GD.Print("NAME " + GetParent().Name);
         return GetParent() as Node2D;
-    }
-
-    protected void LoadCams()
-    {
-        foreach (Node node in GetChildren())
-        {
-            if (node.Name == "MainCamera")
-            {
-                GD.Print(node.Name);
-                MainCamera = node;
-            }
-        }
-
-        foreach (Node node in GetChildren())
-        {
-            if (node.Name == "ZoomedCamera")
-            {
-                ZoomedCamera = node;
-            }
-        }
     }
 }

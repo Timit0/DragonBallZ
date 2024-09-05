@@ -49,13 +49,13 @@ public partial class ServerAutoload : Node
         this.PeerQueue.Remove(id.ToString());
         this.PeerInGame.Remove(id.ToString());
 
-        if (id == 1)
-        {
-            string scenePathToLoad = "res://Scenes/Menus/MainMenu/MainMenu.tscn";
-            ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
-            SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
-            this.CloseServer();
-        }
+        // if (id == 1)
+        // {
+        string scenePathToLoad = "res://Scenes/Menus/MainMenu/MainMenu.tscn";
+        ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
+        SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
+        this.CloseServer();
+        // }
     }
 
     private void on_server_create()

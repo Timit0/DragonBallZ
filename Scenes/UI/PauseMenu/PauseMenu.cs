@@ -36,10 +36,8 @@ public partial class PauseMenu : CanvasLayer
 
     private void on_return_button_pressed()
     {
-        if (this.Multiplayer.IsServer())
-        {
-            ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
-        }
+        ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
+
         ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), returnTarget);
     }

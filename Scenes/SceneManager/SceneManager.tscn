@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cx6aj2ob0a2ji"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
-[ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="2_1n6kr"]
+[ext_resource type="PackedScene" uid="uid://cftrf3e1f6k4f" path="res://Scenes/GameIntroScene/gameIntroScene.tscn" id="2_illm7"]
 
 [sub_resource type="Animation" id="Animation_ex4ll"]
 resource_name = "Transition"
@@ -119,7 +119,7 @@ _data = {
 
 [node name="SceneManager" type="Node" node_paths=PackedStringArray("SceneNode", "TransitionAnimationPlayer")]
 script = ExtResource("1_7iyru")
-SceneToLoad = ExtResource("2_1n6kr")
+SceneToLoad = ExtResource("2_illm7")
 SceneNode = NodePath("SceneNode")
 TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 

@@ -133,10 +133,8 @@ label = NodePath("Label")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -32.0
-offset_top = -24.0
-offset_right = 1176.0
-offset_bottom = 664.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -158,4 +156,4 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 1.0
+volume_db = -80.0
