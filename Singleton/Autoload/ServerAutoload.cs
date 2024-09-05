@@ -15,6 +15,7 @@ public partial class ServerAutoload : Node
 
     public override void _Ready()
     {
+        this.ProcessMode = ProcessModeEnum.Always;
         Instance = this;
 
         this.Peer.PeerConnected += on_peer_connected;
@@ -51,6 +52,7 @@ public partial class ServerAutoload : Node
         if (id == 1)
         {
             string scenePathToLoad = "res://Scenes/Menus/MainMenu/MainMenu.tscn";
+            ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
             SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
             this.CloseServer();
         }

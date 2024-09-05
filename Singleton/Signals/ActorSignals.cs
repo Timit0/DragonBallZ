@@ -23,4 +23,7 @@ public partial class ActorSignals : Node
 
     [Signal]
     public delegate void BehindActorEventHandler(string emitterName, string targetName);
+
+    [Signal]
+    public delegate void RemoveActorEventHandler();
 }

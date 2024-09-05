@@ -36,6 +36,7 @@ public partial class CameraManager : Node
     }
     public override void _Ready()
     {
+        LoadCams();
         CameraSignals.Instance.ActiveThisCamera += on_active_this_camera;
 
         CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)CamList.MAIN_CAM);
@@ -50,12 +51,12 @@ public partial class CameraManager : Node
             case (int)CamList.MAIN_CAM:
                 CameraManagerGDS.Call("prepare", MainCamera);
                 CameraManagerGDS.Call("remove_all_followed_group");
-                CameraManagerGDS.Call("add_follow_target", GetParent());
+                CameraManagerGDS.Call("add_follow_target", GetPlayer());
                 break;
             case (int)CamList.ZOOMED_CAM:
                 CameraManagerGDS.Call("prepare", ZoomedCamera);
                 CameraManagerGDS.Call("remove_all_followed_group");
-                CameraManagerGDS.Call("add_follow_target", GetParent());
+                CameraManagerGDS.Call("add_follow_target", GetPlayer());
                 break;
         }
         CameraManagerGDS.Call("cam_active_is", true);
@@ -63,22 +64,27 @@ public partial class CameraManager : Node
 
     private Node2D GetPlayer()
     {
-        return GetParent().GetParent() as Node2D;
+        GD.Print("NAME " + GetParent().Name);
+        return GetParent() as Node2D;
     }
 
-    // private void on_basic_cam()
-    // {
-    //     CameraManagerGDS.Call("prepare", BasicCam);
-    //     CameraManagerGDS.Call("remove_all_dialogue_followed_group");
-    //     CameraManagerGDS.Call("add_group", GetBasicOfScene().GroupToFollow);
-    //     CameraManagerGDS.Call("cam_active_is", true);
-    // }
+    protected void LoadCams()
+    {
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "MainCamera")
+            {
+                GD.Print(node.Name);
+                MainCamera = node;
+            }
+        }
 
-    // private void on_dialogue_cam(Array<GodotObject> actorsToFollow)
-    // {
-    //     CameraManagerGDS.Call("prepare", DialogueCam);
-    //     CameraManagerGDS.Call("remove_all_followed_group");
-    //     CameraManagerGDS.Call("add_group", actorsToFollow);
-    //     CameraManagerGDS.Call("cam_active_is", true);
-    // }
+        foreach (Node node in GetChildren())
+        {
+            if (node.Name == "ZoomedCamera")
+            {
+                ZoomedCamera = node;
+            }
+        }
+    }
 }

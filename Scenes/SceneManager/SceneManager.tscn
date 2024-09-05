@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx6aj2ob0a2ji"]
+[gd_scene load_steps=6 format=3 uid="uid://cx6aj2ob0a2ji"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
-[ext_resource type="PackedScene" uid="uid://cftrf3e1f6k4f" path="res://Scenes/GameIntroScene/gameIntroScene.tscn" id="2_wsy0n"]
+[ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="2_1n6kr"]
 
 [sub_resource type="Animation" id="Animation_ex4ll"]
-resource_name = "RESET"
+resource_name = "Transition"
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:mouse_filter")
+tracks/0/path = NodePath("Transition:mouse_filter")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:size")
+tracks/1/path = NodePath("Transition:size")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:scale")
+tracks/2/path = NodePath("Transition:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +45,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect:position")
+tracks/3/path = NodePath("Transition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -82,15 +82,44 @@ tracks/5/keys = {
 "method": &"EmitTransitionSound"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NoClickMouse:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ekin4"]
+resource_name = "RESET"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NoClickMouse:mouse_filter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh2ql"]
 _data = {
-"RESET": SubResource("Animation_ex4ll")
+"RESET": SubResource("Animation_ekin4"),
+"Transition": SubResource("Animation_ex4ll")
 }
 
 [node name="SceneManager" type="Node" node_paths=PackedStringArray("SceneNode", "TransitionAnimationPlayer")]
 script = ExtResource("1_7iyru")
-SceneToLoad = ExtResource("2_wsy0n")
+SceneToLoad = ExtResource("2_1n6kr")
 SceneNode = NodePath("SceneNode")
 TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 
@@ -101,7 +130,7 @@ TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 [node name="TransitionNode" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="ColorRect" type="ColorRect" parent="TransitionNode"]
+[node name="Transition" type="ColorRect" parent="TransitionNode"]
 z_index = 2
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
@@ -110,3 +139,9 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_dh2ql")
 }
+
+[node name="NoClickMouse" type="ColorRect" parent="TransitionNode"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

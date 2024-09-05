@@ -30,16 +30,14 @@ public partial class Player : Actor
 
 	public override void _Ready()
 	{
+		ActorSignals.Instance.RemoveActor += on_remove_actor;
+
 		this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
 		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
 
-		// if (!this.IsMultiplayerAuthority())
-		// {
-		// Camera.Enabled = false;
-		// }
 		if (this.IsMultiplayerAuthority())
 		{
-			GD.Print("CAMERA " + CameraManagerNodeResource.ResourcePath);
+			// GD.Print("CAMERA " + CameraManagerNodeResource.ResourcePath);
 			CameraManager cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
 			this.AddChild(cameraManager);
 		}
@@ -64,6 +62,19 @@ public partial class Player : Actor
 		this.MoveAndSlide();
 
 		base._PhysicsProcess(delta);
+	}
+
+	private void on_remove_actor()
+	{
+		// foreach (Node node in GetChildren())
+		// {
+		// 	if (node is CameraManager)
+		// 	{
+		// 		this.RemoveChild(node);
+		// 	}
+		// }
+		// this.QueueFree();
+		GetParent().RemoveChild(this);
 	}
 
 	public void PlayWalk(bool value)
