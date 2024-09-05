@@ -34,6 +34,8 @@ public partial class SceneManager : Node
 	{
 		GetTree().Paused = false;
 		scenePathToLoad = scenePath;
+
+		TransitionAnimationPlayer.Stop();
 		TransitionAnimationPlayer.Play("RESET");
 	}
 

@@ -17,8 +17,10 @@ duration = 1.0
 transition = 1
 ease = 2
 
-[node name="CameraNode" type="Node"]
+[node name="CameraNode" type="Node" node_paths=PackedStringArray("MainCamera", "ZoomedCamera")]
 script = ExtResource("1_b260f")
+MainCamera = NodePath("MainCamera")
+ZoomedCamera = NodePath("ZoomedCamera")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 2

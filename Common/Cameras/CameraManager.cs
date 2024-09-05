@@ -11,29 +11,11 @@ public partial class CameraManager : Node
         ZOOMED_CAM
     }
 
-    public GodotObject MainCamera
-    {
-        get
-        {
-            return FindChild("MainCamera") as GodotObject;
-        }
-        set
-        {
-            this.MainCamera = value;
-        }
-    }
+    [Export]
+    public Node MainCamera { get; set; }
 
-    public GodotObject ZoomedCamera
-    {
-        get
-        {
-            return FindChild("ZoomedCamera") as GodotObject;
-        }
-        set
-        {
-            this.ZoomedCamera = value;
-        }
-    }
+    [Export]
+    public Node ZoomedCamera { get; set; }
 
     private GodotObject _cameraManagerGDS = null;
     public GodotObject CameraManagerGDS

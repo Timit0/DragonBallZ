@@ -13,8 +13,6 @@ public partial class ServerAutoload : Node
     public List<string> PeerQueue { get; set; } = new List<string>();
     public List<string> PeerInGame { get; set; } = new List<string>();
 
-    public bool InGame { get; set; }
-
     public override void _Ready()
     {
         Instance = this;
@@ -34,9 +32,9 @@ public partial class ServerAutoload : Node
 
         if (this.PeerQueue.Count == 1)
         {
+            GD.Print("START GAME");
             this.PeerInGame.Add(id.ToString());
 
-            this.InGame = true;
             string scenePathToLoad = "res://Scenes/level/levelScene.tscn";
             SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
 
@@ -48,6 +46,7 @@ public partial class ServerAutoload : Node
     {
         GD.Print("PEER DISCONNEC " + id);
         this.PeerQueue.Remove(id.ToString());
+        this.PeerInGame.Remove(id.ToString());
 
         if (id == 1)
         {
@@ -59,6 +58,9 @@ public partial class ServerAutoload : Node
 
     private void on_server_create()
     {
+        this.PeerQueue.Clear();
+        this.PeerInGame.Clear();
+
         GD.Print("CREATE SERVER");
         this.Peer.CreateServer(port);
         this.Multiplayer.MultiplayerPeer = this.Peer;
@@ -66,6 +68,9 @@ public partial class ServerAutoload : Node
 
     private void on_client_create()
     {
+        this.PeerQueue.Clear();
+        this.PeerInGame.Clear();
+
         GD.Print("CREATE CLIENT IP ENTERED " + ServerConfigSingleton.Instance.IpAdresse);
         this.Peer.CreateClient(ServerConfigSingleton.Instance.IpAdresse, port);
         this.Multiplayer.MultiplayerPeer = this.Peer;
