@@ -380,7 +380,7 @@ size = Vector2(16, 32)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "FootPoint")]
 scale = Vector2(2, 2)
-collision_mask = 9
+collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_vqtxr")
 AnimationTree = NodePath("AnimationTree")

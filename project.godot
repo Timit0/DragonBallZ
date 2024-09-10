@@ -99,3 +99,4 @@ zoomed_camera={
 2d_physics/layer_2="DetectableAreaZone"
 2d_physics/layer_3="DragonBall"
 2d_physics/layer_4="ZIndexZone"
+2d_physics/layer_5="Obstacle"

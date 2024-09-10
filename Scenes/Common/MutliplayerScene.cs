@@ -62,7 +62,7 @@ public partial class MultiplayerScene : Scene
         for (int i = 0; i < 7; i++)
         {
             DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
-            dragonBall.Position = new Vector2(random.Next(0, 10000), random.Next(0, 10000));
+            dragonBall.Position = new Vector2(random.Next(-10000, 10000), random.Next(-10000, 10000));
             dragonBall.Sprite.Frame = random.Next(0, 7);
             dragonBall.Name = $"DragonBall{i}";
             this.AddChild(dragonBall);
