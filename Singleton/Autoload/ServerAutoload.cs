@@ -9,6 +9,7 @@ public partial class ServerAutoload : Node
 
     public ENetMultiplayerPeer Peer = new ENetMultiplayerPeer();
     protected int port { get; set; } = 1555;
+    protected int maxPeer { get; set; } = 1;
 
     public List<string> PeerQueue { get; set; } = new List<string>();
     public List<string> PeerInGame { get; set; } = new List<string>();
@@ -64,7 +65,7 @@ public partial class ServerAutoload : Node
         this.PeerInGame.Clear();
 
         GD.Print("CREATE SERVER");
-        this.Peer.CreateServer(port);
+        this.Peer.CreateServer(port, maxPeer);
         this.Multiplayer.MultiplayerPeer = this.Peer;
     }
 

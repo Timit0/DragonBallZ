@@ -3,6 +3,22 @@
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
 [ext_resource type="PackedScene" uid="uid://cftrf3e1f6k4f" path="res://Scenes/GameIntroScene/gameIntroScene.tscn" id="2_illm7"]
 
+[sub_resource type="Animation" id="Animation_ekin4"]
+resource_name = "RESET"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NoClickMouse:mouse_filter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="Animation_ex4ll"]
 resource_name = "Transition"
 step = 0.1
@@ -93,22 +109,6 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 2]
-}
-
-[sub_resource type="Animation" id="Animation_ekin4"]
-resource_name = "RESET"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NoClickMouse:mouse_filter")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dh2ql"]

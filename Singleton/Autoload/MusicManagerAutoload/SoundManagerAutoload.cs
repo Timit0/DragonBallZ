@@ -22,7 +22,9 @@ public partial class SoundManagerAutoload : Node
 	[Export]
 	public AudioStreamPlayer TransitionAudioStreamPlayer { get; set; }
 
-	protected int lastMenuMusicsIndex { get; set; } = -1;
+	// protected int lastMenuMusicsIndex { get; set; } = -1;
+
+	protected int musicIndex { get; set; } = 0;
 
 	public override void _Ready()
 	{
@@ -40,7 +42,10 @@ public partial class SoundManagerAutoload : Node
 		SoundManagerAutoloadSignals.Instance.TransitionSoundPlay += on_transition_sound_play;
 		SettingsSingals.Instance.TransitionVolumeChanged += on_transition_volume_changed;
 
+		this.MenuMusics.Shuffle();
 		this.SetUp();
+
+		base._Ready();
 	}
 
 	private void on_audio_stream_player_finished()
@@ -82,26 +87,18 @@ public partial class SoundManagerAutoload : Node
 
 	public void SetANewMusicMenu()
 	{
-		int lenght = MenuMusics.Count;
-
-		if (lenght <= 1)
+		if (this.MenuMusics.Count >= this.musicIndex + 1)
 		{
-			MenuMusicPlayer.Stream = MenuMusics[0];
-			return;
+			MenuMusicPlayer.Stream = MenuMusics[this.musicIndex];
+			musicIndex++;
+		}
+		else
+		{
+			this.MenuMusics.Shuffle();
+			this.musicIndex = 0;
+			MenuMusicPlayer.Stream = MenuMusics[this.musicIndex];
 		}
 
-		Random random = new Random();
-		while (true)
-		{
-			int rndMusic;
-			rndMusic = random.Next(0, lenght);
-			if (rndMusic != lastMenuMusicsIndex)
-			{
-				MenuMusicPlayer.Stream = MenuMusics[rndMusic];
-				lastMenuMusicsIndex = rndMusic;
-				return;
-			}
-		}
 	}
 
 	public override void _Input(InputEvent @event)
