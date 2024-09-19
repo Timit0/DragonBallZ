@@ -128,7 +128,7 @@ TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 [node name="EffectsNode" type="Node" parent="."]
 
 [node name="TransitionNode" type="CanvasLayer" parent="."]
-layer = 2
+layer = 3
 
 [node name="Transition" type="ColorRect" parent="TransitionNode"]
 z_index = 2

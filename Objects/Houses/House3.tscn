@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmi5f3w4b5t2d"]
+
+[ext_resource type="Texture2D" uid="uid://dgiumuujnlv63" path="res://Common/Assets/TileMap/Houses/houses/hq0.png" id="1_kdi07"]
+[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="1_pm80y"]
+[ext_resource type="Script" path="res://Common/Scripts/ZIndexZone.cs" id="2_0ungs"]
+
+[node name="House3" type="Node2D"]
+script = ExtResource("1_pm80y")
+toThisZIndex = -6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kdi07")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-135, 114, -48, 114, -47, 144, 66, 143, 66, 114, 159, 114, 159, 36, -135, 38)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_0ungs")
+toThisZIndex = -8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-143, 72, -150, -113, 169, -112, 165, 72)

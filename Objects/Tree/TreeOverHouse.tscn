@@ -1,12 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgvelopx8udbc"]
+[gd_scene load_steps=7 format=3 uid="uid://daicyiwohna2i"]
 
-[ext_resource type="Texture2D" uid="uid://dio3tr6syogpd" path="res://Common/Assets/TileMap/TileMapForest.png" id="1_hch8q"]
-[ext_resource type="Shader" path="res://Common/Shaders/Tree.gdshader" id="1_s3cj0"]
-[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="2_b141a"]
-[ext_resource type="Script" path="res://Common/Scripts/ZIndexZone.cs" id="2_kpooi"]
+[ext_resource type="Shader" path="res://Common/Shaders/Tree.gdshader" id="1_o221j"]
+[ext_resource type="Texture2D" uid="uid://dio3tr6syogpd" path="res://Common/Assets/TileMap/TileMapForest.png" id="2_q0h04"]
+[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="2_tv64l"]
+[ext_resource type="Script" path="res://Common/Scripts/ZIndexZone.cs" id="3_pfa0c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xndq1"]
-shader = ExtResource("1_s3cj0")
+shader = ExtResource("1_o221j")
 shader_parameter/speed = 1.0
 shader_parameter/minStrength = 0.05
 shader_parameter/maxStrength = 0.4
@@ -25,12 +25,12 @@ height = 18.0
 z_as_relative = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_xndq1")
-script = ExtResource("2_b141a")
-toThisZIndex = -7
+script = ExtResource("2_tv64l")
+toThisZIndex = -2
 
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("1_hch8q")
+texture = ExtResource("2_q0h04")
 region_enabled = true
 region_rect = Rect2(0, 0, 48, 64)
 
@@ -45,8 +45,8 @@ shape = SubResource("CapsuleShape2D_0r1jv")
 [node name="Behind" type="Area2D" parent="."]
 use_parent_material = true
 collision_layer = 8
-script = ExtResource("2_kpooi")
-toThisZIndex = -8
+script = ExtResource("3_pfa0c")
+toThisZIndex = -3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Behind"]
 polygon = PackedVector2Array(-8, 18, -21, 21, -32, 4, -27, -17, -14, -35, 3, -39, 19, -33, 28, -23, 32, -11, 28, 8, 20, 19, 10, 18, 6, 19)

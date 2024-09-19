@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c52j0hexntqqw" path="res://Common/Assets/DragonRadar/Triangle.png" id="3_j1e6r"]
 
 [node name="DragonRadar" type="CanvasLayer" node_paths=PackedStringArray("DragonBallSpawn")]
+layer = 2
 script = ExtResource("1_lascv")
 distanceDivider = 75.0
 DragonBallSpawn = NodePath("DragonBallSpawn")
