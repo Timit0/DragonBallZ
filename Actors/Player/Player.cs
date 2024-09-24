@@ -6,8 +6,6 @@ public partial class Player : Actor
 	[ExportGroup("Nodes")]
 	[Export]
 	public AnimationTree AnimationTree { get; set; }
-	[Export]
-	public Sprite2D Sprite { get; set; }
 	// [Export]
 	// public Camera2D Camera { get; set; }
 
