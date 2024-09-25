@@ -5,9 +5,6 @@ using Godot;
 public partial class Actor : CharacterBody2D
 {
 	[Export]
-	public float Speed { get; set; } = 500;
-
-	[Export]
 	public float Tolerance { get; set; } = 1;
 
 	[ExportGroup("Nodes")]

@@ -351,25 +351,25 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3fvci"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
 properties/1/path = NodePath("AnimationTree:anim_player")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
 properties/2/path = NodePath("AnimationTree:parameters/conditions/Idle")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 2
 properties/3/path = NodePath("AnimationTree:parameters/conditions/Walk")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimationTree:parameters/Idle/blend_position")
 properties/4/spawn = true
-properties/4/replication_mode = 1
+properties/4/replication_mode = 2
 properties/5/path = NodePath("AnimationTree:parameters/Walk/blend_position")
 properties/5/spawn = true
-properties/5/replication_mode = 1
+properties/5/replication_mode = 2
 properties/6/path = NodePath(".:TextureOfSpriteString")
 properties/6/spawn = true
-properties/6/replication_mode = 1
+properties/6/replication_mode = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbatf"]
 radius = 2.0
@@ -414,8 +414,9 @@ script = ExtResource("1_aul6x")
 navigationAgent2D = NodePath("NavigationAgent2D")
 stateMachine = NodePath("StateMachine")
 TextureOfSprite = ExtResource("1_chcc0")
+minSpeed = 100
+maxSpeed = 400
 stateLabel = NodePath("Debug/CenterContainer/Label")
-Speed = 250.0
 Tolerance = 5.0
 AnimationTree = NodePath("AnimationTree")
 FootPoint = NodePath("FootPoint")
@@ -427,7 +428,7 @@ target_desired_distance = 50.0
 avoidance_enabled = true
 radius = 25.0
 avoidance_layers = 2
-avoidance_mask = 3
+avoidance_mask = 7
 debug_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -454,7 +455,7 @@ navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="WaitingTimer" type="Timer" parent="StateMachine/IdleNPCState"]
 script = ExtResource("4_q76bx")
-maxTime = 5.0
+maxTime = 10.0
 
 [node name="GotToTargetNPCState" type="Node" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
 script = ExtResource("5_65rhm")

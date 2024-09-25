@@ -9,7 +9,7 @@ public partial class GotToTargetNpcState : NPCState
     public override void Enter()
     {
         Callable.From(this.actor.ActorSetup).CallDeferred();
-        NaviagationAgentSetUp(GetNewTarget(), this.actor.Speed);
+        NaviagationAgentSetUp(GetNewTarget());
         this.actor.PlayWalk(true);
 
         base.Enter();
@@ -41,10 +41,10 @@ public partial class GotToTargetNpcState : NPCState
         this.stateMachine.TransitionTo("IdleNPCState");
     }
 
-    protected override void NaviagationAgentSetUp(Vector2 target, float speed)
+    protected override void NaviagationAgentSetUp(Vector2 target)
     {
         this.navigationAgent.TargetReached += on_target_reached;
-        base.NaviagationAgentSetUp(target, speed);
+        base.NaviagationAgentSetUp(target);
     }
 
     protected Vector2 GetNewTarget()

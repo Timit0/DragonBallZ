@@ -20,11 +20,12 @@ public partial class NPCState : State
         navigationAgent.Velocity = currentAgentPosition.DirectionTo(nextPathPosition) * this.actor.Speed;
     }
 
-    protected virtual void NaviagationAgentSetUp(Vector2 target, float speed)
+    protected virtual void NaviagationAgentSetUp(Vector2 target)
     {
+        this.actor.NewSpeed();
         this.navigationAgent.VelocityComputed += on_velocity_computed;
         this.navigationAgent.TargetPosition = target;
-        this.navigationAgent.MaxSpeed = speed;
+        this.navigationAgent.MaxSpeed = actor.Speed;
 
         // this.navigationAgent.TargetReached += on_target_reached;
     }

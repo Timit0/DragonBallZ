@@ -4,6 +4,8 @@ using System;
 public partial class Player : Actor
 {
 	[Export]
+	public float Speed { get; set; } = 500;
+	[Export]
 	public Texture2D TextureOfSprite { get; set; }
 	[Export]
 	public Resource CameraManagerNodeResource { get; set; }

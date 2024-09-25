@@ -12,7 +12,7 @@ public partial class IdleNpcState : NPCState
         waitingTimer.SetUp();
         waitingTimer.Start();
 
-        this.NaviagationAgentSetUp(this.actor.Position, this.actor.Speed);
+        this.NaviagationAgentSetUp(this.actor.Position);
 
         this.actor.PlayIdle(true);
 

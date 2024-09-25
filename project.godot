@@ -104,6 +104,7 @@ zoomed_camera={
 2d_physics/layer_5="Obstacle"
 avoidance/layer_1="Player"
 avoidance/layer_2="NPC"
+avoidance/layer_3="Obstacle"
 
 [navigation]
 

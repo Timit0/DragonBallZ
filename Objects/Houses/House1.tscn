@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bis6fo3ungmek"]
+[gd_scene load_steps=4 format=3 uid="uid://bis6fo3ungmek"]
 
 [ext_resource type="Texture2D" uid="uid://icwuaxdb7anr" path="res://Common/Assets/TileMap/Houses/houses/h.png" id="1_14vse"]
-[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="1_mhcm6"]
 [ext_resource type="Script" path="res://Common/Scripts/ZIndexZone.cs" id="2_bwfgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3jcp"]
@@ -9,8 +8,6 @@ size = Vector2(103, 52)
 
 [node name="House1" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_mhcm6")
-toThisZIndex = -6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_14vse")
@@ -21,9 +18,9 @@ texture = ExtResource("1_14vse")
 position = Vector2(0.5, 39)
 shape = SubResource("RectangleShape2D_k3jcp")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ZIndexZone" type="Area2D" parent="."]
 script = ExtResource("2_bwfgw")
 toThisZIndex = -8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ZIndexZone"]
 polygon = PackedVector2Array(-52, 54, -67, 54, -67, -33, 0, -76, 70, -32, 70, 53, 53, 53)

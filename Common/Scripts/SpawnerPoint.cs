@@ -32,7 +32,6 @@ public partial class SpawnerPoint : Node2D
         {
             int x = random.Next(-randomRange, randomRange + 1);
             int y = random.Next(-randomRange, randomRange + 1);
-            GD.Print("X " + x + " Y " + y);
 
             Node2D node2D = FactorySingleton.Instance.GetThisNodeInstantiate<Node2D>(resource);
             node2D.Position = new Vector2(this.Position.X + x, this.Position.Y + y);

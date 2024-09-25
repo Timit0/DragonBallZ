@@ -369,7 +369,7 @@ properties/5/spawn = true
 properties/5/replication_mode = 1
 properties/6/path = NodePath(".:TextureOfSpriteString")
 properties/6/spawn = true
-properties/6/replication_mode = 1
+properties/6/replication_mode = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbatf"]
 radius = 2.0

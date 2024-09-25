@@ -50,3 +50,8 @@ toThisZIndex = -8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Behind"]
 polygon = PackedVector2Array(-8, 18, -21, 21, -32, 4, -27, -17, -14, -35, 3, -39, 19, -33, 28, -23, 32, -11, 28, 8, 20, 19, 10, 18, 6, 19)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, 22)
+radius = 22.15
+avoidance_layers = 4

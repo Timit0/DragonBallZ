@@ -16,7 +16,10 @@ public partial class Npc : Actor
 	[ExportGroup("")]
 	[Export]
 	public Texture2D TextureOfSprite { get; set; }
-
+	[Export]
+	protected int minSpeed { get; set; }
+	[Export]
+	protected int maxSpeed { get; set; }
 	//-------------------------------------------------------------------
 	[Export]
 	protected Label stateLabel { get; set; }
@@ -24,12 +27,7 @@ public partial class Npc : Actor
 
 	public string TextureOfSpriteString { get; set; }
 
-	// public override void _EnterTree()
-	// {
-	// 	int.TryParse(this.Name, out int id);
-	// 	this.SetMultiplayerAuthority(id);
-	// 	base._EnterTree();
-	// }
+	public float Speed { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -79,5 +77,11 @@ public partial class Npc : Actor
 	public void PlayIdle(bool value)
 	{
 		this.AnimationTree.Set($"parameters/conditions/Idle", value);
+	}
+
+	public void NewSpeed()
+	{
+		Random random = new Random();
+		Speed = random.Next(minSpeed, maxSpeed + 1);
 	}
 }
