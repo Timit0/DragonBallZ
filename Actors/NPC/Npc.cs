@@ -48,7 +48,7 @@ public partial class Npc : Actor
 
 	public override void _Ready()
 	{
-		// ActorSignals.Instance.RemoveActor += on_remove_actor;
+		ActorSignals.Instance.RemoveActor += on_remove_actor;
 
 		// this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
 		// this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
@@ -58,34 +58,18 @@ public partial class Npc : Actor
 
 	public override void _Process(double delta)
 	{
-		if (this.IsMultiplayerAuthority())
-		{
-			this.stateLabel.Text = "State : " + this.stateMachine.GetStateName();
-		}
+		// if (this.IsMultiplayerAuthority())
+		// {
+		// 	this.stateLabel.Text = "State : " + this.stateMachine.GetStateName();
+		// }
 		base._Process(delta);
 	}
 
-	// public override void _PhysicsProcess(double delta)
-	// {
-	// 	this.MoveAndSlide();
-
-	// 	base._PhysicsProcess(delta);
-	// }
-
-	// private void on_remove_actor()
-	// {
-	// 	try
-	// 	{
-	// 		GetParent().RemoveChild(this);
-	// 	}
-	// 	catch (Exception e) { }
-	// }
-
-	// public override void _PhysicsProcess(double delta)
-	// {
-	// 	GD.Print(Velocity);
-	// 	base._PhysicsProcess(delta);
-	// }
+	private void on_remove_actor()
+	{
+		// GetParent().RemoveChild(this);
+		this.QueueFree();
+	}
 
 	public void PlayWalk(bool value)
 	{

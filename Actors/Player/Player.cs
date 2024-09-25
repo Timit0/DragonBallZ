@@ -58,7 +58,17 @@ public partial class Player : Actor
 	{
 		try
 		{
-			GetParent().RemoveChild(this);
+			// this.GetChild("CameraNode");
+			foreach (Node node in GetChildren())
+			{
+				if (node is CameraManager cameraManager)
+				{
+					this.RemoveChild(cameraManager);
+				}
+			}
+			// GetParent().RemoveChild(this);
+			this.QueueFree();
+
 		}
 		catch (Exception e) { }
 	}
