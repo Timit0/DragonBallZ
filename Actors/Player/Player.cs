@@ -3,13 +3,6 @@ using System;
 
 public partial class Player : Actor
 {
-	[ExportGroup("Nodes")]
-	[Export]
-	public AnimationTree AnimationTree { get; set; }
-	// [Export]
-	// public Camera2D Camera { get; set; }
-
-	[ExportGroup("")]
 	[Export]
 	public Texture2D TextureOfSprite { get; set; }
 	[Export]
@@ -78,11 +71,5 @@ public partial class Player : Actor
 	public void PlayIdle(bool value)
 	{
 		this.AnimationTree.Set($"parameters/conditions/Idle", value);
-	}
-
-	public void UpdateVelocityAnim()
-	{
-		this.AnimationTree.Set("parameters/Walk/blend_position", this.Velocity);
-		this.AnimationTree.Set("parameters/Idle/blend_position", this.Velocity);
 	}
 }

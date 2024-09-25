@@ -1,12 +1,12 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlp3syrvyrr4y"]
+[gd_scene load_steps=36 format=3 uid="uid://cu8kj5ttj624p"]
 
-[ext_resource type="Script" path="res://Actors/Player/Player.cs" id="1_vqtxr"]
-[ext_resource type="PackedScene" uid="uid://d2fi768tmhby" path="res://Common/Cameras/CameraNode.tscn" id="3_8d68l"]
-[ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="3_70co1"]
-[ext_resource type="Script" path="res://Actors/Player/States/IdlePlayerState.cs" id="4_r34st"]
-[ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="5_bb610"]
-[ext_resource type="Script" path="res://Actors/Player/States/MovmentPlayerState.cs" id="5_xm1ek"]
-[ext_resource type="Script" path="res://Actors/Common/DetectableZone.cs" id="6_v7nay"]
+[ext_resource type="Script" path="res://Actors/NPC/Npc.cs" id="1_aul6x"]
+[ext_resource type="Texture2D" uid="uid://dup80avv4kgew" path="res://Actors/Assets/VegetaSkin.png" id="1_chcc0"]
+[ext_resource type="Script" path="res://Actors/NPC/States/IdleNpcState.cs" id="3_mo5be"]
+[ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="4_q6iif"]
+[ext_resource type="Script" path="res://Common/Scripts/RandomTimer.cs" id="4_q76bx"]
+[ext_resource type="Script" path="res://Actors/NPC/States/GotToTargetNpcState.cs" id="5_65rhm"]
+[ext_resource type="Script" path="res://Actors/Common/DetectableZone.cs" id="7_niiu3"]
 
 [sub_resource type="Animation" id="Animation_hvebq"]
 resource_name = "RESET"
@@ -378,17 +378,57 @@ height = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4pmf"]
 size = Vector2(16, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "FootPoint", "Sprite")]
+[sub_resource type="FontFile" id="FontFile_ch0pa"]
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("navigationAgent2D", "stateMachine", "stateLabel", "AnimationTree", "FootPoint", "Sprite")]
 scale = Vector2(2, 2)
 collision_mask = 25
 motion_mode = 1
-script = ExtResource("1_vqtxr")
-TextureOfSprite = ExtResource("5_bb610")
-CameraManagerNodeResource = ExtResource("3_8d68l")
-Tolerance = 2.0
+wall_min_slide_angle = 0.0
+script = ExtResource("1_aul6x")
+navigationAgent2D = NodePath("NavigationAgent2D")
+stateMachine = NodePath("StateMachine")
+TextureOfSprite = ExtResource("1_chcc0")
+stateLabel = NodePath("Debug/CenterContainer/Label")
+Speed = 250.0
+Tolerance = 5.0
 AnimationTree = NodePath("AnimationTree")
 FootPoint = NodePath("FootPoint")
 Sprite = NodePath("Sprite")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
+avoidance_enabled = true
+radius = 25.0
+avoidance_layers = 2
+avoidance_mask = 3
+debug_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -404,18 +444,25 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_70co1")
-initialState = NodePath("IdlePlayerState")
+script = ExtResource("4_q6iif")
+initialState = NodePath("IdleNPCState")
 
-[node name="IdlePlayerState" type="Node" parent="StateMachine"]
-script = ExtResource("4_r34st")
+[node name="IdleNPCState" type="Node" parent="StateMachine" node_paths=PackedStringArray("waitingTimer", "navigationAgent")]
+script = ExtResource("3_mo5be")
+waitingTimer = NodePath("WaitingTimer")
+navigationAgent = NodePath("../../NavigationAgent2D")
 
-[node name="MovmentPlayerState" type="Node" parent="StateMachine"]
-script = ExtResource("5_xm1ek")
+[node name="WaitingTimer" type="Timer" parent="StateMachine/IdleNPCState"]
+script = ExtResource("4_q76bx")
+maxTime = 5.0
+
+[node name="GotToTargetNPCState" type="Node" parent="StateMachine" node_paths=PackedStringArray("navigationAgent")]
+script = ExtResource("5_65rhm")
+navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("5_bb610")
+texture = ExtResource("1_chcc0")
 region_enabled = true
 region_rect = Rect2(9, 4, 16, 32)
 
@@ -433,10 +480,24 @@ position = Vector2(0, 16)
 [node name="DetectableZone" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 6
-script = ExtResource("6_v7nay")
+script = ExtResource("7_niiu3")
 
 [node name="Shape" type="CollisionShape2D" parent="DetectableZone"]
 shape = SubResource("RectangleShape2D_y4pmf")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 37.97
+[node name="Debug" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Debug"]
+offset_left = -160.0
+offset_top = -45.0
+offset_right = 160.0
+offset_bottom = -14.0
+
+[node name="Label" type="Label" parent="Debug/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontFile_ch0pa")
+theme_override_font_sizes/font_size = 15
+text = "State"

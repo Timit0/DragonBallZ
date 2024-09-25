@@ -63,7 +63,6 @@ public partial class CameraManager : Node
 
     private Node2D GetPlayer()
     {
-        GD.Print("NAME " + GetParent().Name);
         return GetParent() as Node2D;
     }
 }

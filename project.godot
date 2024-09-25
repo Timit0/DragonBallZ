@@ -98,8 +98,13 @@ zoomed_camera={
 2d_physics/layer_1="Player"
 2d_navigation/layer_1="ALL"
 2d_physics/layer_2="DetectableAreaZone"
+2d_navigation/layer_2="Path"
 2d_physics/layer_3="DragonBall"
 2d_physics/layer_4="ZIndexZone"
 2d_physics/layer_5="Obstacle"
 avoidance/layer_1="Player"
 avoidance/layer_2="NPC"
+
+[navigation]
+
+2d/default_edge_connection_margin=40.0
