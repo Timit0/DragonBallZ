@@ -656,7 +656,7 @@ isSync = true
 position = Vector2(2184, 313)
 script = ExtResource("13_01wsu")
 resource = ExtResource("14_ksdli")
-amount = 10
+amount = 4
 randomRange = 50
 name = "Npc"
 isSync = true
@@ -666,6 +666,15 @@ position = Vector2(7381, -79)
 script = ExtResource("13_01wsu")
 resource = ExtResource("14_ksdli")
 amount = 10
+randomRange = 50
+name = "Npc"
+isSync = true
+
+[node name="4" type="Node2D" parent="Spawners/NPC"]
+position = Vector2(5462, 4994)
+script = ExtResource("13_01wsu")
+resource = ExtResource("14_ksdli")
+amount = 25
 randomRange = 50
 name = "Npc"
 isSync = true

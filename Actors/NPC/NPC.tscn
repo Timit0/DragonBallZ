@@ -408,6 +408,7 @@ path_desired_distance = 50.0
 target_desired_distance = 50.0
 avoidance_enabled = true
 radius = 25.0
+max_neighbors = 4
 avoidance_layers = 2
 avoidance_mask = 7
 debug_enabled = true
