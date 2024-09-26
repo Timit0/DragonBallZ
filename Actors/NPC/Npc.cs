@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class Npc : Actor
 {
@@ -15,7 +16,7 @@ public partial class Npc : Actor
 
 	[ExportGroup("")]
 	[Export]
-	public Texture2D TextureOfSprite { get; set; }
+	public Array<Texture2D> ArrayOfSpriteTexture { get; set; }
 	[Export]
 	protected int minSpeed { get; set; }
 	[Export]
@@ -48,7 +49,13 @@ public partial class Npc : Actor
 	{
 		ActorSignals.Instance.RemoveActor += on_remove_actor;
 
-		// this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
+		if (this.IsMultiplayerAuthority())
+		{
+			int i = ArrayOfSpriteTexture.Count;
+			Random random = new Random();
+			TextureOfSpriteString = ArrayOfSpriteTexture[random.Next(0, i)].ResourcePath;
+		}
+		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
 		// this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
 
 		base._Ready();

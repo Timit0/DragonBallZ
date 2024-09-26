@@ -6,6 +6,9 @@ public partial class Scene : Node2D
     [Export]
     public Node2D TargetPointsNode { get; set; }
 
+    [Export]
+    public Node2D DragonBallPointsNode { get; set; }
+
     public override void _Ready()
     {
         ActorSignals.Instance.BehindActor += on_actor_behind;

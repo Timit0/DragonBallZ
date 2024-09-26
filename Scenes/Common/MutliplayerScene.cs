@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using Godot;
+using Godot.Collections;
 
 public partial class MultiplayerScene : Scene
 {
@@ -42,13 +43,33 @@ public partial class MultiplayerScene : Scene
 
         Random random = new Random();
 
+        Array<Vector2> dragonBallsPosition = new Array<Vector2>();
+
         for (int i = 0; i < 7; i++)
         {
             DragonBall dragonBall = FactorySingleton.Instance.GetThisNodeInstantiateFromString<DragonBall>(dragonBallPath);
-            dragonBall.Position = new Vector2(random.Next(-10000, 10000), random.Next(-10000, 10000));
-            dragonBall.Sprite.Frame = random.Next(0, 7);
+            dragonBall.Position = GetRandomPoint(ref dragonBallsPosition);
+            dragonBall.Sprite.Frame = i;
             dragonBall.Name = $"DragonBall{i}";
             this.AddChild(dragonBall);
+        }
+    }
+
+    protected Vector2 GetRandomPoint(ref Array<Vector2> array)
+    {
+        Random random = new Random();
+        Array<Node> listOfPoints = this.DragonBallPointsNode.GetChildren();
+        while (true)
+        {
+            int i = random.Next(0, listOfPoints.Count);
+            if (listOfPoints[i] is Node2D point)
+            {
+                if (!array.Contains(point.Position))
+                {
+                    array.Add(point.Position);
+                    return point.Position;
+                }
+            }
         }
     }
 

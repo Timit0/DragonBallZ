@@ -1,12 +1,21 @@
-[gd_scene load_steps=36 format=3 uid="uid://cu8kj5ttj624p"]
+[gd_scene load_steps=45 format=3 uid="uid://cu8kj5ttj624p"]
 
 [ext_resource type="Script" path="res://Actors/NPC/Npc.cs" id="1_aul6x"]
-[ext_resource type="Texture2D" uid="uid://dup80avv4kgew" path="res://Actors/Assets/VegetaSkin.png" id="1_chcc0"]
+[ext_resource type="Texture2D" uid="uid://bqfynbssmmfdp" path="res://Common/Assets/Skin/Npc/c16Skin.png" id="2_202r0"]
 [ext_resource type="Script" path="res://Actors/NPC/States/IdleNpcState.cs" id="3_mo5be"]
+[ext_resource type="Texture2D" uid="uid://rww0qufqt6iw" path="res://Common/Assets/Skin/Npc/c17Skin.png" id="3_wpl0t"]
+[ext_resource type="Texture2D" uid="uid://5bo4aerg51rq" path="res://Common/Assets/Skin/Npc/c18Skin.png" id="4_5mgif"]
 [ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="4_q6iif"]
 [ext_resource type="Script" path="res://Common/Scripts/RandomTimer.cs" id="4_q76bx"]
 [ext_resource type="Script" path="res://Actors/NPC/States/GotToTargetNpcState.cs" id="5_65rhm"]
+[ext_resource type="Texture2D" uid="uid://bd1ohw704msnu" path="res://Common/Assets/Skin/Npc/c19Skin.png" id="5_u5mnw"]
+[ext_resource type="Texture2D" uid="uid://b3et5tt57hgn4" path="res://Common/Assets/Skin/Npc/ChichiSkin.png" id="6_oatmn"]
+[ext_resource type="Texture2D" uid="uid://60a2mogtl82d" path="res://Common/Assets/Skin/Npc/GohanSkin.png" id="7_m8is5"]
 [ext_resource type="Script" path="res://Actors/Common/DetectableZone.cs" id="7_niiu3"]
+[ext_resource type="Texture2D" uid="uid://8n5lqlcfdees" path="res://Common/Assets/Skin/Npc/MrSatanSkin.png" id="8_mk5aa"]
+[ext_resource type="Texture2D" uid="uid://6qdfq6iv1044" path="res://Common/Assets/Skin/Npc/TenshiHan.png" id="9_63cbq"]
+[ext_resource type="Texture2D" uid="uid://cku04msfwy8ih" path="res://Common/Assets/Skin/Npc/trunksSkin.png" id="10_502jj"]
+[ext_resource type="Texture2D" uid="uid://b02yoklpk0lht" path="res://Common/Assets/Skin/Npc/YamchaSkin.png" id="11_8tqq1"]
 
 [sub_resource type="Animation" id="Animation_hvebq"]
 resource_name = "RESET"
@@ -351,7 +360,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3fvci"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 2
+properties/0/replication_mode = 1
 properties/1/path = NodePath("AnimationTree:anim_player")
 properties/1/spawn = true
 properties/1/replication_mode = 2
@@ -413,7 +422,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_aul6x")
 navigationAgent2D = NodePath("NavigationAgent2D")
 stateMachine = NodePath("StateMachine")
-TextureOfSprite = ExtResource("1_chcc0")
+ArrayOfSpriteTexture = Array[Texture2D]([ExtResource("2_202r0"), ExtResource("3_wpl0t"), ExtResource("4_5mgif"), ExtResource("5_u5mnw"), ExtResource("6_oatmn"), ExtResource("7_m8is5"), ExtResource("8_mk5aa"), ExtResource("9_63cbq"), ExtResource("10_502jj"), ExtResource("11_8tqq1")])
 minSpeed = 100
 maxSpeed = 400
 stateLabel = NodePath("Debug/CenterContainer/Label")
@@ -463,11 +472,12 @@ navigationAgent = NodePath("../../NavigationAgent2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_chcc0")
+texture = ExtResource("4_5mgif")
 region_enabled = true
 region_rect = Rect2(9, 4, 16, 32)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+delta_interval = 0.1
 replication_config = SubResource("SceneReplicationConfig_3fvci")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]

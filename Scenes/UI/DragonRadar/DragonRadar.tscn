@@ -8,7 +8,7 @@
 [node name="DragonRadar" type="CanvasLayer" node_paths=PackedStringArray("DragonBallSpawn")]
 layer = 2
 script = ExtResource("1_lascv")
-distanceDivider = 75.0
+distanceDivider = 40.0
 DragonBallSpawn = NodePath("DragonBallSpawn")
 metadata/_edit_vertical_guides_ = [576.0]
 metadata/_edit_horizontal_guides_ = [338.0]
