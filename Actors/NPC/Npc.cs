@@ -21,10 +21,6 @@ public partial class Npc : Actor
 	protected int minSpeed { get; set; }
 	[Export]
 	protected int maxSpeed { get; set; }
-	//-------------------------------------------------------------------
-	[Export]
-	protected Label stateLabel { get; set; }
-	//-------------------------------------------------------------------
 
 	public string TextureOfSpriteString { get; set; }
 
@@ -61,19 +57,13 @@ public partial class Npc : Actor
 		base._Ready();
 	}
 
-	public override void _Process(double delta)
-	{
-		// if (this.IsMultiplayerAuthority())
-		// {
-		// 	this.stateLabel.Text = "State : " + this.stateMachine.GetStateName();
-		// }
-		base._Process(delta);
-	}
-
 	private void on_remove_actor()
 	{
 		// GetParent().RemoveChild(this);
-		this.QueueFree();
+		if (this.IsMultiplayerAuthority())
+		{
+			this.QueueFree();
+		}
 	}
 
 	public void PlayWalk(bool value)

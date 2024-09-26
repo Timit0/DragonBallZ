@@ -40,7 +40,10 @@ public partial class DragonBallCollectZone : Area2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void RemoveDragonBall()
 	{
-		Owner.QueueFree();
+		if (this.IsMultiplayerAuthority())
+		{
+			Owner.QueueFree();
+		}
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
