@@ -4,12 +4,15 @@ using Godot.Collections;
 
 public partial class GotToTargetNpcState : NPCState
 {
+    int tickToWait = 150;
+    int currentTick = 0;
     Vector2 actualTarget { get; set; } = new Vector2();
 
     public override void Enter()
     {
         Callable.From(this.actor.ActorSetup).CallDeferred();
         NaviagationAgentSetUp(GetNewTarget());
+
         this.actor.PlayWalk(true);
 
         base.Enter();
@@ -21,11 +24,10 @@ public partial class GotToTargetNpcState : NPCState
     }
 
 
-    public override void Update(float delta)
+    public override void PhysicsUpdate(float delta)
     {
-        // this.actor.UpdateVelocityAnim();
         this.UpdateNavAgent();
-        base.Update(delta);
+        base.PhysicsUpdate(delta);
     }
 
     public override void Exit()
@@ -53,18 +55,16 @@ public partial class GotToTargetNpcState : NPCState
 
         Random random = new Random();
 
-        for (int i = 0; i < 20; i++)
+        int nodeI = random.Next(0, list.Count);
+        if (GetScene().TargetPointsNode.GetChild(nodeI) is Node2D targetPoint)
         {
-            int nodeI = random.Next(0, list.Count);
-            if (GetScene().TargetPointsNode.GetChild(nodeI) is Node2D targetPoint)
+            if (targetPoint.Position != this.actualTarget)
             {
-                if (targetPoint.Position != this.actualTarget)
-                {
-                    actualTarget = targetPoint.Position;
-                    return targetPoint.Position;
-                }
+                actualTarget = targetPoint.Position;
+                return targetPoint.Position;
             }
         }
+
         return this.actor.Position;
     }
 
