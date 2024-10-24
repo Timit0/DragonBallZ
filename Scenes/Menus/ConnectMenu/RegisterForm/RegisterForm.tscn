@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Menus/ConnectMenu/RegisterForm/RegisterForm.cs" id="2_4s8h6"]
 
 [node name="RegisterForm" type="Control" node_paths=PackedStringArray("lineEditUsername", "lineEditPassword", "actionButton")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

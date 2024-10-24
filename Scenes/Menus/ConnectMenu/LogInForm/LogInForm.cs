@@ -21,12 +21,14 @@ public partial class LogInForm : ConnectionFormOverride
 		string responseBody = await response.Content.ReadAsStringAsync();
 		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
 
+		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message);
+
 		GD.Print(responseBody);
 		if (apiResponse.success)
 		{
 			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
 		}
 
-		base.on_action_button_pressed();
+		// base.on_action_button_pressed();
 	}
 }

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx6aj2ob0a2ji"]
+[gd_scene load_steps=8 format=3 uid="uid://cx6aj2ob0a2ji"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
 [ext_resource type="PackedScene" uid="uid://doi2kwx2it7d4" path="res://Scenes/Menus/ConnectMenu/ConnectScene.tscn" id="2_hvj2w"]
+[ext_resource type="PackedScene" uid="uid://d31mpn8s3logl" path="res://Scenes/Notifications/Notification.tscn" id="3_6itgv"]
+[ext_resource type="Script" path="res://Scenes/SceneManager/NotificationNode.cs" id="3_ubn58"]
 
 [sub_resource type="Animation" id="Animation_ekin4"]
 resource_name = "RESET"
@@ -126,6 +128,15 @@ TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 [node name="SceneNode" type="Node" parent="."]
 
 [node name="EffectsNode" type="Node" parent="."]
+
+[node name="NotificationNode" type="CanvasLayer" parent="." node_paths=PackedStringArray("spawnPoint")]
+layer = 3
+script = ExtResource("3_ubn58")
+resource = ExtResource("3_6itgv")
+spawnPoint = NodePath("SpawnPoint")
+
+[node name="SpawnPoint" type="Node2D" parent="NotificationNode"]
+position = Vector2(576, 96)
 
 [node name="TransitionNode" type="CanvasLayer" parent="."]
 layer = 3

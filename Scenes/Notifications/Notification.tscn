@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://d31mpn8s3logl"]
+
+[ext_resource type="Script" path="res://Scenes/Notifications/Notification.cs" id="1_f3bh0"]
+[ext_resource type="FontFile" uid="uid://co8hl2tmt5r4" path="res://Common/Assets/Fonts/roboto/Roboto-Black.ttf" id="2_7qhhe"]
+
+[sub_resource type="Animation" id="Animation_1s7d2"]
+resource_name = "RESET"
+length = 5.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 4.75, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrrjc"]
+_data = {
+"RESET": SubResource("Animation_1s7d2")
+}
+
+[node name="Notification" type="Node2D" node_paths=PackedStringArray("animationPlayer", "label")]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_f3bh0")
+animationPlayer = NodePath("AnimationPlayer")
+label = NodePath("Label")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hrrjc")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_7qhhe")
+theme_override_font_sizes/font_size = 25
+text = "Error during logging please try again"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

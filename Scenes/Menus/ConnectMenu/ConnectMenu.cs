@@ -10,11 +10,15 @@ public partial class ConnectMenu : Control
 	protected Container formsContainer { get; set; }
 	[Export]
 	protected Array<Resource> forms { get; set; }
+	[Export]
+	protected AnimationPlayer animationPlayer { get; set; }
 
 	public override void _Ready()
 	{
 		optionButton.ItemSelected += on_item_selected;
 		formsContainer.AddChild(FactorySingleton.Instance.GetThisNodeInstantiate<Control>(forms[0]));
+
+		animationPlayer.Play("RESET");
 	}
 
 

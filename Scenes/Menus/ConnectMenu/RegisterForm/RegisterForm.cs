@@ -18,6 +18,7 @@ public partial class RegisterForm : ConnectionFormOverride
 		HttpResponseMessage response = await this.httpClient.PostAsync(this.apiRoute, dataToSend);
 		string responseBody = await response.Content.ReadAsStringAsync();
 		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-		// base.on_action_button_pressed();
+		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message);
+		base.on_action_button_pressed();
 	}
 }
