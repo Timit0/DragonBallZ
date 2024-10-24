@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgehiv1ocxn07"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_r6pne"]
+[ext_resource type="Script" path="res://Scenes/Menus/ConnectMenu/LogInForm/LogInForm.cs" id="2_csxr3"]
+[ext_resource type="PackedScene" uid="uid://cftrf3e1f6k4f" path="res://Scenes/GameIntroScene/gameIntroScene.tscn" id="3_a5k1l"]
+
+[node name="LogInForm" type="Control" node_paths=PackedStringArray("lineEditUsername", "lineEditPassword", "actionButton")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r6pne")
+script = ExtResource("2_csxr3")
+resource = ExtResource("3_a5k1l")
+apiRoute = "/logIn"
+lineEditUsername = NodePath("CenterContainer/VBoxContainer/LineEditUsername")
+lineEditPassword = NodePath("CenterContainer/VBoxContainer/LineEditPassword")
+actionButton = NodePath("CenterContainer/VBoxContainer/Button")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Log In"
+horizontal_alignment = 1
+
+[node name="LineEditUsername" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="LineEditPassword" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+placeholder_text = "Password"
+virtual_keyboard_type = 6
+secret = true
+secret_character = "*"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Log"

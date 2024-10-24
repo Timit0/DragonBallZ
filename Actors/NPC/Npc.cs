@@ -60,7 +60,7 @@ public partial class Npc : Actor
 	private void on_remove_actor()
 	{
 		// GetParent().RemoveChild(this);
-		if (this.IsMultiplayerAuthority())
+		if (this.IsMultiplayerAuthority() && this.IsInsideTree())
 		{
 			this.QueueFree();
 		}

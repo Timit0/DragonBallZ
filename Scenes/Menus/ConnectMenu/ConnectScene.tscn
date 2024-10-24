@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://doi2kwx2it7d4"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/ConnectMenu/ConnectMenu.cs" id="1_jwhya"]
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="2_f6nya"]
+[ext_resource type="PackedScene" uid="uid://dgehiv1ocxn07" path="res://Scenes/Menus/ConnectMenu/LogInForm/LogInForm.tscn" id="2_qdwmf"]
+[ext_resource type="PackedScene" uid="uid://iysqhgsr7sja" path="res://Scenes/Menus/ConnectMenu/RegisterForm/RegisterForm.tscn" id="3_723n2"]
+
+[node name="ConnectMenu" type="Control" node_paths=PackedStringArray("optionButton", "formsContainer")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwhya")
+optionButton = NodePath("OptionButton")
+formsContainer = NodePath("ContentContainer")
+forms = Array[Resource]([ExtResource("2_qdwmf"), ExtResource("3_723n2")])
+
+[node name="ContentContainer" type="Container" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 179.0
+offset_bottom = 80.0
+theme = ExtResource("2_f6nya")
+selected = 0
+item_count = 2
+popup/item_0/text = "Login"
+popup/item_1/text = "Register"
+popup/item_1/id = 1

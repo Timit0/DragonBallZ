@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://iysqhgsr7sja"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_n5h6e"]
+[ext_resource type="Script" path="res://Scenes/Menus/ConnectMenu/RegisterForm/RegisterForm.cs" id="2_4s8h6"]
+
+[node name="RegisterForm" type="Control" node_paths=PackedStringArray("lineEditUsername", "lineEditPassword", "actionButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n5h6e")
+script = ExtResource("2_4s8h6")
+apiRoute = "/addUser"
+lineEditUsername = NodePath("CenterContainer/VBoxContainer/LineEditUsername")
+lineEditPassword = NodePath("CenterContainer/VBoxContainer/LineEditPassword")
+actionButton = NodePath("CenterContainer/VBoxContainer/Button")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Register"
+horizontal_alignment = 1
+
+[node name="LineEditUsername" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="LineEditPassword" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+placeholder_text = "Password"
+virtual_keyboard_type = 6
+secret = true
+secret_character = "*"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Register"

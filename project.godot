@@ -33,7 +33,7 @@ project/assembly_name="DragonBallZ"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 
