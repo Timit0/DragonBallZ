@@ -7,7 +7,7 @@ public partial class ConnectionFormOverride : Control
 {
     [ExportGroup("API")]
     [Export]
-    protected string ip { get; set; } = "http://157.26.121.103:8080";
+    protected string ip { get; set; } = "http://127.0.0.1:8080";
     [Export]
     protected string apiRoute { get; set; }
 

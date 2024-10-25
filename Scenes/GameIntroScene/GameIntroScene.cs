@@ -19,7 +19,6 @@ public partial class GameIntroScene : Control
 
 	public void GotoScene()
 	{
-		SoundManagerAutoload.Instance.MusicPlay(true);
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
 	}
 }

@@ -21,6 +21,7 @@ public partial class SceneManager : Node
 		SceneSignals.Instance.ChangeToThisScene += on_change_to_this_scene;
 
 		LoadInputs();
+		SoundManagerAutoload.Instance.MusicPlay(true);
 	}
 
 	private void on_change_to_this_scene(string scenePath)

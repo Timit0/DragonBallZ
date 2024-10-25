@@ -136,7 +136,7 @@ resource = ExtResource("3_6itgv")
 spawnPoint = NodePath("SpawnPoint")
 
 [node name="SpawnPoint" type="Node2D" parent="NotificationNode"]
-position = Vector2(576, 96)
+position = Vector2(576, 52)
 
 [node name="TransitionNode" type="CanvasLayer" parent="."]
 layer = 3

@@ -23,12 +23,10 @@ public partial class LogInForm : ConnectionFormOverride
 
 		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message);
 
-		GD.Print(responseBody);
 		if (apiResponse.success)
 		{
+			UserSingleton.Instance.Username = lineEditUsername.Text;
 			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
 		}
-
-		// base.on_action_button_pressed();
 	}
 }

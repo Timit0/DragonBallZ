@@ -21,6 +21,9 @@ public partial class SoundManagerAutoloadSignals : Node
         }
     }
 
+    // [Signal]
+    // public delegate void TransitionSoundPlayEventHandler();
+
     [Signal]
     public delegate void ButtonPressedSoundPlayEventHandler(int btn);
 
