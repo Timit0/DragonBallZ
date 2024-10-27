@@ -34,8 +34,7 @@ public partial class HostForm : Control
     private void on_host_button_pressed()
     {
 		ServerConfigSingleton.Instance.ServerMode = ServerConfigSingleton.ConfigServerEnum.HOST;
+		ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateServer));
         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), HostButtonTarget.ResourcePath);
     }
-
-	
 }

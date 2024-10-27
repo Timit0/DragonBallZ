@@ -95,7 +95,7 @@ _data = {
 shader = ExtResource("2_cfv2n")
 shader_parameter/strength = 4
 
-[node name="SelectSkinMenu" type="Control" node_paths=PackedStringArray("animationPlayer", "gridContainer")]
+[node name="SelectSkinMenu" type="Control" node_paths=PackedStringArray("animationPlayer", "gridContainer", "returnButton")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -107,6 +107,7 @@ script = ExtResource("1_jofop")
 animationPlayer = NodePath("AnimationPlayer")
 characters = Array[Texture2D]([ExtResource("2_cuw80"), ExtResource("2_21tsb")])
 gridContainer = NodePath("CanvasLayer/CenterContainer/GridContainer")
+returnButton = NodePath("CanvasLayer/ReturnButton")
 childToAdd = ExtResource("1_fmpwb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

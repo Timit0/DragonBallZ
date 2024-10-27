@@ -19,6 +19,8 @@ public partial class ServerAutoload : Node
     public List<string> PeerQueue { get; set; } = new List<string>();
     public List<string> PeerInGame { get; set; } = new List<string>();
 
+    protected int numberOfPlayerReady {get;set;} = 0;
+
     public override void _Ready()
     {
         this.ProcessMode = ProcessModeEnum.Always;
@@ -30,6 +32,14 @@ public partial class ServerAutoload : Node
         ServerSingals.Instance.CreateServer += on_server_create;
         ServerSingals.Instance.CreateClient += on_client_create;
         ServerSingals.Instance.CloseServer += on_server_close;
+
+        ServerSingals.Instance.PlayerReadyState += on_player_ready_state;
+    }
+
+    public override void _Process(double delta)
+    {
+        // GD.Print(this.numberOfPlayerReady);
+        base._Process(delta);
     }
 
     private void on_peer_connected(long id)
@@ -41,11 +51,6 @@ public partial class ServerAutoload : Node
         {
             GD.Print("START GAME");
             this.PeerInGame.Add(id.ToString());
-
-            string scenePathToLoad = "res://Scenes/level/levelScene.tscn";
-            SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
-
-            this.PeerQueue.Remove(id.ToString());
         }
     }
 
@@ -66,6 +71,7 @@ public partial class ServerAutoload : Node
 
     private async void on_server_create()
     {
+        this.numberOfPlayerReady = 0;
         this.PeerQueue.Clear();
         this.PeerInGame.Clear();
 
@@ -91,6 +97,30 @@ public partial class ServerAutoload : Node
         CloseServer();
     }
 
+    private void on_player_ready_state(int i)
+    {
+        Rpc(nameof(this.PlayerReadyIncrement), i);
+        if(this.numberOfPlayerReady == 2)
+        {
+            Rpc(nameof(this.StartGame));
+        }
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void StartGame()
+    {
+        string scenePathToLoad = "res://Scenes/level/levelScene.tscn";
+        SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
+
+            // this.PeerQueue.Remove(id.ToString());
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    protected void PlayerReadyIncrement(int i)
+    {
+        this.numberOfPlayerReady+=i;
+    }
+
     public async void CloseServer()
     {
         await DeleteHostServer();
@@ -105,6 +135,7 @@ public partial class ServerAutoload : Node
 
     public async Task<bool> CreateHostServer()
 	{
+        this.numberOfPlayerReady = 0;
 		FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
 			new[]
 			{
@@ -118,6 +149,7 @@ public partial class ServerAutoload : Node
 
     public async Task<bool> DeleteHostServer()
     {
+        this.numberOfPlayerReady = 0;
         FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
 			new[]
 			{

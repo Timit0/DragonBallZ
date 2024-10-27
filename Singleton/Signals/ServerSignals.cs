@@ -29,4 +29,7 @@ public partial class ServerSingals : Node
 
     [Signal]
     public delegate void CreateClientEventHandler();
+
+    [Signal]
+    public delegate void PlayerReadyStateEventHandler(int i);
 }

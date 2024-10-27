@@ -17,11 +17,15 @@ public partial class QueueScene : Node2D
 		animationPlayer.Play("RESET");
 
 		retunButton.Pressed += on_retunButton_pressed;
+
+		ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.PlayerReadyState), 1);
+		GD.Print("CALLL");
 	}
 
 	private void on_retunButton_pressed()
 	{
-		ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
+		// ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
+		ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.PlayerReadyState), -1);
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), this.returnTarget.ResourcePath);
 	}
 

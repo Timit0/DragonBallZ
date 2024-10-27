@@ -15,11 +15,21 @@ public partial class SelectSkinMenu : Control
 	protected GridContainer gridContainer {get;set;}
 
 	[Export]
+	protected Button returnButton {get;set;}
+
+	[Export]
 	protected Resource childToAdd {get;set;}
 
 
 	public override void _Ready()
 	{
+		returnButton.Pressed += on_return_button_pressed;
 		animationPlayer.Play("Zoom");
 	}
+
+    private void on_return_button_pressed()
+    {
+        ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CloseServer));
+    }
+
 }

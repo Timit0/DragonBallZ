@@ -59,11 +59,11 @@ public partial class PlayerSkinCase : Control
 
 			if (ServerConfigSingleton.Instance.ServerMode == ServerConfigSingleton.ConfigServerEnum.HOST)
 			{
-				ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateServer));
+				// ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateServer));
 			}
 			else
 			{
-				ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateClient));
+				// ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateClient));
 			}
 
 			SoundManagerAutoloadSignals.Instance.EmitSignal(nameof(SoundManagerAutoloadSignals.Instance.ButtonPressedSoundPlay), 0);

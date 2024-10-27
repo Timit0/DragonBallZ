@@ -24,6 +24,7 @@ public partial class ServerWidget : Control
     {
         ServerConfigSingleton.Instance.ServerMode = ServerConfigSingleton.ConfigServerEnum.JOIN;
 		ServerConfigSingleton.Instance.IpAdresse = this.HostServer.HostIp;
+        ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.CreateClient));
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), joinButtonTarget.ResourcePath);
     }
 

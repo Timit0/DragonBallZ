@@ -16,6 +16,7 @@ layout_mode = 0
 offset_left = 256.0
 offset_right = 896.0
 offset_bottom = 112.0
+mouse_filter = 2
 color = Color(0.196078, 0.196078, 0.196078, 0.52549)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
