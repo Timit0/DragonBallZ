@@ -14,8 +14,8 @@ public partial class ServersList : Control
     {
         button.Pressed += on_refresh_button_pressed;
 
-        RemoveAllServers();
         AddServerList();
+        RemoveAllServers();
 
         base._Ready();
     }
@@ -39,6 +39,7 @@ public partial class ServersList : Control
     {
         foreach (Node node in vBoxContainer.GetChildren())
         {
+            // vBoxContainer.RemoveChild(node);
             node.QueueFree();
         }
     }

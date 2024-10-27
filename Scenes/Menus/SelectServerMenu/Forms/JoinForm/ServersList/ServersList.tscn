@@ -17,10 +17,13 @@ vBoxContainer = NodePath("ScrollContainer/VBoxContainer")
 button = NodePath("CenterContainer2/Button")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_top = 24.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.11
+anchor_bottom = -0.11
+offset_top = 296.24
 offset_right = 1152.0
-offset_bottom = 488.0
+offset_bottom = 560.24
 vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
@@ -28,9 +31,13 @@ layout_mode = 2
 theme_override_constants/separation = 120
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 0
-offset_top = -64.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.11
+anchor_bottom = -0.11
+offset_top = 192.24
 offset_right = 1152.0
+offset_bottom = 280.24
 
 [node name="Label" type="Label" parent="CenterContainer"]
 layout_mode = 2
@@ -38,10 +45,13 @@ theme_override_font_sizes/font_size = 50
 text = "Available Player Server"
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
-layout_mode = 0
-offset_top = 512.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.11
+anchor_bottom = -0.11
+offset_top = 544.24
 offset_right = 1152.0
-offset_bottom = 584.0
+offset_bottom = 648.24
 
 [node name="Button" type="Button" parent="CenterContainer2"]
 layout_mode = 2

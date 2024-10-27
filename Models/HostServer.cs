@@ -1,7 +1,13 @@
+using Newtonsoft.Json;
+
 public class HostServer
 {
-    public int id {get;set;}
-    public User user_host {get;set;}
-    public User user_guest {get;set;}
-    public string host_ip {get;set;}
+    [JsonProperty(PropertyName = "id")]
+    public int Id {get;set;}
+    [JsonProperty(PropertyName = "user_host")]
+    public User UserHost {get;set;} = new User();
+    [JsonProperty(PropertyName = "user_guest")]
+    public User UserGuest {get;set;} = new User();
+    [JsonProperty(PropertyName = "host_ip")]
+    public string HostIp {get;set;}
 }
