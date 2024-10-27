@@ -24,7 +24,7 @@ public partial class SceneManager : Node
 		SoundManagerAutoload.Instance.MusicPlay(true);
 	}
 
-	private void on_change_to_this_scene(string scenePath)
+    private void on_change_to_this_scene(string scenePath)
 	{
 		GetTree().Paused = false;
 		scenePathToLoad = scenePath;

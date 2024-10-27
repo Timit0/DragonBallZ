@@ -6,7 +6,7 @@ using System.Net.Http;
 
 public partial class RegisterForm : ConnectionFormOverride
 {
-	protected override async void on_action_button_pressed()
+	protected async override void on_action_button_pressed()
 	{
 		dataToSend = new FormUrlEncodedContent(
 			new[]
@@ -15,10 +15,8 @@ public partial class RegisterForm : ConnectionFormOverride
 				new KeyValuePair<string, string>("password", this.lineEditPassword.Text),
 			}
 		);
-		HttpResponseMessage response = await this.httpClient.PostAsync(this.apiRoute, dataToSend);
-		string responseBody = await response.Content.ReadAsStringAsync();
-		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message);
+		
+		await ApiSingleton.Instance.PostOnApiWithNotification(this.apiRoute, dataToSend);
 		base.on_action_button_pressed();
 	}
 }

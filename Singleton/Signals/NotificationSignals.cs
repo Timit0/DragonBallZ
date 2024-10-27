@@ -22,5 +22,5 @@ public partial class NotificationSignals : Node
     }
 
     [Signal]
-    public delegate void ShowNotificationEventHandler(string content);
+    public delegate void ShowNotificationEventHandler(string content, string notificationType);
 }

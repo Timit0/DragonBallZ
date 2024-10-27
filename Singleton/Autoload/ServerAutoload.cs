@@ -1,6 +1,11 @@
 using Godot;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 public partial class ServerAutoload : Node
 {
@@ -59,7 +64,7 @@ public partial class ServerAutoload : Node
         // }
     }
 
-    private void on_server_create()
+    private async void on_server_create()
     {
         this.PeerQueue.Clear();
         this.PeerInGame.Clear();
@@ -67,6 +72,8 @@ public partial class ServerAutoload : Node
         GD.Print("CREATE SERVER");
         this.Peer.CreateServer(port, maxPeer);
         this.Multiplayer.MultiplayerPeer = this.Peer;
+
+        await CreateHostServer();
     }
 
     private void on_client_create()
@@ -84,8 +91,10 @@ public partial class ServerAutoload : Node
         CloseServer();
     }
 
-    public void CloseServer()
+    public async void CloseServer()
     {
+        await DeleteHostServer();
+
         GD.Print("SERVER CLOSE");
         this.PeerQueue.Clear();
         this.PeerInGame.Clear();
@@ -93,4 +102,41 @@ public partial class ServerAutoload : Node
         this.Multiplayer.MultiplayerPeer = null;
         this.Peer.Close();
     }
+
+    public async Task<bool> CreateHostServer()
+	{
+		FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
+			new[]
+			{
+				new KeyValuePair<string, string>("host_username", UserSingleton.Instance.User.Username),
+				new KeyValuePair<string, string>("host_ip", GetLocalIPAddress()),
+			}
+		);
+
+		return await ApiSingleton.Instance.PostOnApiWithNotification("/create_host_server", dataToSend);
+	}
+
+    public async Task<bool> DeleteHostServer()
+    {
+        FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
+			new[]
+			{
+				new KeyValuePair<string, string>("username", UserSingleton.Instance.User.Username),
+			}
+		);
+
+		return await ApiSingleton.Instance.PostOnApiWithNotification("/delete_host_server", dataToSend);
+    }
+
+    public string GetLocalIPAddress()
+	{
+		foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+		{
+			if (ip.AddressFamily == AddressFamily.InterNetwork)
+			{
+				return ip.ToString();
+			}
+		}
+		throw new Exception("No IPv4 address found for the local machine.");
+	}
 }

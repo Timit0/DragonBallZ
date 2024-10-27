@@ -17,7 +17,16 @@ public partial class GameIntroScene : Control
 		animationPlayer.Play("anim");
 	}
 
-	public void GotoScene()
+    public override void _Input(InputEvent @event)
+    {
+		if(Input.IsActionJustPressed("skip"))
+		{
+			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
+		}
+        base._Input(@event);
+    }
+
+    public void GotoScene()
 	{
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
 	}

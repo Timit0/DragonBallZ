@@ -47,11 +47,12 @@ texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[node name="Notification" type="Node2D" node_paths=PackedStringArray("animationPlayer", "label")]
+[node name="Notification" type="Node2D" node_paths=PackedStringArray("animationPlayer", "label", "panel")]
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_f3bh0")
 animationPlayer = NodePath("AnimationPlayer")
 label = NodePath("Label")
+panel = NodePath("Panel")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

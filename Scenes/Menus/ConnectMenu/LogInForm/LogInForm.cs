@@ -17,15 +17,12 @@ public partial class LogInForm : ConnectionFormOverride
 				new KeyValuePair<string, string>("password", this.lineEditPassword.Text),
 			}
 		);
-		HttpResponseMessage response = await this.httpClient.PostAsync(this.apiRoute, dataToSend);
-		string responseBody = await response.Content.ReadAsStringAsync();
-		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
 
-		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message);
+		bool apiSuccess = await ApiSingleton.Instance.PostOnApiWithNotification("/logIn", dataToSend);
 
-		if (apiResponse.success)
+		if(apiSuccess)
 		{
-			UserSingleton.Instance.Username = lineEditUsername.Text;
+			UserSingleton.Instance.User.Username = lineEditUsername.Text;
 			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);
 		}
 	}

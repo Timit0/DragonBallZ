@@ -21,5 +21,5 @@ public class UserSingleton
         }
     }
 
-    public string Username {get;set;}
+    public User User {get;set;} = new User();
 }

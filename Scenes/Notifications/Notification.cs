@@ -4,9 +4,19 @@ using System;
 public partial class Notification : Node2D
 {
 	[Export]
-	AnimationPlayer animationPlayer { get; set; }
+	protected AnimationPlayer animationPlayer { get; set; }
 	[Export]
-	Label label { get; set; }
+	protected Label label { get; set; }
+	[Export]
+	protected Panel panel {get;set;}
+
+	public enum NOTIFICATION_ENUM
+    {
+        ERROR,
+        SUCCES
+    }
+
+	public NOTIFICATION_ENUM Type {get;set;}
 
 	public string Content { get; set; }
 
@@ -14,5 +24,19 @@ public partial class Notification : Node2D
 	{
 		this.label.Text = Content;
 		animationPlayer.Play("RESET");
+		SetByType(this.Type);
+	}
+
+	protected void SetByType(NOTIFICATION_ENUM type)
+	{
+		switch (type)
+		{
+			case NOTIFICATION_ENUM.ERROR:
+				panel.Modulate = new Color(1,0,0);
+				return;
+			case NOTIFICATION_ENUM.SUCCES:
+				panel.Modulate = new Color(0,1,0);
+				return;
+		}
 	}
 }
