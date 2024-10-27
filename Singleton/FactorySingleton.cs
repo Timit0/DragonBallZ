@@ -49,6 +49,17 @@ public partial class FactorySingleton : Node
         return player;
     }
 
+    public ServerWidget AddServerWidget(HostServer hostServer)
+    {
+        PackedScene packedScene;
+        ServerWidget serverWidget = new ServerWidget();
+        packedScene = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/SelectServerMenu/Forms/JoinForm/ServersList/ServerWidget.tscn");
+        serverWidget = packedScene.Instantiate<ServerWidget>();
+        serverWidget.HostServer = hostServer;
+
+        return serverWidget;
+    }
+
     public PlayerSkinCase GetPlayerSkinCase(Texture2D texture)
     {
         PackedScene packedScene;

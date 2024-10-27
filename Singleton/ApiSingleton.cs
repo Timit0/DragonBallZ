@@ -50,39 +50,27 @@ public partial class ApiSingleton
         GD.Print(responseBody);
 		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
 		Notification.NOTIFICATION_ENUM notificationType;
-		if(apiResponse.success)
+		if(apiResponse.Success)
 		{
 			notificationType=global::Notification.NOTIFICATION_ENUM.SUCCES;
-			NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message, notificationType.ToString());
+			NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
 		}else
 		{
 			notificationType=global::Notification.NOTIFICATION_ENUM.ERROR;
-			NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message, notificationType.ToString());
+			NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
 		}
 
-        return apiResponse.success;
+        return apiResponse.Success;
     }
 
-    // public async void PostOnApiWithNotificationAndChangeToScene(string apiRoute, FormUrlEncodedContent dataToSend, string scenePath, bool successMode = true)
-    // {
-        
-	// 	HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
-	// 	string responseBody = await response.Content.ReadAsStringAsync();
-	// 	ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-	// 	Notification.NOTIFICATION_ENUM notificationType;
-	// 	if(apiResponse.success)
-	// 	{
-	// 		notificationType=global::Notification.NOTIFICATION_ENUM.SUCCES;
-	// 		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message, notificationType.ToString());
-	// 	}else
-	// 	{
-	// 		notificationType=global::Notification.NOTIFICATION_ENUM.ERROR;
-	// 		NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.message, notificationType.ToString());
-	// 	}
+    public async Task<List<HostServer>> PostOnApiGetAllAvailableHostServer()
+    {
+		HttpResponseMessage response = await this.httpClient.PostAsync("/get_all_available_host_server", null);
+		string responseBody = await response.Content.ReadAsStringAsync();
+        GD.Print(responseBody);
+        ApiResponseHostServer apiResponse = JsonConvert.DeserializeObject<ApiResponseHostServer>(responseBody);
+        List<HostServer> hostServers = JsonConvert.DeserializeObject<List<HostServer>>(apiResponse.HostServerListString);
 
-    //     if(apiResponse.success == successMode)
-    //     {
-    //         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePath);
-    //     }
-    // }
+        return hostServers;
+    }
 }

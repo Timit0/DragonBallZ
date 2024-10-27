@@ -2,9 +2,12 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Newtonsoft.Json;
 
 public class ApiResponse
 {
-    public bool success { get; set; }
-    public string message { get; set; }
+    [JsonProperty(PropertyName = "success")]
+    public bool Success { get; set; }
+    [JsonProperty(PropertyName = "message")]
+    public string Message { get; set; }
 }

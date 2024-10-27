@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://biwgqtl7akq1u"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/SelectServerMenu/Forms/JoinForm/ServersList/ServerWidget.cs" id="1_dndsk"]
+
+[node name="ServerWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dndsk")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 81.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Timit0"
+
+[node name="Button" type="Button" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Join"
