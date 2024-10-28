@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
 
 public partial class SceneManager : Node
 {
@@ -22,6 +24,22 @@ public partial class SceneManager : Node
 
 		LoadInputs();
 		SoundManagerAutoload.Instance.MusicPlay(true);
+	}
+
+	public async override void _Notification(int what)
+	{
+		if (what == NotificationWMCloseRequest)
+		{
+			FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
+				new[]
+				{
+					new KeyValuePair<string, string>("username", UserSingleton.Instance.User.Username),
+				}
+			);
+
+			GD.Print("QUITING");
+			await ApiSingleton.Instance.PostOnApiWithNotification("/delete_host_server", dataToSend, false);
+		}
 	}
 
     private void on_change_to_this_scene(string scenePath)

@@ -63,6 +63,31 @@ public partial class ApiSingleton
         return apiResponse.Success;
     }
 
+    public async Task<bool> PostOnApiWithNotification(string apiRoute, FormUrlEncodedContent dataToSend, bool showNotification = true)
+    {
+        
+		HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
+		string responseBody = await response.Content.ReadAsStringAsync();
+        GD.Print(responseBody);
+		ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
+		Notification.NOTIFICATION_ENUM notificationType;
+
+        if(showNotification)
+        {
+            if(apiResponse.Success)
+            {
+                notificationType=global::Notification.NOTIFICATION_ENUM.SUCCES;
+                NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
+            }else
+            {
+                notificationType=global::Notification.NOTIFICATION_ENUM.ERROR;
+                NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
+            }
+        }
+
+        return apiResponse.Success;
+    }
+
     public async Task<List<HostServer>> PostOnApiGetAllAvailableHostServer()
     {
 		HttpResponseMessage response = await this.httpClient.PostAsync("/get_all_available_host_server", null);

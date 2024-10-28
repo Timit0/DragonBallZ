@@ -49,7 +49,6 @@ public partial class ServerAutoload : Node
 
         if (this.PeerQueue.Count == 1)
         {
-            GD.Print("START GAME");
             this.PeerInGame.Add(id.ToString());
         }
     }
@@ -149,6 +148,9 @@ public partial class ServerAutoload : Node
 
     public async Task<bool> DeleteHostServer()
     {
+        GD.Print("-----------------------------------------------------------------------------------");
+        GD.Print("DELETE HOST SERVER");
+        GD.Print("-----------------------------------------------------------------------------------");
         this.numberOfPlayerReady = 0;
         FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
 			new[]
