@@ -53,6 +53,7 @@ offset_right = 1152.0
 offset_bottom = 134.0
 text = "Ton Souhait est Exauce ..."
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CulotteShenron-removebg-preview" type="Sprite2D" parent="."]
 position = Vector2(920, 480)

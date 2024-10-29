@@ -10,6 +10,9 @@ public partial class Player : Actor
 	[Export]
 	public Resource CameraManagerNodeResource { get; set; }
 
+	[Export]
+	protected MultiplayerSynchronizer multiplayerSynchronizer { get; set; }
+
 	// public PlayerModel PlayerModel {get;set;} = new PlayerModel();
 
 	public string TextureOfSpriteString { get; set; }
@@ -39,7 +42,7 @@ public partial class Player : Actor
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (IsMultiplayerAuthority())
+		if (this.Multiplayer.MultiplayerPeer != null && IsMultiplayerAuthority())
 		{
 			Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 			this.Velocity = direction * this.Speed;
@@ -60,6 +63,18 @@ public partial class Player : Actor
 	{
 		try
 		{
+			if (!this.IsMultiplayerAuthority())
+			{
+				return;
+			}
+		}
+		catch (Exception e) { }
+
+		this.multiplayerSynchronizer.QueueFree();
+
+		try
+		{
+			// this.RemoveChild(multiplayerSynchronizer);
 			// this.GetChild("CameraNode");
 			foreach (Node node in GetChildren())
 			{
