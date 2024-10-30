@@ -30,13 +30,15 @@ _data = {
 "RESET": SubResource("Animation_s7smi")
 }
 
-[node name="WinningScene" type="Node2D" node_paths=PackedStringArray("animationPlayer")]
+[node name="WinningScene" type="Node2D" node_paths=PackedStringArray("animationPlayer", "hostLabel", "guestLabel")]
 script = ExtResource("1_b52or")
 animationPlayer = NodePath("AnimationPlayer")
+hostLabel = NodePath("HostLabel")
+guestLabel = NodePath("GuestLabel")
 
 [node name="43c9653e3a717d4a80a0551Ebec6c978" type="Sprite2D" parent="."]
-position = Vector2(576, 324.5)
-scale = Vector2(1.56522, 1.5628)
+position = Vector2(576, 324)
+scale = Vector2(1.56522, 1.56522)
 texture = ExtResource("2_a2gnt")
 
 [node name="Shenron" type="Sprite2D" parent="."]
@@ -68,3 +70,20 @@ texture = ExtResource("4_4rgib")
 position = Vector2(-408, 88)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("5_hwo3r")
+
+[node name="HostLabel" type="Label" parent="."]
+visible = false
+offset_top = 232.0
+offset_right = 376.0
+offset_bottom = 366.0
+text = "Timit0"
+horizontal_alignment = 1
+
+[node name="GuestLabel" type="Label" parent="."]
+visible = false
+offset_left = 776.0
+offset_top = 312.0
+offset_right = 1152.0
+offset_bottom = 446.0
+text = "Timit0"
+horizontal_alignment = 1

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmo6r3kpsh0f4"]
+
+[ext_resource type="Script" path="res://Scenes/WaitToBeJoinScene/WaitToBeJoinScene.cs" id="1_lfks7"]
+
+[node name="WaitToBeJoinScene" type="Node2D" node_paths=PackedStringArray("returnButton")]
+script = ExtResource("1_lfks7")
+returnButton = NodePath("CenterContainer2/Button")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Wait TO Be Join"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+offset_top = 512.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Button" type="Button" parent="CenterContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Back"

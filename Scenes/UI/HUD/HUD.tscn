@@ -9,6 +9,8 @@ script = ExtResource("1_va7i0")
 nameLabel = NodePath("NameLabel")
 dragonballCounterLabel = NodePath("DragonballCounterLabel")
 avatar = NodePath("Hud")
+metadata/_edit_vertical_guides_ = [576.0]
+metadata/_edit_horizontal_guides_ = [320.0]
 
 [node name="Hud" type="Sprite2D" parent="."]
 texture_filter = 1

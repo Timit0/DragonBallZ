@@ -90,6 +90,17 @@ public partial class ApiSingleton
         return apiResponse.Success;
     }
 
+    public async Task<List<HostServer>> PostOnApiGetAllHostServer()
+    {
+        HttpResponseMessage response = await this.httpClient.PostAsync("/get_all_host_server", null);
+        string responseBody = await response.Content.ReadAsStringAsync();
+        GD.Print(responseBody);
+        ApiResponseHostServer apiResponse = JsonConvert.DeserializeObject<ApiResponseHostServer>(responseBody);
+        List<HostServer> hostServers = JsonConvert.DeserializeObject<List<HostServer>>(apiResponse.HostServerListString);
+
+        return hostServers;
+    }
+
     public async Task<List<HostServer>> PostOnApiGetAllAvailableHostServer()
     {
         HttpResponseMessage response = await this.httpClient.PostAsync("/get_all_available_host_server", null);

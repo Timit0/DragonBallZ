@@ -12,6 +12,8 @@ public partial class QueueScene : Node2D
 	[Export]
 	protected Resource returnTarget { get; set; }
 
+	public bool HasAlready2Player { get; set; }
+
 	public override void _Ready()
 	{
 		animationPlayer.Play("RESET");
@@ -19,7 +21,6 @@ public partial class QueueScene : Node2D
 		retunButton.Pressed += on_retunButton_pressed;
 
 		ServerSingals.Instance.EmitSignal(nameof(ServerSingals.Instance.PlayerReadyState), 1);
-		GD.Print("CALLL");
 	}
 
 	private void on_retunButton_pressed()

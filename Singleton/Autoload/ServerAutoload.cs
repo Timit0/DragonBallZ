@@ -19,7 +19,7 @@ public partial class ServerAutoload : Node
     public List<string> PeerQueue { get; set; } = new List<string>();
     public List<string> PeerInGame { get; set; } = new List<string>();
 
-    protected int numberOfPlayerReady {get;set;} = 0;
+    protected int numberOfPlayerReady { get; set; } = 0;
 
     public override void _Ready()
     {
@@ -36,12 +36,6 @@ public partial class ServerAutoload : Node
         ServerSingals.Instance.PlayerReadyState += on_player_ready_state;
     }
 
-    public override void _Process(double delta)
-    {
-        // GD.Print(this.numberOfPlayerReady);
-        base._Process(delta);
-    }
-
     private void on_peer_connected(long id)
     {
         GD.Print("PEER ADDED " + id);
@@ -49,6 +43,11 @@ public partial class ServerAutoload : Node
 
         if (this.PeerQueue.Count == 1)
         {
+            if (this.IsMultiplayerAuthority())
+            {
+                string scenePath = "res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn";
+                SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePath);
+            }
             this.PeerInGame.Add(id.ToString());
         }
     }
@@ -61,7 +60,7 @@ public partial class ServerAutoload : Node
 
         // if (id == 1)
         // {
-        string scenePathToLoad = "res://Scenes/Menus/MainMenu/MainMenu.tscn";
+        string scenePathToLoad = "res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn";
         ActorSignals.Instance.EmitSignal(nameof(ActorSignals.Instance.RemoveActor));
         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
         this.CloseServer();
@@ -99,7 +98,7 @@ public partial class ServerAutoload : Node
     private void on_player_ready_state(int i)
     {
         Rpc(nameof(this.PlayerReadyIncrement), i);
-        if(this.numberOfPlayerReady == 2)
+        if (this.numberOfPlayerReady >= 2)
         {
             Rpc(nameof(this.StartGame));
         }
@@ -111,13 +110,13 @@ public partial class ServerAutoload : Node
         string scenePathToLoad = "res://Scenes/level/levelScene.tscn";
         SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
 
-            // this.PeerQueue.Remove(id.ToString());
+        // this.PeerQueue.Remove(id.ToString());
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
     protected void PlayerReadyIncrement(int i)
     {
-        this.numberOfPlayerReady+=i;
+        this.numberOfPlayerReady += i;
     }
 
     public async void CloseServer()
@@ -133,18 +132,18 @@ public partial class ServerAutoload : Node
     }
 
     public async Task<bool> CreateHostServer()
-	{
+    {
         this.numberOfPlayerReady = 0;
-		FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
-			new[]
-			{
-				new KeyValuePair<string, string>("host_username", UserSingleton.Instance.User.Username),
-				new KeyValuePair<string, string>("host_ip", GetLocalIPAddress()),
-			}
-		);
+        FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
+            new[]
+            {
+                new KeyValuePair<string, string>("host_username", UserSingleton.Instance.User.Username),
+                new KeyValuePair<string, string>("host_ip", GetLocalIPAddress()),
+            }
+        );
 
-		return await ApiSingleton.Instance.PostOnApiWithNotification("/create_host_server", dataToSend);
-	}
+        return await ApiSingleton.Instance.PostOnApiWithNotification("/create_host_server", dataToSend);
+    }
 
     public async Task<bool> DeleteHostServer()
     {
@@ -153,24 +152,24 @@ public partial class ServerAutoload : Node
         GD.Print("-----------------------------------------------------------------------------------");
         this.numberOfPlayerReady = 0;
         FormUrlEncodedContent dataToSend = new FormUrlEncodedContent(
-			new[]
-			{
-				new KeyValuePair<string, string>("username", UserSingleton.Instance.User.Username),
-			}
-		);
+            new[]
+            {
+                new KeyValuePair<string, string>("username", UserSingleton.Instance.User.Username),
+            }
+        );
 
-		return await ApiSingleton.Instance.PostOnApiWithNotification("/delete_host_server", dataToSend);
+        return await ApiSingleton.Instance.PostOnApiWithNotification("/delete_host_server", dataToSend);
     }
 
     public string GetLocalIPAddress()
-	{
-		foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
-		{
-			if (ip.AddressFamily == AddressFamily.InterNetwork)
-			{
-				return ip.ToString();
-			}
-		}
-		throw new Exception("No IPv4 address found for the local machine.");
-	}
+    {
+        foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                return ip.ToString();
+            }
+        }
+        throw new Exception("No IPv4 address found for the local machine.");
+    }
 }
