@@ -8,15 +8,16 @@ public partial class Notification : Node2D
 	[Export]
 	protected Label label { get; set; }
 	[Export]
-	protected Panel panel {get;set;}
+	protected Panel panel { get; set; }
 
 	public enum NOTIFICATION_ENUM
-    {
-        ERROR,
-        SUCCES
-    }
+	{
+		ERROR,
+		SUCCES,
+		ALERT
+	}
 
-	public NOTIFICATION_ENUM Type {get;set;}
+	public NOTIFICATION_ENUM Type { get; set; }
 
 	public string Content { get; set; }
 
@@ -32,10 +33,13 @@ public partial class Notification : Node2D
 		switch (type)
 		{
 			case NOTIFICATION_ENUM.ERROR:
-				panel.Modulate = new Color(1,0,0);
+				panel.Modulate = new Color(1, 0, 0);
 				return;
 			case NOTIFICATION_ENUM.SUCCES:
-				panel.Modulate = new Color(0,1,0);
+				panel.Modulate = new Color(0, 1, 0);
+				return;
+			case NOTIFICATION_ENUM.ALERT:
+				panel.Modulate = new Color(1, 1, 0);
 				return;
 		}
 	}

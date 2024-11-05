@@ -15,4 +15,6 @@ public class SettingsDbModel
 
     public string PauseMenu { get; set; }
     public string DragonRadar { get; set; }
+
+    public string UrlApi { get; set; }
 }

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 public partial class ApiSingleton
@@ -24,7 +25,6 @@ public partial class ApiSingleton
             return instance;
         }
     }
-    protected string ip { get; set; } = "http://157.26.121.64:8080";
 
     private System.Net.Http.HttpClient _httpClient { get; set; } = null;
     protected System.Net.Http.HttpClient httpClient
@@ -33,48 +33,41 @@ public partial class ApiSingleton
         {
             if (_httpClient is null)
             {
-                _httpClient = new System.Net.Http.HttpClient();
-                _httpClient.BaseAddress = new Uri(this.ip);
+                _httpClient = new System.Net.Http.HttpClient()
+                {
+                    BaseAddress = new Uri(this.Ip),
+                    Timeout = TimeSpan.FromSeconds(1.25)
+                };
             }
             return _httpClient;
         }
         set => _httpClient = value;
     }
 
+    public string Ip { get; set; } = "";
+
+    public void OverrideIp(string ip, string port = "8080")
+    {
+        Ip = $"http://{ip}:{port}";
+
+        //Dispose because it's possible to attempt an old request
+        _httpClient?.Dispose();
+        _httpClient = new System.Net.Http.HttpClient
+        {
+            BaseAddress = new Uri(Ip),
+            Timeout = TimeSpan.FromSeconds(1.25)
+        };
+    }
 
     public async Task<bool> PostOnApiWithNotification(string apiRoute, FormUrlEncodedContent dataToSend)
     {
-
-        HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
-        string responseBody = await response.Content.ReadAsStringAsync();
-        GD.Print(responseBody);
-        ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-        Notification.NOTIFICATION_ENUM notificationType;
-        if (apiResponse.Success)
+        try
         {
-            notificationType = global::Notification.NOTIFICATION_ENUM.SUCCES;
-            NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
-        }
-        else
-        {
-            notificationType = global::Notification.NOTIFICATION_ENUM.ERROR;
-            NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
-        }
-
-        return apiResponse.Success;
-    }
-
-    public async Task<bool> PostOnApiWithNotification(string apiRoute, FormUrlEncodedContent dataToSend, bool showNotification = true)
-    {
-
-        HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
-        string responseBody = await response.Content.ReadAsStringAsync();
-        GD.Print(responseBody);
-        ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
-        Notification.NOTIFICATION_ENUM notificationType;
-
-        if (showNotification)
-        {
+            HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            GD.Print(responseBody);
+            ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
+            Notification.NOTIFICATION_ENUM notificationType;
             if (apiResponse.Success)
             {
                 notificationType = global::Notification.NOTIFICATION_ENUM.SUCCES;
@@ -85,9 +78,51 @@ public partial class ApiSingleton
                 notificationType = global::Notification.NOTIFICATION_ENUM.ERROR;
                 NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
             }
-        }
 
-        return apiResponse.Success;
+            return apiResponse.Success;
+        }
+        catch (Exception e)
+        {
+            string message = "The URL is BAD, try to change it in \"Options API\"";
+            Notification.NOTIFICATION_ENUM notificationType = global::Notification.NOTIFICATION_ENUM.ALERT;
+            NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), message, notificationType.ToString());
+            return false;
+        }
+    }
+
+    public async Task<bool> PostOnApiWithNotification(string apiRoute, FormUrlEncodedContent dataToSend, bool showNotification = true)
+    {
+        try
+        {
+            HttpResponseMessage response = await this.httpClient.PostAsync(apiRoute, dataToSend);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            GD.Print(responseBody);
+            ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(responseBody);
+            Notification.NOTIFICATION_ENUM notificationType;
+
+            if (showNotification)
+            {
+                if (apiResponse.Success)
+                {
+                    notificationType = global::Notification.NOTIFICATION_ENUM.SUCCES;
+                    NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
+                }
+                else
+                {
+                    notificationType = global::Notification.NOTIFICATION_ENUM.ERROR;
+                    NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), apiResponse.Message, notificationType.ToString());
+                }
+            }
+
+            return apiResponse.Success;
+        }
+        catch (Exception e)
+        {
+            string message = "The URL is BAD, try to change it in \"Options API\"";
+            Notification.NOTIFICATION_ENUM notificationType = global::Notification.NOTIFICATION_ENUM.ALERT;
+            NotificationSignals.Instance.EmitSignal(nameof(NotificationSignals.Instance.ShowNotification), message, notificationType.ToString());
+            return false;
+        }
     }
 
     public async Task<List<HostServer>> PostOnApiGetAllHostServer()

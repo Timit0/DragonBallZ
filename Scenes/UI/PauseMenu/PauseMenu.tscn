@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Scenes/UI/PauseMenu/PauseMenu.cs" id="1_xh1tv"]
 [ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="2_qw8kq"]
 [ext_resource type="PackedScene" uid="uid://dqhnb6wuqmleg" path="res://Scenes/Menus/Common/ReturnButton/ReturnButton.tscn" id="3_wnkm2"]
-[ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="4_e6qwh"]
+[ext_resource type="PackedScene" uid="uid://c07ojo3qj30tr" path="res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn" id="4_rtgk2"]
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("returnButton", "resumeButton")]
 script = ExtResource("1_xh1tv")
 returnButton = NodePath("CenterContainer/VBoxContainer/ReturnButton")
 resumeButton = NodePath("CenterContainer/VBoxContainer/ResumeButton")
-returnTarget = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
+returnTarget = "res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -32,5 +32,5 @@ script = ExtResource("2_qw8kq")
 [node name="ReturnButton" parent="CenterContainer/VBoxContainer" instance=ExtResource("3_wnkm2")]
 layout_mode = 2
 text = "RETURN TO MENU"
-targetResource = ExtResource("4_e6qwh")
-targetPath = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
+targetResource = ExtResource("4_rtgk2")
+targetPath = "res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn"

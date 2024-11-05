@@ -62,7 +62,7 @@ scenes/2/scene = ExtResource("8_f3k0y")
 sources/0 = SubResource("TileSetScenesCollectionSource_quc7r")
 
 [sub_resource type="Gradient" id="Gradient_1q4ou"]
-offsets = PackedFloat32Array(0.221198, 1)
+offsets = PackedFloat32Array(0.188525, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k8w7n"]
 noise_type = 5
@@ -71,7 +71,7 @@ frequency = 0.0221
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uwj7m"]
 generate_mipmaps = false
 seamless = true
-seamless_blend_skirt = 0.575
+seamless_blend_skirt = 0.5
 color_ramp = SubResource("Gradient_1q4ou")
 noise = SubResource("FastNoiseLite_k8w7n")
 
@@ -133,13 +133,12 @@ script = ExtResource("3_tw3pp")
 toThisZIndex = -10
 
 [node name="Fog" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_2ob4s")
-offset_left = -1471.0
-offset_top = -1378.0
-offset_right = 10172.0
-offset_bottom = 6989.0
+offset_left = -6364.0
+offset_top = -5203.0
+offset_right = 12659.0
+offset_bottom = 8284.0
 mouse_filter = 2
 color = Color(0.830335, 0.830335, 0.830335, 1)
 

@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://djakdvxdynjxb"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/ApiOptionsMenu/ApiOptionsMenu.cs" id="1_f076h"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="3_rawfn"]
+
+[node name="ApiOptionsMenu" type="Control" node_paths=PackedStringArray("lineEdit", "backButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f076h")
+lineEdit = NodePath("CenterContainer/HBoxContainer/LineEdit")
+backButton = NodePath("CenterContainer2/Button")
+buttonTarget = "res://Scenes/Menus/ConnectMenu/ConnectScene.tscn"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Url"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+placeholder_text = "URL"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 512.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Button" type="Button" parent="CenterContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Back"
+script = ExtResource("3_rawfn")

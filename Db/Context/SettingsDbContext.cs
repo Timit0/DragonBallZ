@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Godot;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 class SettingsDbContext : DbContext
 {
@@ -106,4 +107,17 @@ class SettingsDbContext : DbContext
         return this;
     }
 
+
+    public async Task<SettingsDbContext> UpdateConnection(int rowNumb = 1, string urlApi = null)
+    {
+        SettingsDbModel settings = this.Settings.Find(rowNumb);
+
+        if (urlApi != null)
+        {
+            settings.UrlApi = urlApi;
+        }
+
+        await this.SaveChangesAsync();
+        return this;
+    }
 }
