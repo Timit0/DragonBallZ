@@ -45,24 +45,38 @@ public partial class CameraManager : Node
 
     private void on_active_this_camera(int enumInt)
     {
-        switch (enumInt)
+        try
         {
-            case (int)CamList.MAIN_CAM:
-                CameraManagerGDS.Call("prepare", MainCamera);
-                CameraManagerGDS.Call("remove_all_followed_group");
-                CameraManagerGDS.Call("add_follow_target", GetPlayer());
-                break;
-            case (int)CamList.ZOOMED_CAM:
-                CameraManagerGDS.Call("prepare", ZoomedCamera);
-                CameraManagerGDS.Call("remove_all_followed_group");
-                CameraManagerGDS.Call("add_follow_target", GetPlayer());
-                break;
+            Node2D player = GetPlayer();
+            switch (enumInt)
+            {
+                case (int)CamList.MAIN_CAM:
+                    CameraManagerGDS.Call("prepare", MainCamera);
+                    CameraManagerGDS.Call("remove_all_followed_group");
+                    CameraManagerGDS.Call("add_follow_target", player);
+                    break;
+                case (int)CamList.ZOOMED_CAM:
+                    CameraManagerGDS.Call("prepare", ZoomedCamera);
+                    CameraManagerGDS.Call("remove_all_followed_group");
+                    CameraManagerGDS.Call("add_follow_target", player);
+                    break;
+            }
+            CameraManagerGDS.Call("cam_active_is", true);
         }
-        CameraManagerGDS.Call("cam_active_is", true);
+        catch (Exception e)
+        {
+            // GD.PrintErr(e.Message);
+        }
     }
 
     private Node2D GetPlayer()
     {
-        return GetParent() as Node2D;
+        while (true)
+        {
+            if (IsInstanceValid(GetParent()))
+            {
+                return GetParent() as Node2D;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ public partial class Player : Actor
 	[Export]
 	protected MultiplayerSynchronizer multiplayerSynchronizer { get; set; }
 
-	// public PlayerModel PlayerModel {get;set;} = new PlayerModel();
+	protected CameraManager cameraManager { get; set; }
 
 	public string TextureOfSpriteString { get; set; }
 
@@ -33,7 +33,7 @@ public partial class Player : Actor
 
 		if (this.IsMultiplayerAuthority())
 		{
-			CameraManager cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
+			cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
 			this.AddChild(cameraManager);
 		}
 
@@ -61,33 +61,24 @@ public partial class Player : Actor
 
 	private void on_remove_actor()
 	{
-		try
+		if (!this.IsMultiplayerAuthority())
 		{
-			if (!this.IsMultiplayerAuthority())
-			{
-				return;
-			}
+			return;
 		}
-		catch (Exception e) { }
-
-		this.multiplayerSynchronizer.QueueFree();
+		GetParent().RemoveChild(this);
 
 		try
 		{
 			// this.RemoveChild(multiplayerSynchronizer);
 			// this.GetChild("CameraNode");
-			foreach (Node node in GetChildren())
-			{
-				if (node is CameraManager cameraManager)
-				{
-					this.RemoveChild(cameraManager);
-				}
-			}
-			// GetParent().RemoveChild(this);
-			this.QueueFree();
+			// this.RemoveChild(cameraManager);
+			// this.QueueFree();
 
 		}
-		catch (Exception e) { }
+		catch (Exception e)
+		{
+			GD.PrintErr(e.Message);
+		}
 	}
 
 	public void PlayWalk(bool value)

@@ -92,7 +92,8 @@ public partial class ServerAutoload : Node
 
     private void on_server_close()
     {
-        CloseServer();
+        Rpc(nameof(ReturnToMenu));
+        Rpc(nameof(CloseServer));
     }
 
     private void on_player_ready_state(int i)
@@ -119,6 +120,7 @@ public partial class ServerAutoload : Node
         this.numberOfPlayerReady += i;
     }
 
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
     public async void CloseServer()
     {
         await DeleteHostServer();
@@ -129,6 +131,13 @@ public partial class ServerAutoload : Node
 
         this.Multiplayer.MultiplayerPeer = null;
         this.Peer.Close();
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void ReturnToMenu()
+    {
+        string scenePathToLoad = "res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn";
+        SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePathToLoad);
     }
 
     public async Task<bool> CreateHostServer()
