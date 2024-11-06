@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://svqckgbd4i0j"]
+[gd_scene load_steps=11 format=3 uid="uid://svqckgbd4i0j"]
 
 [ext_resource type="Script" path="res://Scenes/QueueScene/QueueScene.cs" id="1_vksl4"]
 [ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn" id="2_leqie"]
+[ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="3_12jom"]
 [ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="3_jerdf"]
+[ext_resource type="Texture2D" uid="uid://dinkvhhxww6i4" path="res://Common/Assets/Background/JJK.jpeg" id="3_u8ham"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amsv0"]
+shader = ExtResource("3_12jom")
+shader_parameter/strength = 5
 
 [sub_resource type="Animation" id="Animation_sba03"]
 resource_name = "RESET"
@@ -12,7 +18,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/ColorRect2:modulate")
+tracks/0/path = NodePath("CanvasLayer/VBoxContainer/ColorRect2:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/ColorRect:modulate")
+tracks/1/path = NodePath("CanvasLayer/VBoxContainer/ColorRect:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +42,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/ColorRect3:modulate")
+tracks/2/path = NodePath("CanvasLayer/VBoxContainer/ColorRect3:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -51,51 +57,86 @@ _data = {
 "RESET": SubResource("Animation_sba03")
 }
 
-[node name="QueueScene" type="Node2D" node_paths=PackedStringArray("animationPlayer", "retunButton")]
+[sub_resource type="Animation" id="Animation_p34vf"]
+resource_name = "RESET"
+length = 10.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.02, 1.02), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dl4gk"]
+_data = {
+"RESET": SubResource("Animation_p34vf")
+}
+
+[node name="QueueScene" type="Node2D" node_paths=PackedStringArray("loadingRectAnimationPlayer", "cameraAnimationPlayer", "retunButton")]
 script = ExtResource("1_vksl4")
-animationPlayer = NodePath("AnimationPlayer")
-retunButton = NodePath("CenterContainer/Button")
+loadingRectAnimationPlayer = NodePath("LoadingRect")
+cameraAnimationPlayer = NodePath("Camera")
+retunButton = NodePath("CanvasLayer/CenterContainer/Button")
 returnTarget = ExtResource("2_leqie")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_amsv0")
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_u8ham")
+expand_mode = 1
+
+[node name="LoadingRect" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_t7pcy")
 }
 
-[node name="Background" type="ColorRect" parent="."]
-offset_top = -1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.194349, 0.194349, 0.194349, 1)
+[node name="Camera" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dl4gk")
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(1.02, 1.02)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 326.0
 offset_top = 229.0
 offset_right = 826.0
 offset_bottom = 419.0
 theme_override_constants/separation = 20
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VBoxContainer"]
 modulate = Color(1, 1, 1, -1.28571)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/VBoxContainer"]
 modulate = Color(1, 1, 1, -0.609524)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
-[node name="ColorRect3" type="ColorRect" parent="VBoxContainer"]
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/VBoxContainer"]
 modulate = Color(1, 1, 1, -0.0285714)
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 offset_top = 448.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Button" type="Button" parent="CenterContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/CenterContainer"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 text = "BACK"

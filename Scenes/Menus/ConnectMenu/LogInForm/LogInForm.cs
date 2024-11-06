@@ -20,7 +20,7 @@ public partial class LogInForm : ConnectionFormOverride
 
 		bool apiSuccess = await ApiSingleton.Instance.PostOnApiWithNotification("/logIn", dataToSend);
 
-		if(apiSuccess)
+		if (apiSuccess)
 		{
 			UserSingleton.Instance.User.Username = lineEditUsername.Text;
 			SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), resource.ResourcePath);

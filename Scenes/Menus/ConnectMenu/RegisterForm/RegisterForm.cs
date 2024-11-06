@@ -15,7 +15,7 @@ public partial class RegisterForm : ConnectionFormOverride
 				new KeyValuePair<string, string>("password", this.lineEditPassword.Text),
 			}
 		);
-		
+
 		await ApiSingleton.Instance.PostOnApiWithNotification(this.apiRoute, dataToSend);
 		base.on_action_button_pressed();
 	}

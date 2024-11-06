@@ -3,6 +3,8 @@ using System;
 
 public partial class WaitToBeJoinScene : Node2D
 {
+	[Export]
+	protected AnimationPlayer animationPlayer { get; set; }
 	// [Export]
 	// protected Resource returnTarget { get; set; }
 	[Export]
@@ -10,6 +12,7 @@ public partial class WaitToBeJoinScene : Node2D
 
 	public override void _Ready()
 	{
+		animationPlayer.Play("RESET");
 		returnButton.Pressed += on_return_button_pressed;
 		base._Ready();
 	}

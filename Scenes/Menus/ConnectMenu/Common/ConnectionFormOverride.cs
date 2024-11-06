@@ -18,6 +18,8 @@ public partial class ConnectionFormOverride : Control
     [Export]
     protected Button actionButton { get; set; }
 
+    protected const string sel = "GTR-R35_TOYOTA-MR2-MK1";
+
     protected FormUrlEncodedContent dataToSend { get; set; }
 
     public override void _Ready()

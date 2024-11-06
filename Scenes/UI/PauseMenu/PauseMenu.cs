@@ -15,8 +15,8 @@ public partial class PauseMenu : CanvasLayer
 
     public override void _Ready()
     {
-        this.ProcessMode = ProcessModeEnum.Always;
-        GetTree().Paused = true;
+        // this.ProcessMode = ProcessModeEnum.Always;
+        // GetTree().Paused = true;
 
         returnButton.Pressed += on_return_button_pressed;
         resumeButton.Pressed += on_resume_button_pressed;
@@ -27,7 +27,7 @@ public partial class PauseMenu : CanvasLayer
     {
         if (Input.IsActionJustPressed("pause_menu"))
         {
-            GetTree().Paused = false;
+            // GetTree().Paused = false;
             this.QueueFree();
         }
 
@@ -44,7 +44,7 @@ public partial class PauseMenu : CanvasLayer
 
     private void on_resume_button_pressed()
     {
-        GetTree().Paused = false;
+        // GetTree().Paused = false;
         this.QueueFree();
     }
 }

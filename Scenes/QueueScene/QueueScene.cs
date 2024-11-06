@@ -4,7 +4,10 @@ using System;
 public partial class QueueScene : Node2D
 {
 	[Export]
-	protected AnimationPlayer animationPlayer { get; set; }
+	protected AnimationPlayer loadingRectAnimationPlayer { get; set; }
+
+	[Export]
+	protected AnimationPlayer cameraAnimationPlayer { get; set; }
 
 	[Export]
 	protected Button retunButton { get; set; }
@@ -16,7 +19,8 @@ public partial class QueueScene : Node2D
 
 	public override void _Ready()
 	{
-		animationPlayer.Play("RESET");
+		loadingRectAnimationPlayer.Play("RESET");
+		cameraAnimationPlayer.Play("RESET");
 
 		retunButton.Pressed += on_retunButton_pressed;
 

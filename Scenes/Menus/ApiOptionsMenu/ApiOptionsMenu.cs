@@ -4,6 +4,8 @@ using System;
 public partial class ApiOptionsMenu : Control
 {
 	[Export]
+	protected AnimationPlayer animationPlayer { get; set; }
+	[Export]
 	protected LineEdit lineEdit { get; set; }
 	[Export]
 	protected Button backButton { get; set; }
@@ -13,6 +15,8 @@ public partial class ApiOptionsMenu : Control
 	public override void _Ready()
 	{
 		backButton.Pressed += on_back_button_pressed;
+
+		animationPlayer.Play("RESET");
 
 		lineEdit.Text = SettingsDbContext.Instance.Get().UrlApi;
 		base._Ready();
