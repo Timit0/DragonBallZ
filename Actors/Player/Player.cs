@@ -13,6 +13,9 @@ public partial class Player : Actor
 	[Export]
 	protected MultiplayerSynchronizer multiplayerSynchronizer { get; set; }
 
+	[Export]
+	protected AnimationPlayer animationPlayerCursor { get; set; }
+
 	protected CameraManager cameraManager { get; set; }
 
 	public string TextureOfSpriteString { get; set; }
@@ -27,6 +30,8 @@ public partial class Player : Actor
 	public override void _Ready()
 	{
 		ActorSignals.Instance.RemoveActor += on_remove_actor;
+
+		animationPlayerCursor.Play("RESET");
 
 		this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
 		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);

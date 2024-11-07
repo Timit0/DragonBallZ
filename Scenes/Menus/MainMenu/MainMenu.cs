@@ -5,23 +5,27 @@ public partial class MainMenu : Control
 {
 	[ExportGroup("Nodes")]
 	[Export]
-	protected AnimationPlayer shenronAnimationPlayer {get;set;}
+	protected AnimationPlayer shenronAnimationPlayer { get; set; }
 	[Export]
-	protected AnimationPlayer cameraAnimationPlayer {get;set;}
+	protected AnimationPlayer cameraAnimationPlayer { get; set; }
 
 	[Export]
-	protected Button startButton {get;set;}
+	protected Button startButton { get; set; }
 	[Export]
-	protected Button optionsButton {get;set;}
+	protected Button optionsButton { get; set; }
 	[Export]
-	protected Button quitButton {get;set;}
+	protected Button quitButton { get; set; }
+	[Export]
+	protected Button logOutButton { get; set; }
 
 
 	[ExportGroup("Targets")]
 	[Export]
-	protected Resource startTarget {get;set;}
+	protected Resource startTarget { get; set; }
 	[Export]
-	protected Resource optionsTarget {get;set;}
+	protected Resource optionsTarget { get; set; }
+	[Export]
+	protected string logOutTarget { get; set; }
 
 	public override void _Ready()
 	{
@@ -31,23 +35,29 @@ public partial class MainMenu : Control
 		startButton.Pressed += on_start_button_pressed;
 		optionsButton.Pressed += on_options_button_pressed;
 		quitButton.Pressed += on_quit_button_pressed;
+
+		logOutButton.Pressed += on_log_out_button_pressed;
 	}
 
-    private void on_start_button_pressed()
-    {
-        SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), startTarget.ResourcePath);
-    }
+	private void on_start_button_pressed()
+	{
+		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), startTarget.ResourcePath);
+	}
 
 
-    private void on_options_button_pressed()
-    {
-        SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), optionsTarget.ResourcePath);
-    }
+	private void on_options_button_pressed()
+	{
+		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), optionsTarget.ResourcePath);
+	}
 
 
-    private void on_quit_button_pressed()
-    {
-        GetTree().Quit();
-    }
+	private void on_quit_button_pressed()
+	{
+		GetTree().Quit();
+	}
 
+	private void on_log_out_button_pressed()
+	{
+		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), logOutTarget);
+	}
 }

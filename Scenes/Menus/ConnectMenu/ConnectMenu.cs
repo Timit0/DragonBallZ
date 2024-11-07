@@ -16,6 +16,8 @@ public partial class ConnectMenu : Control
 	protected Button optionApiButton { get; set; }
 	[Export]
 	protected Resource optionApiButtonTarget { get; set; }
+	[Export]
+	protected Button quitButton { get; set; }
 
 	public override void _Ready()
 	{
@@ -25,6 +27,8 @@ public partial class ConnectMenu : Control
 		formsContainer.AddChild(FactorySingleton.Instance.GetThisNodeInstantiate<Control>(forms[0]));
 
 		optionApiButton.Pressed += on_option_api_button_pressed;
+
+		quitButton.Pressed += on_quit_button_pressed;
 
 		animationPlayer.Play("RESET");
 	}
@@ -40,6 +44,11 @@ public partial class ConnectMenu : Control
 	{
 		string scenePath = optionApiButtonTarget.ResourcePath;
 		SceneSignals.Instance.EmitSignal(nameof(SceneSignals.Instance.ChangeToThisScene), scenePath);
+	}
+
+	private void on_quit_button_pressed()
+	{
+		GetTree().Quit();
 	}
 
 	protected void RemoveForm()

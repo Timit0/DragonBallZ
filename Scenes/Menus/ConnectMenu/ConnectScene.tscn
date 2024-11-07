@@ -107,6 +107,14 @@ offset_bottom = 640.0
 theme = SubResource("Theme_ue5t5")
 text = "Options API"
 
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+offset_left = 1008.0
+offset_top = 568.0
+offset_right = 1144.0
+offset_bottom = 640.0
+theme = ExtResource("2_f6nya")
+text = "Quit"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_21enn")

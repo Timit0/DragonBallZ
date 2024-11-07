@@ -10,6 +10,11 @@ public partial class LogInForm : ConnectionFormOverride
 
 	protected override async void on_action_button_pressed()
 	{
+		if (lineEditPassword.Text == "" || lineEditUsername.Text == "")
+		{
+			return;
+		}
+
 		dataToSend = new FormUrlEncodedContent(
 			new[]
 			{

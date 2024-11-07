@@ -58,7 +58,7 @@ _data = {
 "RESET": SubResource("Animation_8l03v")
 }
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("shenronAnimationPlayer", "cameraAnimationPlayer", "startButton", "optionsButton", "quitButton")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("shenronAnimationPlayer", "cameraAnimationPlayer", "startButton", "optionsButton", "quitButton", "logOutButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,8 +72,10 @@ cameraAnimationPlayer = NodePath("CameraAnims")
 startButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/StartButton")
 optionsButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/OptionsButton")
 quitButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/QuitButton")
+logOutButton = NodePath("CanvasLayer/LogOutButton")
 startTarget = ExtResource("3_7h8j8")
 optionsTarget = ExtResource("4_g7x0j")
+logOutTarget = "res://Scenes/Menus/ConnectMenu/ConnectScene.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_2mraw")
@@ -131,3 +133,11 @@ script = ExtResource("8_wnb52")
 layout_mode = 2
 text = "QUIT"
 script = ExtResource("8_wnb52")
+
+[node name="LogOutButton" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(125, 0)
+offset_left = 32.0
+offset_top = 560.0
+offset_right = 137.0
+offset_bottom = 618.0
+text = "Log Out"

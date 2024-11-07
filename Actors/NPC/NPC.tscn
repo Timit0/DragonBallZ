@@ -411,7 +411,6 @@ radius = 25.0
 max_neighbors = 4
 avoidance_layers = 2
 avoidance_mask = 7
-debug_enabled = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_3fvci")

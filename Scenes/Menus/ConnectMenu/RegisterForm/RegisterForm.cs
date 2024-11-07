@@ -8,6 +8,11 @@ public partial class RegisterForm : ConnectionFormOverride
 {
 	protected async override void on_action_button_pressed()
 	{
+		if (lineEditPassword.Text == "" || lineEditUsername.Text == "")
+		{
+			return;
+		}
+
 		dataToSend = new FormUrlEncodedContent(
 			new[]
 			{
