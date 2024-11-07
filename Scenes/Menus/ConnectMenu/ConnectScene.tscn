@@ -56,7 +56,7 @@ _data = {
 "RESET": SubResource("Animation_qjonb")
 }
 
-[node name="ConnectMenu" type="Control" node_paths=PackedStringArray("optionButton", "formsContainer", "animationPlayer", "optionApiButton")]
+[node name="ConnectMenu" type="Control" node_paths=PackedStringArray("optionButton", "formsContainer", "animationPlayer", "optionApiButton", "quitButton")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -71,6 +71,7 @@ forms = Array[Resource]([ExtResource("2_qdwmf"), ExtResource("3_723n2")])
 animationPlayer = NodePath("AnimationPlayer")
 optionApiButton = NodePath("CanvasLayer/OptionsApiButton")
 optionApiButtonTarget = ExtResource("4_875iy")
+quitButton = NodePath("CanvasLayer/QuitButton")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_6oe57")
