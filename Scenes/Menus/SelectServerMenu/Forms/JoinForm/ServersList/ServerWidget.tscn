@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://biwgqtl7akq1u"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/SelectServerMenu/Forms/JoinForm/ServersList/ServerWidget.cs" id="1_dndsk"]
+[ext_resource type="PackedScene" uid="uid://eu6bk8di7hgf" path="res://Scenes/Menus/SelectSkinMenu/SelectSkinMenu.tscn" id="2_wne1p"]
+
+[node name="ServerWidget" type="Control" node_paths=PackedStringArray("Label", "button")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dndsk")
+Label = NodePath("CenterContainer/HBoxContainer/Label")
+button = NodePath("CenterContainer/HBoxContainer/Button")
+joinButtonTarget = ExtResource("2_wne1p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 896.0
+offset_bottom = 112.0
+mouse_filter = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.52549)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 112.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Timit0"
+
+[node name="Button" type="Button" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Join"

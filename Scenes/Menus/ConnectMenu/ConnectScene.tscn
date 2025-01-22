@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://doi2kwx2it7d4"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/ConnectMenu/ConnectMenu.cs" id="1_jwhya"]
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="2_f6nya"]
+[ext_resource type="PackedScene" uid="uid://dgehiv1ocxn07" path="res://Scenes/Menus/ConnectMenu/LogInForm/LogInForm.tscn" id="2_qdwmf"]
+[ext_resource type="PackedScene" uid="uid://iysqhgsr7sja" path="res://Scenes/Menus/ConnectMenu/RegisterForm/RegisterForm.tscn" id="3_723n2"]
+[ext_resource type="PackedScene" uid="uid://djakdvxdynjxb" path="res://Scenes/Menus/ApiOptionsMenu/ApiOptionsMenu.tscn" id="4_875iy"]
+[ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="5_nug5g"]
+[ext_resource type="Texture2D" uid="uid://bbiuqppc2p7m6" path="res://Common/Assets/Background/snk_tree.png" id="6_6y4po"]
+[ext_resource type="Texture2D" uid="uid://bovxq2sy3iivb" path="res://Common/Assets/UI/Assets/kenney_ui-pack/PNG/Grey/Double/button_rectangle_flat.png" id="7_4nneh"]
+[ext_resource type="Texture2D" uid="uid://cufrt0hdf7blo" path="res://Common/Assets/UI/Assets/kenney_ui-pack/PNG/Grey/Double/button_rectangle_gradient.png" id="8_eu7co"]
+[ext_resource type="Texture2D" uid="uid://cx43i3kk25tes" path="res://Common/Assets/UI/Assets/kenney_ui-pack/PNG/Grey/Double/button_rectangle_line.png" id="9_qd3vn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6oe57"]
+shader = ExtResource("5_nug5g")
+shader_parameter/strength = 7
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_438rj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6gyfi"]
+texture = ExtResource("7_4nneh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_61tfy"]
+texture = ExtResource("8_eu7co")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4rl6"]
+texture = ExtResource("9_qd3vn")
+
+[sub_resource type="Theme" id="Theme_ue5t5"]
+Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 0)
+Button/styles/focus = SubResource("StyleBoxEmpty_438rj")
+Button/styles/hover = SubResource("StyleBoxTexture_6gyfi")
+Button/styles/normal = SubResource("StyleBoxTexture_61tfy")
+Button/styles/pressed = SubResource("StyleBoxTexture_m4rl6")
+
+[sub_resource type="Animation" id="Animation_qjonb"]
+resource_name = "RESET"
+length = 8.0
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1.3, 1.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_21enn"]
+_data = {
+"RESET": SubResource("Animation_qjonb")
+}
+
+[node name="ConnectMenu" type="Control" node_paths=PackedStringArray("optionButton", "formsContainer", "animationPlayer", "optionApiButton", "quitButton")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwhya")
+optionButton = NodePath("CanvasLayer/OptionButton")
+formsContainer = NodePath("CanvasLayer/ContentContainer")
+forms = Array[Resource]([ExtResource("2_qdwmf"), ExtResource("3_723n2")])
+animationPlayer = NodePath("AnimationPlayer")
+optionApiButton = NodePath("CanvasLayer/OptionsApiButton")
+optionApiButtonTarget = ExtResource("4_875iy")
+quitButton = NodePath("CanvasLayer/QuitButton")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_6oe57")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("6_6y4po")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ContentContainer" type="Container" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 179.0
+offset_bottom = 80.0
+theme = ExtResource("2_f6nya")
+selected = 0
+item_count = 2
+popup/item_0/text = "Login"
+popup/item_1/text = "Register"
+popup/item_1/id = 1
+
+[node name="OptionsApiButton" type="Button" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 568.0
+offset_right = 144.0
+offset_bottom = 640.0
+theme = SubResource("Theme_ue5t5")
+text = "Options API"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+offset_left = 1008.0
+offset_top = 568.0
+offset_right = 1144.0
+offset_bottom = 640.0
+theme = ExtResource("2_f6nya")
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_21enn")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(1.1, 1.1)

@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcrhxlq5tihka"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.cs" id="1_1qi7y"]
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_gluei"]
+[ext_resource type="PackedScene" uid="uid://bkmqqtmi334fr" path="res://Scenes/Menus/OptionsMenu/Tables/Sound/SoundTable.tscn" id="2_3s1nq"]
+[ext_resource type="Script" path="res://Common/Scripts/TabContainerOverride.cs" id="3_7l1ag"]
+[ext_resource type="PackedScene" uid="uid://bm647cnv4frh4" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/ControlsTab.tscn" id="4_h5oex"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="4_hf1ko"]
+
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("soundTable", "returnAndSaveButton", "resetButton")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gluei")
+script = ExtResource("1_1qi7y")
+returnTarget = "res://Scenes/Menus/MainMenu/MainMenu.tscn"
+soundTable = NodePath("TabContainer/SoundTabBar/SoundTab")
+returnAndSaveButton = NodePath("CenterContainer/HBoxContainer/ReturnAndSaveButton")
+resetButton = NodePath("CenterContainer/HBoxContainer/ResetButton")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 30
+current_tab = 0
+script = ExtResource("3_7l1ag")
+
+[node name="SoundTabBar" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="SoundTab" parent="TabContainer/SoundTabBar" instance=ExtResource("2_3s1nq")]
+layout_mode = 1
+
+[node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ControlsTab" parent="TabContainer/Controls" instance=ExtResource("4_h5oex")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ReturnAndSaveButton" type="Button" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Return And Save"
+script = ExtResource("4_hf1ko")
+
+[node name="ResetButton" type="Button" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Reset"
+script = ExtResource("4_hf1ko")

@@ -8,16 +8,4 @@ public partial class TestScene : MultiplayerScene
 	{
 		base._Ready();
 	}
-
-    public override void _Process(double delta)
-    {
-		foreach (Node node in GetChildren())
-		{
-			if(node is Player)
-			{
-				// GD.Print(node.GetMultiplayerAuthority());
-			}
-		}
-        base._Process(delta);
-    }
 }

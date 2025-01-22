@@ -1,11 +1,14 @@
-[gd_scene load_steps=34 format=3 uid="uid://dlp3syrvyrr4y"]
+[gd_scene load_steps=39 format=3 uid="uid://dlp3syrvyrr4y"]
 
 [ext_resource type="Script" path="res://Actors/Player/Player.cs" id="1_vqtxr"]
+[ext_resource type="Texture2D" uid="uid://dj8w1tpgr6n2x" path="res://Actors/Assets/krilinSkin.png" id="2_vwlo0"]
+[ext_resource type="PackedScene" uid="uid://d2fi768tmhby" path="res://Common/Cameras/CameraNode.tscn" id="3_8d68l"]
 [ext_resource type="Script" path="res://Common/StateMachine/StateMachine.cs" id="3_70co1"]
 [ext_resource type="Script" path="res://Actors/Player/States/IdlePlayerState.cs" id="4_r34st"]
-[ext_resource type="Texture2D" uid="uid://b8fdjmw2cdgwu" path="res://Actors/Assets/gokuSkin.png" id="5_bb610"]
 [ext_resource type="Script" path="res://Actors/Player/States/MovmentPlayerState.cs" id="5_xm1ek"]
 [ext_resource type="Script" path="res://Actors/Common/DetectableZone.cs" id="6_v7nay"]
+[ext_resource type="Texture2D" uid="uid://cthlqo264i0ae" path="res://Common/Assets/Image/Cursor/Red_triangle.png" id="8_o4pru"]
+[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="9_4otbe"]
 
 [sub_resource type="Animation" id="Animation_hvebq"]
 resource_name = "RESET"
@@ -366,6 +369,9 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("AnimationTree:parameters/Walk/blend_position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:TextureOfSpriteString")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbatf"]
 radius = 2.0
@@ -374,15 +380,42 @@ height = 15.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4pmf"]
 size = Vector2(16, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimationTree", "Sprite", "FootPoint")]
+[sub_resource type="Animation" id="Animation_usmaw"]
+resource_name = "RESET"
+length = 0.5
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cursor/Cursor:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wop30"]
+_data = {
+"RESET": SubResource("Animation_usmaw")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("multiplayerSynchronizer", "animationPlayerCursor", "AnimationTree", "FootPoint", "Sprite")]
 scale = Vector2(2, 2)
+collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_vqtxr")
-AnimationTree = NodePath("AnimationTree")
-Sprite = NodePath("Sprite")
-TextureOfSprite = ExtResource("5_bb610")
+TextureOfSprite = ExtResource("2_vwlo0")
+CameraManagerNodeResource = ExtResource("3_8d68l")
+multiplayerSynchronizer = NodePath("MultiplayerSynchronizer")
+animationPlayerCursor = NodePath("Cursor/AnimationPlayerCursor")
 Tolerance = 2.0
+AnimationTree = NodePath("AnimationTree")
 FootPoint = NodePath("FootPoint")
+Sprite = NodePath("Sprite")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -409,7 +442,7 @@ script = ExtResource("5_xm1ek")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("5_bb610")
+texture = ExtResource("2_vwlo0")
 region_enabled = true
 region_rect = Rect2(9, 4, 16, 32)
 
@@ -426,8 +459,27 @@ position = Vector2(0, 16)
 
 [node name="DetectableZone" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("6_v7nay")
 
 [node name="Shape" type="CollisionShape2D" parent="DetectableZone"]
 shape = SubResource("RectangleShape2D_y4pmf")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 37.97
+
+[node name="Cursor" type="Node2D" parent="."]
+
+[node name="Cursor" type="Sprite2D" parent="Cursor"]
+z_as_relative = false
+position = Vector2(0, -21)
+scale = Vector2(0.0163461, 0.0162338)
+texture = ExtResource("8_o4pru")
+script = ExtResource("9_4otbe")
+toThisZIndex = 1
+
+[node name="AnimationPlayerCursor" type="AnimationPlayer" parent="Cursor"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_wop30")
+}

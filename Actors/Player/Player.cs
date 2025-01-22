@@ -3,42 +3,87 @@ using System;
 
 public partial class Player : Actor
 {
-	[ExportGroup("Nodes")]
 	[Export]
-	public AnimationTree AnimationTree {get;set;}
+	public float Speed { get; set; } = 500;
 	[Export]
-	public Sprite2D Sprite {get;set;}
+	public Texture2D TextureOfSprite { get; set; }
+	[Export]
+	public Resource CameraManagerNodeResource { get; set; }
 
-	[ExportGroup("")]
 	[Export]
-	public Texture2D TextureOfSprite {get;set;}
+	protected MultiplayerSynchronizer multiplayerSynchronizer { get; set; }
 
-    public override void _EnterTree()
-    {
+	[Export]
+	protected AnimationPlayer animationPlayerCursor { get; set; }
+
+	protected CameraManager cameraManager { get; set; }
+
+	public string TextureOfSpriteString { get; set; }
+
+	public override void _EnterTree()
+	{
 		int.TryParse(this.Name, out int id);
 		this.SetMultiplayerAuthority(id);
-        base._EnterTree();
-    }
+		base._EnterTree();
+	}
 
-    public override void _Ready()
+	public override void _Ready()
 	{
-		this.Sprite.Texture = TextureOfSprite;	
+		ActorSignals.Instance.RemoveActor += on_remove_actor;
+
+		animationPlayerCursor.Play("RESET");
+
+		this.TextureOfSpriteString = PlayerSingleton.Instance.PlayerModel.SkinTexture.ResourcePath;
+		this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
+
+		if (this.IsMultiplayerAuthority())
+		{
+			cameraManager = FactorySingleton.Instance.GetThisNodeInstantiate<CameraManager>(CameraManagerNodeResource);
+			this.AddChild(cameraManager);
+		}
+
 		base._Ready();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(IsMultiplayerAuthority())
+		if (this.Multiplayer.MultiplayerPeer != null && IsMultiplayerAuthority())
 		{
 			Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 			this.Velocity = direction * this.Speed;
-		}else
-		{
-			// this.Velocity = //HERE
+
+			PlayerSingleton.Instance.PlayerPostition = this.Position;
 		}
+		else
+		{
+			this.Sprite.Texture = GD.Load<Texture2D>(TextureOfSpriteString);
+		}
+
 		this.MoveAndSlide();
 
 		base._PhysicsProcess(delta);
+	}
+
+	private void on_remove_actor()
+	{
+		if (!this.IsMultiplayerAuthority())
+		{
+			return;
+		}
+		GetParent().RemoveChild(this);
+
+		try
+		{
+			// this.RemoveChild(multiplayerSynchronizer);
+			// this.GetChild("CameraNode");
+			// this.RemoveChild(cameraManager);
+			// this.QueueFree();
+
+		}
+		catch (Exception e)
+		{
+			GD.PrintErr(e.Message);
+		}
 	}
 
 	public void PlayWalk(bool value)
@@ -49,11 +94,5 @@ public partial class Player : Actor
 	public void PlayIdle(bool value)
 	{
 		this.AnimationTree.Set($"parameters/conditions/Idle", value);
-	}
-
-	public void UpdateVelocityAnim()
-	{
-		this.AnimationTree.Set("parameters/Walk/blend_position", this.Velocity);
-		this.AnimationTree.Set("parameters/Idle/blend_position", this.Velocity);
 	}
 }

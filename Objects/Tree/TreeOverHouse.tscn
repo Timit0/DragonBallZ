@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://daicyiwohna2i"]
+
+[ext_resource type="Shader" path="res://Common/Shaders/Tree.gdshader" id="1_o221j"]
+[ext_resource type="Texture2D" uid="uid://dio3tr6syogpd" path="res://Common/Assets/TileMap/TileMapForest.png" id="2_q0h04"]
+[ext_resource type="Script" path="res://Common/Scripts/ZindexSetter.cs" id="2_tv64l"]
+[ext_resource type="Script" path="res://Common/Scripts/ZIndexZone.cs" id="3_pfa0c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xndq1"]
+shader = ExtResource("1_o221j")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.4
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.01
+shader_parameter/heightOffset = 0.9
+shader_parameter/offset = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r1jv"]
+radius = 5.0
+height = 18.0
+
+[node name="Tree" type="Node2D"]
+z_as_relative = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_xndq1")
+script = ExtResource("2_tv64l")
+toThisZIndex = -2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("2_q0h04")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 64)
+
+[node name="HitBox" type="StaticBody2D" parent="."]
+use_parent_material = true
+position = Vector2(0, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0r1jv")
+
+[node name="Behind" type="Area2D" parent="."]
+use_parent_material = true
+collision_layer = 8
+script = ExtResource("3_pfa0c")
+toThisZIndex = -3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Behind"]
+polygon = PackedVector2Array(-8, 18, -21, 21, -32, 4, -27, -17, -14, -35, 3, -39, 19, -33, 28, -23, 32, -11, 28, 8, 20, 19, 10, 18, 6, 19)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, 21)
+radius = 22.15

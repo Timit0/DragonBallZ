@@ -58,4 +58,9 @@ public partial class StateMachine : Node
         _currentState = _states[key];
         _currentState.Enter();
     }
+
+    public string GetStateName()
+    {
+        return _currentState.Name;
+    }
 }

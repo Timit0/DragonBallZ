@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://d31mpn8s3logl"]
+
+[ext_resource type="Script" path="res://Scenes/Notifications/Notification.cs" id="1_f3bh0"]
+[ext_resource type="FontFile" uid="uid://co8hl2tmt5r4" path="res://Common/Assets/Fonts/roboto/Roboto-Black.ttf" id="2_7qhhe"]
+[ext_resource type="Texture2D" uid="uid://dquotib266y3c" path="res://Common/Assets/UI/Assets/kenney_fantasy-ui-borders/PNG/Default/Panel/panel-018.png" id="2_twxj5"]
+
+[sub_resource type="Animation" id="Animation_1s7d2"]
+resource_name = "RESET"
+length = 5.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrrjc"]
+_data = {
+"RESET": SubResource("Animation_1s7d2")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbq58"]
+texture = ExtResource("2_twxj5")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[node name="Notification" type="Node2D" node_paths=PackedStringArray("animationPlayer", "label", "panel")]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_f3bh0")
+animationPlayer = NodePath("AnimationPlayer")
+label = NodePath("Label")
+panel = NodePath("Panel")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hrrjc")
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -24.0
+offset_right = 336.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tbq58")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -24.0
+offset_right = 320.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_7qhhe")
+theme_override_font_sizes/font_size = 25
+text = "Error during logging please try again"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

@@ -1,0 +1,216 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm647cnv4frh4"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_unkt0"]
+[ext_resource type="FontFile" uid="uid://i6rxk7aq2amk" path="res://Common/Assets/Fonts/DragonballZFont/Saiyan-Sans.ttf" id="2_2c3u5"]
+[ext_resource type="PackedScene" uid="uid://ulob2ik8wx21" path="res://Scenes/Menus/OptionsMenu/Tables/Controls/Button/RemapActionButton.tscn" id="3_ge6gw"]
+
+[node name="ControlsTab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 1112.0
+offset_bottom = 448.0
+theme = ExtResource("1_unkt0")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="HMusicVolume" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing" type="Container" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Player" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoUp" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Up"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "move_up"
+PropertyNameInSQLite = "MoveUp"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoDown" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Down"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer2" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "move_down"
+PropertyNameInSQLite = "MoveDown"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoLeft" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Left"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer3" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "move_left"
+PropertyNameInSQLite = "MoveLeft"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GoRight" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Go Right"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Player/HBoxContainer4" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "move_right"
+PropertyNameInSQLite = "MoveRight"
+
+[node name="LineDivider" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 5)
+layout_mode = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Actions" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="CollectDragonBall" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Collect Dragon Ball"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "collect_dragon_ball"
+PropertyNameInSQLite = "CollectDragonBall"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ZoomedCamera" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Zoomed Camera"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/Actions/HBoxContainer2" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "zoomed_camera"
+PropertyNameInSQLite = "ZoomedCamera"
+
+[node name="LineDivider2" type="ColorRect" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 5)
+layout_mode = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="UI" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="PauseMenu" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Pause Menu"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "pause_menu"
+PropertyNameInSQLite = "PauseMenu"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="DragonRadar" type="Label" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2c3u5")
+theme_override_font_sizes/font_size = 65
+text = "Dragon Radar"
+
+[node name="RemapActionButton" parent="ScrollContainer/VBoxContainer/HMusicVolume/VBoxContainer/UI/HBoxContainer2" instance=ExtResource("3_ge6gw")]
+layout_mode = 2
+ActionName = "dragon_radar"
+PropertyNameInSQLite = "DragonRadar"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 1136.0
+offset_bottom = 56.0
+color = Color(0.447059, 0.490196, 0.635294, 0.588235)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 456.0
+offset_right = 1136.0
+offset_bottom = 464.0
+color = Color(0.447059, 0.490196, 0.635294, 0.588235)

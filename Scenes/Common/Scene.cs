@@ -3,13 +3,47 @@ using Godot;
 
 public partial class Scene : Node2D
 {
+    [Export]
+    public Node2D TargetPointsNode { get; set; }
+
+    [Export]
+    public Node2D DragonBallPointsNode { get; set; }
+
     public override void _Ready()
     {
         ActorSignals.Instance.BehindActor += on_actor_behind;
+        GameSingleton.Instance.SetPoints(0);
         base._Ready();
     }
 
-        /// <summary>
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed("pause_menu"))
+        {
+            foreach (Node node in GetChildren())
+            {
+                if (node is PauseMenu)
+                {
+                    return;
+                }
+            }
+            this.AddChild(FactorySingleton.Instance.GetThisNodeInstantiateFromString<PauseMenu>("res://Scenes/UI/PauseMenu/PauseMenu.tscn"));
+        }
+
+        if (Input.IsActionJustPressed("zoomed_camera"))
+        {
+            CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)global::CameraManager.CamList.ZOOMED_CAM);
+        }
+
+        if (Input.IsActionJustReleased("zoomed_camera"))
+        {
+            CameraSignals.Instance.EmitSignal(nameof(CameraSignals.Instance.ActiveThisCamera), (int)global::CameraManager.CamList.MAIN_CAM);
+        }
+
+        base._Input(@event);
+    }
+
+    /// <summary>
     /// If an actor is behind another this function will put it visually behind.
     /// It's gest also the ZIndex if an actor is behind another.
     /// </summary>
@@ -26,41 +60,37 @@ public partial class Scene : Node2D
         //Is Behind
         Actor target = null;
 
-		if(FindChild(emitterName) is Actor)
-		{
-			emitter = FindChild(emitterName) as Actor;
-		}
-
-		if(FindChild(targetName) is Actor)
-		{
-			target = FindChild(targetName) as Actor;
-		}
-
-        if(emitter is null)
+        try
         {
-            try
+            if (FindChild(emitterName) is Actor)
             {
-                emitter = GetNode(emitterName) as Actor;
-            }catch(Exception e)
-            {
-                GD.Print(e);
+                emitter = FindChild(emitterName) as Actor;
             }
-            if(emitter is null)
+        }
+        catch (Exception e) { }
+
+        try
+        {
+            if (FindChild(targetName) is Actor)
+            {
+                target = FindChild(targetName) as Actor;
+            }
+        }
+        catch (Exception e) { }
+
+        if (emitter is null)
+        {
+            emitter = GetActor(emitterName);
+            if (emitter is null)
             {
                 return;
             }
         }
 
-        if(target is null)
+        if (target is null)
         {
-            try
-            {
-                target = GetNode(targetName) as Actor;
-            }catch(Exception e)
-            {
-                GD.Print(e);
-            }
-            if(target is null)
+            target = GetActor(targetName);
+            if (target is null)
             {
                 return;
             }
@@ -73,9 +103,21 @@ public partial class Scene : Node2D
             return;
         }
 
-		if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
+        if (emitter.ZIndex != (int)global::ZIndex.ZIndexEnum.ACTOR)
         {
             target.ZIndex = emitter.ZIndex;
         }
+    }
+
+    public Actor GetActor(string name)
+    {
+        foreach (Node node in this.GetChildren())
+        {
+            if (node is Actor actor && actor.Name == name)
+            {
+                return actor;
+            }
+        }
+        return null;
     }
 }

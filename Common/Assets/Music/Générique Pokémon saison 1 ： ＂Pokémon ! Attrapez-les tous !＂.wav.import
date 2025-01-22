@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btn2nded57qm"
+path="res://.godot/imported/Générique Pokémon saison 1 ： ＂Pokémon ! Attrapez-les tous !＂.wav-a1484d2b745f42c43b35d00a783326c5.sample"
+
+[deps]
+
+source_file="res://Common/Assets/Music/Générique Pokémon saison 1 ： ＂Pokémon ! Attrapez-les tous !＂.wav"
+dest_files=["res://.godot/imported/Générique Pokémon saison 1 ： ＂Pokémon ! Attrapez-les tous !＂.wav-a1484d2b745f42c43b35d00a783326c5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://cftrf3e1f6k4f"]
+
+[ext_resource type="Script" path="res://Scenes/GameIntroScene/GameIntroScene.cs" id="1_l726p"]
+[ext_resource type="FontFile" uid="uid://cthkp74y2u37d" path="res://Common/Assets/Fonts/roboto/Roboto-Light.ttf" id="2_8osyk"]
+[ext_resource type="AudioStream" uid="uid://ccnlc5c7i288x" path="res://Common/Assets/Sound/Intro/SFII_56 - Chun-Li Spinning Bird Kick.wav" id="2_271rb"]
+[ext_resource type="PackedScene" uid="uid://ddtmsuti4nxbd" path="res://Scenes/Menus/MainMenu/MainMenu.tscn" id="2_jdw3q"]
+
+[sub_resource type="Animation" id="Animation_x42c5"]
+resource_name = "RESET"
+length = 7.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Bonne partie! ;)"]
+}
+
+[sub_resource type="Animation" id="Animation_csan0"]
+resource_name = "anim"
+length = 11.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 3.5, 4.5, 5.5, 6.5, 10.5, 11.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 11.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_271rb")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Bonne partie! ;)", "Ce jeu à était fait par
+Ogan Özkul et Tim Ha"]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(11.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"GotoScene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6uicg"]
+_data = {
+"RESET": SubResource("Animation_x42c5"),
+"anim": SubResource("Animation_csan0")
+}
+
+[node name="GameIntroScene" type="Control" node_paths=PackedStringArray("animationPlayer", "label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l726p")
+resource = ExtResource("2_jdw3q")
+animationPlayer = NodePath("AnimationPlayer")
+label = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8osyk")
+theme_override_font_sizes/font_size = 71
+text = "Bonne partie! ;)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6uicg")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0

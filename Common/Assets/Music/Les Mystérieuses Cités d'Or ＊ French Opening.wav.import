@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pqmxiby5q7tn"
+path="res://.godot/imported/Les Mystérieuses Cités d'Or ＊ French Opening.wav-ce694885ea0b89eaa09c08977f97847d.sample"
+
+[deps]
+
+source_file="res://Common/Assets/Music/Les Mystérieuses Cités d'Or ＊ French Opening.wav"
+dest_files=["res://.godot/imported/Les Mystérieuses Cités d'Or ＊ French Opening.wav-ce694885ea0b89eaa09c08977f97847d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

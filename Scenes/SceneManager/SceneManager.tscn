@@ -1,11 +1,158 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx6aj2ob0a2ji"]
+[gd_scene load_steps=8 format=3 uid="uid://cx6aj2ob0a2ji"]
 
 [ext_resource type="Script" path="res://Scenes/SceneManager/SceneManager.cs" id="1_7iyru"]
-[ext_resource type="PackedScene" uid="uid://c07ojo3qj30tr" path="res://Scenes/MainMenu/SelectServerMenu.tscn" id="2_6fys3"]
+[ext_resource type="PackedScene" uid="uid://doi2kwx2it7d4" path="res://Scenes/Menus/ConnectMenu/ConnectScene.tscn" id="2_hvj2w"]
+[ext_resource type="PackedScene" uid="uid://d31mpn8s3logl" path="res://Scenes/Notifications/Notification.tscn" id="3_6itgv"]
+[ext_resource type="Script" path="res://Scenes/SceneManager/NotificationNode.cs" id="3_ubn58"]
 
-[node name="SceneManager" type="Node" node_paths=PackedStringArray("SceneNode")]
+[sub_resource type="Animation" id="Animation_ekin4"]
+resource_name = "RESET"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NoClickMouse:mouse_filter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ex4ll"]
+resource_name = "Transition"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:mouse_filter")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(1152, 648), Vector2(1152, 648), Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(-1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transition:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(1152, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ChangeScene"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"EmitTransitionSound"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NoClickMouse:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dh2ql"]
+_data = {
+"RESET": SubResource("Animation_ekin4"),
+"Transition": SubResource("Animation_ex4ll")
+}
+
+[node name="SceneManager" type="Node" node_paths=PackedStringArray("SceneNode", "TransitionAnimationPlayer")]
 script = ExtResource("1_7iyru")
-SceneToLoad = ExtResource("2_6fys3")
+SceneToLoad = ExtResource("2_hvj2w")
 SceneNode = NodePath("SceneNode")
+TransitionAnimationPlayer = NodePath("TransitionNode/AnimationPlayer")
 
 [node name="SceneNode" type="Node" parent="."]
+
+[node name="EffectsNode" type="Node" parent="."]
+
+[node name="NotificationNode" type="CanvasLayer" parent="." node_paths=PackedStringArray("spawnPoint")]
+layer = 3
+script = ExtResource("3_ubn58")
+resource = ExtResource("3_6itgv")
+spawnPoint = NodePath("SpawnPoint")
+
+[node name="SpawnPoint" type="Node2D" parent="NotificationNode"]
+position = Vector2(576, 52)
+
+[node name="TransitionNode" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Transition" type="ColorRect" parent="TransitionNode"]
+z_index = 2
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionNode"]
+libraries = {
+"": SubResource("AnimationLibrary_dh2ql")
+}
+
+[node name="NoClickMouse" type="ColorRect" parent="TransitionNode"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

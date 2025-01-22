@@ -1,0 +1,143 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddtmsuti4nxbd"]
+
+[ext_resource type="Theme" uid="uid://bu15bwwudut1k" path="res://Common/Themes/BasicMenuTheme.tres" id="1_ushp8"]
+[ext_resource type="Shader" path="res://Common/Shaders/Blur.gdshader" id="2_g28s6"]
+[ext_resource type="Texture2D" uid="uid://bffq14bdhytbx" path="res://Common/Assets/Background/LandscapeMainMenu.jpg" id="2_m636h"]
+[ext_resource type="Script" path="res://Scenes/Menus/MainMenu/MainMenu.cs" id="2_syupt"]
+[ext_resource type="PackedScene" uid="uid://c07ojo3qj30tr" path="res://Scenes/Menus/SelectServerMenu/SelectServerMenu.tscn" id="3_7h8j8"]
+[ext_resource type="PackedScene" uid="uid://bcrhxlq5tihka" path="res://Scenes/Menus/OptionsMenu/OptionsMenu.tscn" id="4_g7x0j"]
+[ext_resource type="Texture2D" uid="uid://bapmcxr5ofbtd" path="res://Common/Assets/Image/Shenron.png" id="4_xbe4v"]
+[ext_resource type="Texture2D" uid="uid://xfox33lqnxkb" path="res://Common/Assets/Image/GameLogo.png" id="8_sxgxi"]
+[ext_resource type="Script" path="res://Common/Scripts/ButtonOverride.cs" id="8_wnb52"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mraw"]
+shader = ExtResource("2_g28s6")
+shader_parameter/strength = 5
+
+[sub_resource type="Animation" id="Animation_wtsgo"]
+resource_name = "RESET"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shenron:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 312), Vector2(576, 328)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8lokp"]
+_data = {
+"RESET": SubResource("Animation_wtsgo")
+}
+
+[sub_resource type="Animation" id="Animation_8l03v"]
+resource_name = "RESET"
+length = 15.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1r6ja"]
+_data = {
+"RESET": SubResource("Animation_8l03v")
+}
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("shenronAnimationPlayer", "cameraAnimationPlayer", "startButton", "optionsButton", "quitButton", "logOutButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ushp8")
+script = ExtResource("2_syupt")
+shenronAnimationPlayer = NodePath("ShenronAnims")
+cameraAnimationPlayer = NodePath("CameraAnims")
+startButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/StartButton")
+optionsButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/OptionsButton")
+quitButton = NodePath("CanvasLayer/CenterContainer/VBoxContainer/QuitButton")
+logOutButton = NodePath("CanvasLayer/LogOutButton")
+startTarget = ExtResource("3_7h8j8")
+optionsTarget = ExtResource("4_g7x0j")
+logOutTarget = "res://Scenes/Menus/ConnectMenu/ConnectScene.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_2mraw")
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_m636h")
+expand_mode = 1
+
+[node name="ShenronAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8lokp")
+}
+
+[node name="CameraAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1r6ja")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 320)
+zoom = Vector2(1.2, 1.2)
+
+[node name="Shenron" type="Sprite2D" parent="."]
+position = Vector2(576, 312)
+texture = ExtResource("4_xbe4v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 67.0
+offset_right = 1152.0
+offset_bottom = 715.0
+theme = ExtResource("1_ushp8")
+
+[node name="GameLogo" type="Sprite2D" parent="CanvasLayer/CenterContainer"]
+position = Vector2(595, 77)
+texture = ExtResource("8_sxgxi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+script = ExtResource("8_wnb52")
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+script = ExtResource("8_wnb52")
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+script = ExtResource("8_wnb52")
+
+[node name="LogOutButton" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(125, 0)
+offset_left = 32.0
+offset_top = 560.0
+offset_right = 137.0
+offset_bottom = 618.0
+text = "Log Out"

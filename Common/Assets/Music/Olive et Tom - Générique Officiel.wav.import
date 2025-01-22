@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://difldifpmk628"
+path="res://.godot/imported/Olive et Tom - Générique Officiel.wav-d4c3fe2a148d159219f3a79017c422c0.sample"
+
+[deps]
+
+source_file="res://Common/Assets/Music/Olive et Tom - Générique Officiel.wav"
+dest_files=["res://.godot/imported/Olive et Tom - Générique Officiel.wav-d4c3fe2a148d159219f3a79017c422c0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
